@@ -25,7 +25,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch --mode=development"
+    "start": "webpack --watch --mode=development",
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
@@ -37,5 +38,9 @@
   "bugs": {
     "url": "https://github.com/pr0grara/feedme/issues"
   },
-  "homepage": "https://github.com/pr0grara/feedme#readme"
+  "homepage": "https://github.com/pr0grara/feedme#readme",
+  "engines": {
+    "node": "14.3.0",
+    "npm": "6.14.4"
+  }
 }

@@ -12,8 +12,8 @@ const App = () => (
       <h1>Feedme</h1>
       <GreetingContainer />
     </header>
-    <AuthRoute path='/login' component={LoginFormContainer} />
-    <AuthRoute path='/signup' component={SignupFormContainer} />
+    <AuthRoute exact path='/login' component={LoginFormContainer} />
+    <AuthRoute exact path='/signup' component={SignupFormContainer} />
   </>
 )
 

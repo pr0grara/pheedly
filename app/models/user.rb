@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  email           :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email  (email)
+#
 require 'byebug'
 
 class User < ApplicationRecord
@@ -7,6 +22,10 @@ class User < ApplicationRecord
   validates :email, presence:true, uniqueness:true
   validates :session_token, :password_digest, presence:true
   validates :password, length: { minimum: 6, allow_nil:true }
+
+  has_many :feeds,
+    foreign_key: :user_id,
+    class_name: :Feed
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email:email)

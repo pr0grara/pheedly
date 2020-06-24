@@ -1,7 +1,20 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
+import GreetingContainer from './greeting/greeting_container' 
+import LoginFormContainer from './session_form/login_form_container'
+import SignupFormContainer from './session_form/login_form_container'
+import { AuthRoute, ProtectedRoute } from '../util/route_util'
+
 
 const App = () => (
-  <h1>things are gonna get interesting now</h1>
+  <>
+    <header>
+      <h1>Feedme</h1>
+      <GreetingContainer />
+    </header>
+    <AuthRoute path='/login' component={LoginFormContainer} />
+    <AuthRoute path='/signup' component={SignupFormContainer} />
+  </>
 )
 
 export default App;

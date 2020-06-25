@@ -1,5 +1,5 @@
 {
-  "name": "feedme",
+  "name": "pheedly",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.10.3",
@@ -26,21 +26,20 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --watch --mode=development",
-    "start": "serve -s build",
+    "start": "webpack --watch --mode=development",
     "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pr0grara/feedme.git"
+    "url": "git+https://github.com/pr0grara/pheedly.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pr0grara/feedme/issues"
+    "url": "https://github.com/pr0grara/pheedly/issues"
   },
-  "homepage": "https://github.com/pr0grara/feedme#readme",
+  "homepage": "https://github.com/pr0grara/pheedly#readme",
   "engines": {
     "node": "14.3.0",
     "npm": "6.14.4"

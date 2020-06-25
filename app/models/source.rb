@@ -15,4 +15,8 @@ class Source < ApplicationRecord
   has_many :feeds,
     foreign_key: :source_id,
     class_name: :Feed
+
+  has_many :users,
+    through: :feeds,
+    source: :user
 end

@@ -17,6 +17,7 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit(e) {
+    ////debugger
     e.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
@@ -35,6 +36,7 @@ class SessionForm extends React.Component {
   }
 
   render() {
+    //debugger
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">

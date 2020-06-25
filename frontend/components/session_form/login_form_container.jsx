@@ -5,6 +5,7 @@ import { login } from '../../actions/session_actions';
 import SessionForm from './session_form';
 
 const mSTP = ({ errors }) => {
+  //debugger
   return {
     errors: errors.session,
     formType: 'login',
@@ -13,6 +14,7 @@ const mSTP = ({ errors }) => {
 };
 
 const mDTP = dispatch => {
+  //debugger
   return {
     processForm: (user) => dispatch(login(user)),
   };

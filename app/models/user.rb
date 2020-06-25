@@ -13,7 +13,6 @@
 #
 #  index_users_on_email  (email)
 #
-require 'byebug'
 
 class User < ApplicationRecord
   attr_reader :password

@@ -2,7 +2,7 @@
 export const articles = () => {
   return $.ajax({
     method: 'GET',
-    url: 'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=86847d711eb84d41accab719e9920a5d',
+    url: 'https://gnews.io/api/v3/top-news?token=ce9822e9acb082d751e4281f0e909034',
     data: {}
   })
 }

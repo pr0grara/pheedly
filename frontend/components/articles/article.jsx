@@ -15,10 +15,16 @@ class Article extends React.Component {
   }
 
   render() {
-    const randNum = Math.floor(Math.random() * 19)
+    const randNum = Math.floor(Math.random() * 9)
+    const articles = this.props.articles
     return (
       <>
-        {Object.values(this.props.articles).length === 0 ? null : <img className='article-image' src={this.props.articles[randNum].urlToImage} />  }
+        {Object.values(this.props.articles).length === 0 ? 
+          null 
+          : 
+          <a href={articles[randNum].url}>{articles[randNum].title}</a>
+          
+        }
       </>
     )
   }

@@ -40,9 +40,19 @@ class SessionForm extends React.Component {
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to Pheedly!
+          {this.props.formType === "login" 
+            ? 
+            <>
+              <p>Welcome Back.</p>
+              <p>Login to access your pheedly.</p>
+            </>
+            : 
+            <>
+              <p>Create an account and</p>
+              <p>access your Pheedly everywhere.</p>
+            </>
+          }
           <br />
-          Please {this.props.formType} or {this.props.navLink}
           {this.renderErrors()}
           <div className="login-form">
             <br />
@@ -54,7 +64,7 @@ class SessionForm extends React.Component {
               />
             </label>
             <br />
-            <label>Password:
+            <label>Password:  
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}

@@ -19,7 +19,7 @@
   font-family: sans-serif;
   font-size: 12px;
   line-height: 1rem;
-  margin-top: 0;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   padding-top: 12px;
   padding-bottom: 10px;
@@ -45,6 +45,61 @@
 }
 
 .login-signup :first-child {
+  margin-top: 1rem;
   position: absolute;
   left: 3rem;
+}
+
+.login-form-box p {
+  font-family: sans-serif;
+  color: #494949;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: -0.04em;
+  line-height: 1.3em;
+  text-align: center;
+}
+
+.login-form-container {
+  margin: auto;
+  max-width: 350px;
+  margin-bottom: 1rem;
+  border: 1px solid grey;
+  border-radius: 6px;
+}
+
+.login-form > label {
+  font-size: 16px;
+  background-color: lightgrey;
+  font-family: sans-serif;
+  color: #494949;
+  font-weight: bold;
+  letter-spacing: -0.04em;
+  line-height: 20px;
+  display: block;
+  margin: auto;
+  text-align: start;
+  width: 250px;
+  -webkit-font-smoothing: antialiased;
+  border-radius: 6px;
+}
+
+.session-submit {
+  background-color: #2BB24C;
+  background-size: 32px 28px;
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+  color: white;
+  cursor: pointer;
+  display: block;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: sans-serif;
+  line-height: 56px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  width: 250px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
 }

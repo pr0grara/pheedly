@@ -8,6 +8,7 @@ class SessionForm extends React.Component {
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
   }
 
   update(field) {
@@ -17,10 +18,17 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    ////debugger
     e.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
+  }
+  
+  handleDemo(e) {
+    e.preventDefault();
+    const demoUser = {email:'demo user', password:'123456'};
+    this.props.formType === 'signup' 
+    ? this.props.loginDemo(demoUser) 
+    : this.props.processForm(demoUser);
   }
 
   renderErrors() {
@@ -36,7 +44,6 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    //debugger
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
@@ -64,7 +71,7 @@ class SessionForm extends React.Component {
               />
             </div>
             <div>  
-              <label>{this.props.formType === 'signup' ? "create a new" : "enter your"} password</label>
+              <label>{this.props.formType === 'signup' ? "create a" : "enter your"} password</label>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
@@ -73,6 +80,15 @@ class SessionForm extends React.Component {
             </div>
             <input className="session-submit" type="submit" value={this.props.formType} />
           </div>
+        </form>
+        <div className='session-switch'>
+          {this.props.formType === 'signup' 
+            ? <a href='./#/login'>already have a Pheed? Login</a>
+            : <a href='./#/signup'>new to Pheedly? Signup</a>
+          }
+        </div>
+        <form onSubmit={this.handleDemo} className='demo-user-form'>
+            <input className="demo-user" type="submit" value="demo login" />
         </form>
       </div>
     );

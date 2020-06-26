@@ -6,7 +6,7 @@ import App from './app'
 
 
 const Root = ({ store }) => {
-  ////debugger
+  //debugger
 
   return (
   <Provider store={store}>

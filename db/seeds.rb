@@ -11,6 +11,7 @@ Source.destroy_all
 Feed.destroy_all
 
 
+demoUser = User.create(email:"demo user", password:'123456')
 lina = User.create(email:"lina@aa.io", password:"123456")
 source1 = Source.create(name:"National Geographic")
 feed1 = Feed.create(source_id:source1.id, user_id: lina.id)

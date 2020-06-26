@@ -22,8 +22,7 @@ class Article extends React.Component {
         {Object.values(this.props.articles).length === 0 ? 
           null 
           : 
-          <a href={articles[randNum].url}>{articles[randNum].title}</a>
-          
+          <a href={articles[randNum].url}>{articles[randNum].title}</a> 
         }
       </>
     )

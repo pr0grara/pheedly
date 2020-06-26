@@ -44,7 +44,7 @@ class SessionForm extends React.Component {
             ? 
             <>
               <p>Welcome Back.</p>
-              <p>Login to access your pheedly.</p>
+              <p>Login to access your Pheedly.</p>
             </>
             : 
             <>
@@ -55,23 +55,22 @@ class SessionForm extends React.Component {
           <br />
           {this.renderErrors()}
           <div className="login-form">
-            <br />
-            <label>Email:
+            <div>
+              <label>enter your email</label>
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
                 className="login-input"
               />
-            </label>
-            <br />
-            <label>Password:  
+            </div>
+            <div>  
+              <label>{this.props.formType === 'signup' ? "create a new" : "enter your"} password</label>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 className="login-input"
-              />
-            </label>
-            <br />
+                />
+            </div>
             <input className="session-submit" type="submit" value={this.props.formType} />
           </div>
         </form>

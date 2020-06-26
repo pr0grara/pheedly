@@ -60,6 +60,10 @@
   text-align: center;
 }
 
+.login-form-box:first-child {
+  margin-top: .7em;
+}
+
 .login-form-container {
   margin: auto;
   max-width: 350px;
@@ -68,20 +72,42 @@
   border-radius: 6px;
 }
 
-.login-form > label {
+// .login-form  {
+// }
+.login-form > div {
+  display: flex;
+}
+
+.login-form > div > input {
+  display: block;
   font-size: 16px;
-  background-color: lightgrey;
+  //height: 2.5rem;
+  background-color: rgb(232, 240, 254);
   font-family: sans-serif;
   color: #494949;
   font-weight: bold;
   letter-spacing: -0.04em;
   line-height: 20px;
-  display: block;
   margin: auto;
   text-align: start;
   width: 250px;
   -webkit-font-smoothing: antialiased;
-  border-radius: 6px;
+  margin-top: .5em;
+  border-radius: 4px;
+  border: solid 1px #80868b;
+  padding: 12px 14px;
+}
+
+.login-form > div > label {
+  display: block;
+  position: absolute;
+  font-size: 12px;
+  font-family: sans-serif;
+  margin-left: 3.75rem;
+  background-color: white;
+  z-index: 1;
+  padding: 0px 8px;
+  color: #80868b;
 }
 
 .session-submit {
@@ -99,7 +125,9 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1em;
-  width: 250px;
+  margin-top: 1em;
+  width: 175px;
   -webkit-font-smoothing: antialiased;
   text-align: center;
+  text-transform: uppercase;
 }

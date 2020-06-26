@@ -5,13 +5,13 @@ import LoginFormContainer from './session_form/login_form_container'
 import SignupFormContainer from './session_form/signup_form_container'
 import { AuthRoute, ProtectedRoute } from '../util/route_util'
 import ArticleContainer from './articles/article_container'
+import NavBarContainer from './nav_bar/nav_bar_container'
 
 const App = () => {
   ////debugger
   return (
   <>
     <header>
-      <h1>Pheedly</h1>
       <GreetingContainer />
     </header>
     <AuthRoute exact path='/signup' component={SignupFormContainer} />

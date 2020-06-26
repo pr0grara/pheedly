@@ -1,7 +1,50 @@
-.header-name {
-  background-color: red;
+.login-signup {
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
 }
 
-.login-form-box {
-  background-color: red;
+.login-signup a {
+  display: flex;
+  justify-content: space-between;
+  border-color: #2bb24c;
+  color: #2bb24c;
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  margin-left: .5rem;
+  margin-right: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-size: 12px;
+  line-height: 1rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-top: 12px;
+  padding-bottom: 10px;
+  padding-left: 17px;
+  padding-right: 17px;
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: top;
+  min-width: 50px;
+  text-decoration: none;
+  box-sizing: border-box;
+  outline: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.login-signup :nth-child(2) {
+  color: white;
+  background-color: #2bb24c;
+}
+
+.login-signup :last-child {
+  margin-right: 3rem;
+}
+
+.login-signup :first-child {
+  position: absolute;
+  left: 3rem;
 }

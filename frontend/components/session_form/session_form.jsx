@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -45,51 +46,56 @@ class SessionForm extends React.Component {
 
   render() {
     return (
-      <div className="login-form-container">
-        <form onSubmit={this.handleSubmit} className="login-form-box">
-          {this.props.formType === "login" 
-            ? 
-            <>
-              <p>Welcome Back.</p>
-              <p>Login to access your Pheedly.</p>
-            </>
-            : 
-            <>
-              <p>Create an account and</p>
-              <p>access your Pheedly everywhere.</p>
-            </>
-          }
-          <br />
-          {this.renderErrors()}
-          <div className="login-form">
-            <div>
-              <label>enter your email</label>
-              <input type="text"
-                value={this.state.email}
-                onChange={this.update('email')}
-                className="login-input"
-              />
-            </div>
-            <div>  
-              <label>{this.props.formType === 'signup' ? "create a" : "enter your"} password</label>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                className="login-input"
+      <div className='session-wrapper'>
+        <img className='session-img' src={window.monoURL} />
+        <div className='filter'></div>
+        <div className="login-form-container">
+          <Link to='/'>X</Link>
+          <form onSubmit={this.handleSubmit} className="login-form-box">
+            {this.props.formType === "login" 
+              ? 
+              <>
+                <p>Welcome Back.</p>
+                <p>Login to access your Pheedly.</p>
+              </>
+              : 
+              <>
+                <p>Create an account and</p>
+                <p>access your Pheedly everywhere.</p>
+              </>
+            }
+            <br />
+            {this.renderErrors()}
+            <div className="login-form">
+              <div>
+                <label>enter your email</label>
+                <input type="text"
+                  value={this.state.email}
+                  onChange={this.update('email')}
+                  className="login-input"
                 />
+              </div>
+              <div>  
+                <label>{this.props.formType === 'signup' ? "create a" : "enter your"} password</label>
+                <input type="password"
+                  value={this.state.password}
+                  onChange={this.update('password')}
+                  className="login-input"
+                  />
+              </div>
+              <input className="session-submit" type="submit" value={this.props.formType} />
             </div>
-            <input className="session-submit" type="submit" value={this.props.formType} />
+          </form>
+          <div className='session-switch'>
+            {this.props.formType === 'signup' 
+              ? <a href='./#/login'>already have a Pheed? Login</a>
+              : <a href='./#/signup'>new to Pheedly? Signup</a>
+            }
           </div>
-        </form>
-        <div className='session-switch'>
-          {this.props.formType === 'signup' 
-            ? <a href='./#/login'>already have a Pheed? Login</a>
-            : <a href='./#/signup'>new to Pheedly? Signup</a>
-          }
+          <form onSubmit={this.handleDemo} className='demo-user-form'>
+              <input className="demo-user" type="submit" value="demo login" />
+          </form>
         </div>
-        <form onSubmit={this.handleDemo} className='demo-user-form'>
-            <input className="demo-user" type="submit" value="demo login" />
-        </form>
       </div>
     );
   }

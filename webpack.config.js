@@ -18,7 +18,15 @@ module.exports = {
             presets: ['@babel/env', '@babel/react']
           }
         },
-      }
+      },
+      // {
+      //   test: [/\.png$/],
+      //   exclude: /(node_modules)/,
+      //   use: {
+      //     loader: 'file-loader',
+      //     options: {},
+      //   },
+      // }
     ]
   },
   resolve: {

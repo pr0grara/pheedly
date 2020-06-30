@@ -5,7 +5,6 @@ import LoginFormContainer from './session_form/login_form_container'
 import SignupFormContainer from './session_form/signup_form_container'
 import { AuthRoute, ProtectedRoute } from '../util/route_util'
 import ArticleContainer from './articles/article_container'
-import NavBarContainer from './nav_bar/nav_bar_container'
 import Splash from './splash/splash'
 import SidebarContainer from './sidebar/sidebar_container'
 
@@ -16,12 +15,12 @@ const App = () => {
   <>
     <header>
       <GreetingContainer />
-      <SidebarContainer />
     </header>
+    <SidebarContainer />
     <Route exact path='/' component={Splash} />
     <AuthRoute exact path='/signup' component={SignupFormContainer} />
     <AuthRoute exact path='/login' component={LoginFormContainer} />
-    <AuthRoute exact path='/articles' component={ArticleContainer} />
+    <ProtectedRoute exact path='/articles' component={ArticleContainer} />
   </>
   )
 }

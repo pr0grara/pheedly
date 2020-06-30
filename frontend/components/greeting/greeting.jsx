@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Greeting = ({currentUser, logout}) => {
   const sessionLinks = () => (
+    // <hgroup className='header-group'>
       <nav className='navbar'>
         <Link to='/'><img src="https://s5.feedly.com/images/fx/logos/logo-feedly-full.svg" alt="" /></Link>
         <nav className='login-signup'>
@@ -10,11 +11,12 @@ const Greeting = ({currentUser, logout}) => {
           <Link to='/login'>login</Link>
         </nav>
       </nav>
+    //</hgroup>
   );
   const personalGreeting = () => (
    <hgroup className='header-group'>
-     <h2 className='header-name'>Hey, {currentUser.email}!</h2>
-     <button className='header-button' onClick={logout}>Logout</button>
+    <Link to='/'><img src="https://s5.feedly.com/images/fx/logos/logo-feedly-full.svg" alt="" /></Link>
+    <button className='logout' onClick={logout}>Logout</button>
    </hgroup>
   );
   return currentUser ? personalGreeting() : sessionLinks();

@@ -1,7 +1,17 @@
 
 .article-image {
-  max-width: 900px;
-  max-height: 900px;
+  max-width: 300px;
   display: block;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: .5em;
+}
+
+.article-index {
+  display: inline-block;
+  max-width: 350px;
+  border: solid lightgray 1px;
+  margin: 5rem 1rem 1rem 5rem;
+  padding: 1em;
+  font-family: sans-serif;
 }

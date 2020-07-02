@@ -1,24 +1,67 @@
+.side-splash {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 .sidebar {
+  position: sticky;
+  // z-index: 0;
+  top: 0;
+  left: 0;
+  width: 20%;
+  height: calc(100% - 71px);
+  background-color: #EEEEEE;
+  font-size: 12px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  // overflow-y: scroll;
+  // overflow-x: hidden;
+  padding-top: 20px;
   //display: none;
-  position: absolute;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: flex-start;
-  //display: block;
-  border: solid lightgray 1px;
-  z-index: 5;
-  width: 250px;
-  overflow-y: scroll;
+  // position: absolute;
+  // // display: flex;
+  // // flex-direction: column;
+  // // align-items: flex-start;
+  // //display: block;
+  // border: solid lightgray 1px;
+  // z-index: 5;
+  // width: 250px;
+  // overflow-y: scroll;
   background-color: rgba($color: white, $alpha: 0.75);
+  border: solid lightgray 1px;
+  // margin-top: 51px;
+  // z-index: 2;
+}
+
+.active {
+  width: 268px;
+  opacity: 1;
+  transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.inactive {
+  width: 0px;
+  opacity: 0;
+  transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .sidebar a {
   display: flex;
   font-family: sans-serif;
-  font-size: 14px;
-  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 50px;
+}
+
+.sidebar :last-child {
+  position: relative;
+  margin-left: 25px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  padding: 0px;
 }

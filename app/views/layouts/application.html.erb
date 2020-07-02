@@ -9,8 +9,17 @@
     <%= javascript_include_tag 'application' %>
    
     <script type="text/javascript">
-      window.monoURL = "<%= image_url('mono-lake.png') %>";
+      window.feedly = "<%= image_url('feedly-sample.png') %>";
     </script>
+    <script type="text/javascript">
+      window.gnews = "<%= Rails.application.credentials.gnews[:api_key] %>";
+    </script>
+    <script type="text/javascript">
+      window.newsapi = "<%= Rails.application.credentials.newsapi[:api_key] %>";
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  
   </head>
 
   <body>

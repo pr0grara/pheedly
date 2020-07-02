@@ -2,6 +2,7 @@ import * as APIUtil from '../util/article_api_util'
 
 export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES';
 export const RECEIVE_ARTICLE_ERRORS = 'RECEIVE_ARTICLE_ERRORS';
+export const RECEIVE_CONTENT = 'RECEIVE_CONTENT';
 
 export const receiveArticles = articles => {
   //debugger
@@ -16,6 +17,15 @@ export const receiveErrors = errors => ({
   errors
 });
 
+export const receiveContent = article => {
+  debugger
+  return ({
+    type: RECEIVE_CONTENT,
+    contentType: 'json',
+    article
+  })
+};
+
 export const displayArticles = () => dispatch => {
   //debugger
   return (
@@ -24,5 +34,16 @@ export const displayArticles = () => dispatch => {
   ), err => (
     dispatch(receiveErrors(err.responseJSON))
   ))
+  )
+};
+
+export const fetchContent = () => dispatch => {
+  //debugger
+  return (
+    APIUtil.fetch().then((obj) => (
+      dispatch(receiveContent(obj.article))
+    ), err => (
+      dispatch(receiveErrors(err.responseJSON))
+    ))
   )
 };

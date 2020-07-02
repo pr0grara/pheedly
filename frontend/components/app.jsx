@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import GreetingContainer from './greeting/greeting_container' 
+import NavBarContainer from './greeting/greeting_container' 
 import LoginFormContainer from './session_form/login_form_container'
 import SignupFormContainer from './session_form/signup_form_container'
 import { AuthRoute, ProtectedRoute } from '../util/route_util'
@@ -14,14 +14,15 @@ const App = () => {
   //debugger
   return (
   <>
-    <header>
-      <GreetingContainer />
-    </header>
-    <SidebarContainer />
-    <Route exact path='/' component={Splash} />
+    <NavBarContainer />
+    <div className="side-splash">  
+      <SidebarContainer />
+      <Route exact path='/' component={Splash} />
+      <ProtectedRoute exact path='/articles' component={ArticleIndexContainer} />
+      <ProtectedRoute exact path="/article" component={ArticleContainer} />
+    </div>
     <AuthRoute exact path='/signup' component={SignupFormContainer} />
     <AuthRoute exact path='/login' component={LoginFormContainer} />
-    <ProtectedRoute exact path='/articles' component={ArticleIndexContainer} />
   </>
   )
 }

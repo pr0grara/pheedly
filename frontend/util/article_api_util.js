@@ -4,8 +4,8 @@ export const articles = () => {
     method: 'GET',
     //url: 'https://gnews.io/api/v3/top-news?token=1ac3f76a880c583e80d4d97ef26b490f',
     //url: 'http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=86847d711eb84d41accab719e9920a5d', //top 10 techCrunch
-    url: `http://newsapi.org/v2/everything?domains=wsj.com&apiKey=${window.newsapi}` //all WSJ from 6 months
-    //url: `https://gnews.io/api/v3/top-news?token=${window.gnews}` //gnews safe
+    //url: `http://newsapi.org/v2/everything?domains=wsj.com&apiKey=${window.newsapi}` //all WSJ from 6 months
+    url: `https://gnews.io/api/v3/top-news?token=${window.gnews}` //gnews safe
   })
 }
 var settings = {
@@ -15,7 +15,7 @@ var settings = {
   "method": "GET",
   "headers": {
     "x-rapidapi-host": "lexper.p.rapidapi.com",
-    "x-rapidapi-key": "ccf6217fccmsh44d9ab537a638e6p1ed82djsn07e7b336d692"
+    "x-rapidapi-key": ""
   }
 }
 

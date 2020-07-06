@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const mSTP = ({session, entities: {users}}) => {
   return {
-    currentUser: users[session.id]
+    currentUser: users[session.id],
   };
 };
 

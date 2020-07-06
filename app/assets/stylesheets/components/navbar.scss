@@ -241,12 +241,16 @@
 }
 
 .header-group {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid lightgrey 1px;
+  // border-bottom: solid lightgrey 1px;
 }
 
-.header-group img {
+.header-group a img {
+  position: fixed;
   margin-left: .5rem;
+  top: 10px;
+  left: 5px;
 }

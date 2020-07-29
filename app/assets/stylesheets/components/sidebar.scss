@@ -3,6 +3,7 @@
   display: flex;
   // justify-content: space-evenly;
   // width: 100%;
+  height: 100%
 }
 
 .sidebar {
@@ -12,10 +13,10 @@
   // display: flex;
   // flex-direction: column;
   // justify-content: space-around;
-  position: fixed;
+  position: relative;
   top: 51px;
   left: 0;
-  width: 15%;
+  width: 20%;
   height: calc(100% + 200px);
   // background-color: #EEEEEE;
   font-size: 16px;
@@ -24,14 +25,27 @@
   padding-top: 20px;
   // background-color: rgba($color: white, $alpha: 0.75);
   // border: solid lightgray 1px;
+  
+}
 
+.sidebar div {
+  margin-left: 1em;
+}
+
+.sidebar > a {
+  margin-left: 2em;
 }
 
 .sidebar-with-toggle {
+  position: relative;
   background-color: #eeeeee;
+  width: 20%;
+  height: 900px;
 }
 
 .toggle-sidebar {
+  position: fixed;
+  top: 50%;
   margin-right: .5em;
   margin-left: 5em;
   font-family: sans-serif;

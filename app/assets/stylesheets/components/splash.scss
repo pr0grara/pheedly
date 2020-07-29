@@ -20,16 +20,23 @@
   font-size: 24px;
   text-align: center;
   font-weight: 600;
-  margin-left: auto;
-  margin-right: auto;
+  margin: .7em auto 0 auto
 }
 
 .splash-img {
   //background-image: image-url("mono-lake.png");
+  margin: 2em 1em 2em 1em;
   position: relative;
   background-size: 640px;
   max-height: 640px;
   box-shadow: 0 3px 20px rgba(0, 0, 0, 0.7);
   object-fit: contain;
   background-repeat: no-repeat;
+}
+
+.splash-wrapper-hidden {
+  display: none;
+  height: 0px;
+  width: 0px;
+  opacity: 0;
 }

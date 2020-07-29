@@ -12,6 +12,7 @@ class Sidebar extends React.Component {
   toggleSidebar() {
     // e.preventDefault();
     let sidebar = document.getElementById("sidebar")
+    let side_toggle = document.getElementsByClassName("sidebar-with-toggle")[0]
     let toggle = document.getElementsByClassName('toggle-sidebar')[0]
     let navbar = document.getElementsByClassName('header-group')[0]
     // debugger
@@ -20,11 +21,13 @@ class Sidebar extends React.Component {
       toggle.firstChild.textContent = "+"
       toggle.style.marginLeft = "1em"
       navbar.firstChild.firstChild.style.marginLeft = '5em'
+      side_toggle.style.width = "5%"
     } else {
       sidebar.className = 'sidebar'
       toggle.firstChild.textContent = "_"
       toggle.style.marginLeft = "5em"
       navbar.firstChild.firstChild.style.marginLeft = '12em'
+      side_toggle.style.width = "20%"
     }
   }
   

@@ -1,11 +1,14 @@
 .session-wrapper {
-  background-color: rgb(184, 184, 184);
+  position: fixed;
+  top: 0px;
+  background-color: rgba(184, 184, 184, .75);
   margin: 0 auto;
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 725px;
+  // min-height: 725px;
 }
 
 .session-img {
@@ -35,6 +38,7 @@
   align-items: center;
   // margin: .5rem;
   border-bottom: solid lightgrey 1px;
+  background-color: #eeeeee;
 }
 
 .navbar a {
@@ -44,7 +48,7 @@
 .login-signup {
   display: flex;
   align-items: center;
-  background-color: white;
+  background: transparent;  
   width: auto;
   height: 50px;
 }
@@ -113,7 +117,6 @@
   color: white;
   background-color: #2bb24c;
 }
-
 
 .login-form-box p {
   font-family: sans-serif;

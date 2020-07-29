@@ -6,7 +6,7 @@ import SignupFormContainer from './session_form/signup_form_container'
 import { AuthRoute, ProtectedRoute } from '../util/route_util'
 import ArticleContainer from './articles/article_container'
 import ArticleIndexContainer from './articles/article_index_container'
-import Splash from './splash/splash'
+import SplashContainer from './splash/splash_container'
 import SidebarContainer from './sidebar/sidebar_container'
 
 //Header component was renamed from GreetingContainer 
@@ -17,7 +17,7 @@ const App = () => {
     <NavBarContainer />
     <div className="side-splash">  
       <SidebarContainer />
-      <Route exact path='/' component={Splash} />
+      <SplashContainer />
       <ProtectedRoute exact path='/articles' component={ArticleIndexContainer} />
       <ProtectedRoute exact path="/article" component={ArticleContainer} />
     </div>

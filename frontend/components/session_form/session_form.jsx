@@ -47,8 +47,8 @@ class SessionForm extends React.Component {
   render() {
     return (
       <div className='session-wrapper'>
-        <img className='session-img' src={window.monoURL} />
-        <div className='filter'></div>
+        {/* <img className='session-img' src={window.monoURL} /> */}
+        {/* <div className='filter'></div> */}
         <div className="login-form-container">
           <Link to='/'>X</Link>
           <form onSubmit={this.handleSubmit} className="login-form-box">

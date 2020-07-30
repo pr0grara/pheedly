@@ -33,6 +33,12 @@
 //   margin-top: 600px;
 // }
 
+.sidebar ul, .sidebar div {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;
+}
+
 .sidebar-with-toggle {
   position: fixed;
   transform: inherit;
@@ -67,7 +73,7 @@
 }
 
 .add-content {
-  margin-bottom: 50px;
+  margin-bottom: 65px;
 }
 
 .add-content button {

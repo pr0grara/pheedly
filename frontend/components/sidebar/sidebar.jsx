@@ -31,22 +31,35 @@ class Sidebar extends React.Component {
     let side_toggle = document.getElementsByClassName("sidebar-with-toggle")[0]
     let toggle = document.getElementsByClassName('toggle-sidebar')[0]
     let navbar = document.getElementsByClassName('header-group')[0]
+    let articles = {style: {marginLeft:""}};
     // debugger
+    
+    if (document.getElementsByClassName('article-index').length > 0) {
+     articles = document.getElementsByClassName('article-index')[0]
+    }
+
     if (sidebar.className === "sidebar") {
       this.sidebar = false;
       sidebar.className = 'sidebar-hidden'
       toggle.firstChild.textContent = "+"
-      toggle.style.marginLeft = "1em"
+      toggle.style.left = "2%"
       navbar.firstChild.firstChild.style.marginLeft = '5em'
       side_toggle.style.width = "6%"
+      articles.style.marginLeft = "6%"
+      articles.style.width = "94%"
+      
+      // articleIndex("6%")
     } else {
       this.sidebar = true;
       sidebar.className = 'sidebar'
       toggle.firstChild.textContent = "⎼"
-      toggle.style.marginLeft = "5em"
+      toggle.style.left = "13%"
       navbar.firstChild.firstChild.style.marginLeft = '12em'
+      // articles("17%")
       // side_toggle.style.width = "200px"
+      articles.style.marginLeft = "17%"
       side_toggle.style.width = "17%"
+      articles.style.width = "83%"
     }
   }
 

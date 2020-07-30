@@ -64,7 +64,7 @@ class Sidebar extends React.Component {
   }
 
   addContent() {
-    console.log("i am gay")
+    console.log("you are awesome")
   }
   
   render() {

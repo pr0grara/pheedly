@@ -6,10 +6,17 @@ import { fetch } from './util/article_api_util'
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log(window.gnews)
+
   let store 
   if (window.currentUser) {
     const preloadedState = {
-      session: { id: window.currentUser.id },
+      session: { 
+        id: window.currentUser.id,
+        windowSize: {
+          height: window.innerHeight,
+          width: window.innerWidth,
+        },
+      },
       entities: {
         users: { [window.currentUser.id]: window.currentUser }
       }
@@ -20,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   window.fetch = fetch;
-  //debugger
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
 })

@@ -7,7 +7,19 @@ class Sidebar extends React.Component {
     super(props)
     this.currentUser = this.props.currentUser
     this.toggleSidebar = this.toggleSidebar.bind(this)
+    this.addContent = this.addContent.bind(this)
   }
+
+  componentDidMount() {
+    let root = document.getElementById('root')
+    let sidebar = document.getElementById("sidebar")
+    root.style.height = `${this.props.screenSize.height}px`
+    root.style.width = `${this.props.screenSize.width}px`
+    sidebar.style.height = `${this.props.screenSize.height - 50}px`
+    sidebar.style.width = `${(this.props.screenSize.width) * 0.17}px`
+  }
+
+  
 
   toggleSidebar() {
     // e.preventDefault();
@@ -21,14 +33,19 @@ class Sidebar extends React.Component {
       toggle.firstChild.textContent = "+"
       toggle.style.marginLeft = "1em"
       navbar.firstChild.firstChild.style.marginLeft = '5em'
-      side_toggle.style.width = "5%"
+      side_toggle.style.width = "6%"
     } else {
       sidebar.className = 'sidebar'
-      toggle.firstChild.textContent = "_"
+      toggle.firstChild.textContent = "⎼"
       toggle.style.marginLeft = "5em"
       navbar.firstChild.firstChild.style.marginLeft = '12em'
-      side_toggle.style.width = "20%"
+      // side_toggle.style.width = "200px"
+      side_toggle.style.width = "17%"
     }
+  }
+
+  addContent() {
+    console.log("i am gay")
   }
   
   render() {
@@ -36,16 +53,17 @@ class Sidebar extends React.Component {
     const active = () => (
     <div className='sidebar-with-toggle'>
       <div className="sidebar" id='sidebar'>
-        <div className='home'>
-          <Link to='/'>home</Link>
+        <ul id='side-nav'>  
+          <li><Link to='/'>home</Link></li>
+          <li><Link to='/pheed/1'>pheeds</Link></li>
+          <li><Link to='/articles'>finance</Link></li>
+        </ul>
+        <div className='add-content'>
+          <button onClick={this.addContent}>Create Pheed</button>
         </div>
-        <div className='pheeds'>
-          <Link to='/pheed/1'>pheeds</Link>
-        </div>
-          <Link to='/articles'>finance</Link>
       </div>
       <div className='toggle-sidebar'>
-        <button onClick={this.toggleSidebar}>_</button>
+          <button onClick={this.toggleSidebar}>⎼</button>
       </div>  
     </div>
     )

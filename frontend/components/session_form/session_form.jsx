@@ -10,6 +10,7 @@ class SessionForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
+    this.clearErrors = this.clearErrors.bind(this);
   }
 
   update(field) {
@@ -33,6 +34,7 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
+    // this.props.clearErrors
     return (
       <ul className='errors'>
         {this.props.errors.map((error, i) => (
@@ -42,6 +44,15 @@ class SessionForm extends React.Component {
         ))}
       </ul>
     );
+  }
+
+  componentDidUpdate(e) {
+    debugger
+    // console.log(e)
+  }
+
+  clearErrors() {
+    // this.errors = [];
   }
 
   render() {
@@ -68,7 +79,7 @@ class SessionForm extends React.Component {
             {this.renderErrors()}
             <div className="login-form">
               <div>
-                <label>enter your email</label>
+                <label>email</label>
                 <input type="text"
                   value={this.state.email}
                   onChange={this.update('email')}
@@ -76,7 +87,7 @@ class SessionForm extends React.Component {
                 />
               </div>
               <div>  
-                <label>{this.props.formType === 'signup' ? "create a" : "enter your"} password</label>
+                <label>{this.props.formType === 'signup' ? "new" : ""} password</label>
                 <input type="password"
                   value={this.state.password}
                   onChange={this.update('password')}
@@ -88,7 +99,7 @@ class SessionForm extends React.Component {
           </form>
           <div className='session-switch'>
             {this.props.formType === 'signup' 
-              ? <a href='./#/login'>already have a Pheed? Login</a>
+              ? <a onClick={this.props.clearErrors} href='./#/login'>already have a Pheed? Login</a>
               : <a href='./#/signup'>new to Pheedly? Signup</a>
             }
           </div>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 const mSTP = ({session, entities: {users}}) => {
   return {
     currentUser: users[session.id],
+    screenSize: session.windowSize,
   };
 };
 

@@ -36,7 +36,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // margin: .5rem;
   border-bottom: solid lightgrey 1px;
   background-color: #eeeeee;
 }
@@ -178,13 +177,14 @@
 .login-form > div > label {
   display: block;
   position: absolute;
-  font-size: 12px;
+  font-size: 14px;
   font-family: sans-serif;
   margin-left: 2rem;
   background-color: white;
   z-index: 1;
   padding: 0px 8px;
   color: #80868b;
+  font-weight: 400;
 }
 
 .session-submit {
@@ -249,12 +249,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // border-bottom: solid lightgrey 1px;
 }
 
 .header-group a img {
-  // position: fixed;
-  // margin-left: .5rem;
   top: 10px;
   margin-left: 12em;
 }

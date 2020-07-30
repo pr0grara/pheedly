@@ -1,46 +1,45 @@
 .side-splash {
-  // position: relative;
   display: flex;
-  // justify-content: space-evenly;
-  // width: 100%;
   height: 100%
 }
 
 .sidebar {
   background-color: #eeeeee;
-  margin-top: auto;
-  margin-bottom: auto;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-around;
-  position: relative;
-  top: 51px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   left: 0;
   width: 20%;
-  height: calc(100% + 200px);
-  // background-color: #EEEEEE;
   font-size: 16px;
   font-family: sans-serif;
   text-transform: uppercase;
-  padding-top: 20px;
-  // background-color: rgba($color: white, $alpha: 0.75);
-  // border: solid lightgray 1px;
-  
 }
 
-.sidebar div {
-  margin-left: 1em;
-}
 
-.sidebar > a {
-  margin-left: 2em;
-}
+// .sidebar div {
+//   margin-left: 50%;
+// }
+
+// .sidebar > a {
+//   margin-left: 60%;
+// }
+
+// .sidebar div:first-child {
+//   margin-top: 100px;
+// }
+
+// .sidebar div:last-child {
+//   margin-top: 600px;
+// }
 
 .sidebar-with-toggle {
-  position: relative;
+  // position: relative;
+  transform: inherit;
   background-color: #eeeeee;
-  width: 20%;
-  height: 900px;
+  width: 12%;
+  height: 100%;
+  // height: 1000px;
 }
 
 .toggle-sidebar {
@@ -52,6 +51,14 @@
   font-size: 30px;
 }
 
+.toggle-sidebar button {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(116, 116, 116);
+  color: rgb(192, 192, 192);
+  background: transparent;
+  font-size: 48px;
+}
+
 .sidebar-hidden {
   display: none;
   width: 0px;
@@ -59,22 +66,34 @@
   transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-// .sidebar-links {
-//   display: flex;
-//   font-family: sans-serif;
-//   font-weight: 600;
-//   font-size: 16px;
-//   text-transform: uppercase;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   height: 50px;
-// }
+.add-content {
+  bottom: 500px;
+}
 
-// .sidebar :last-child {
-//   position: relative;
-//   margin-left: 25px;
-//   margin-bottom: 10px;
-//   font-size: 16px;
-//   padding: 0px;
-// }
+.add-content button {
+  top: 50px;
+  border-color: #2bb24c;
+  color: #2bb24c;
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-size: 12px;
+  line-height: 1rem;
+  // margin: 1rem, 0rem, 1rem, 1rem;
+  // margin-left: 1rem;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: top;
+  min-width: 100px;
+  text-decoration: none;
+  box-sizing: border-box;
+  outline: 0;
+  -webkit-font-smoothing: antialiased;
+}

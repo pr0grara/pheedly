@@ -5,6 +5,7 @@ const mSTP = ({session, entities: {users}}) => {
   return {
     currentUser: users[session.id],
     screenSize: session.windowSize,
+    sidebar: false,
   };
 };
 

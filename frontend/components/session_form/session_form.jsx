@@ -47,7 +47,7 @@ class SessionForm extends React.Component {
   }
 
   componentDidUpdate(e) {
-    debugger
+    // debugger
     // console.log(e)
   }
 

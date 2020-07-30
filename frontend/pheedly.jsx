@@ -8,8 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log(window.gnews)
 
   let store 
+  let preloadedState = {
+    session: {
+      windowSize: {
+        height: window.innerHeight,
+        width: window.innerWidth,
+      }
+    }
+  };
   if (window.currentUser) {
-    const preloadedState = {
+    preloadedState = {
       session: { 
         id: window.currentUser.id,
         windowSize: {
@@ -24,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore(preloadedState);
     delete window.currentUser;
   } else {
-    store = configureStore();
+    store = configureStore(preloadedState);
   }
   window.fetch = fetch;
   const root = document.getElementById('root');

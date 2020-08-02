@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 class LeftNav extends React.Component {
   constructor(props) {
+    // debugger
     super(props)
     this.currentUser = this.props.currentUser
     this.toggleLeftNav = this.toggleLeftNav.bind(this)
@@ -31,8 +32,17 @@ class LeftNav extends React.Component {
     }
   }
 
+  componentWillUpdate(nP, nS) {
+    // debugger
+    if (!nP.currentUser[1]) {
+      this.userName = 'N/A'
+    } else {
+      this.userName = nP.currentUser[nP.sessionId].email
+    }
+  }
+
   toggleLeftNav(e) {
-    e.preventDefault();
+    // e.preventDefault();
     let leftNavWrapper = document.getElementById("leftNav-wrapper")
     let leftNav = document.getElementById("leftNav")
     let side_toggle = document.getElementsByClassName("leftNav-dock")[0]

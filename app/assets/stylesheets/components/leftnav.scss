@@ -149,6 +149,10 @@
   border: solid #eeeeee 1px;
 }
 
+.user-menu li:hover {
+  background: #eeeeee;
+}
+
 .user-dropdown-hidden {
   display: none;
   width: 0px;

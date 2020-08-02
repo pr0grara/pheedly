@@ -8,7 +8,7 @@
 }
 
 .article-index {
-  width: 94%;
+  width: 95.5%;
   display: flex;
   flex-wrap: wrap;
   margin-left: 4.5%;
@@ -16,7 +16,7 @@
   font-family: sans-serif;
   background-color: #ffffff;
   // margin-left: 20%;
-  // transition: width 0.25s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: width 0.25s cubic-bezier(0.694, 0.0482, 0.335, 1);
 }
 
 .article-index h1 {

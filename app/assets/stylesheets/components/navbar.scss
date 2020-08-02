@@ -244,8 +244,12 @@
 }
 
 .header-group {
-  background-color: #eeeeee;
-  position: relative;
+  left: 4.5%;
+  background-color: #ffffff;
+  position: fixed;
+  width: 95.5%;
+  height: 6%;
+  border-bottom: #eeeeee solid 1px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -253,5 +257,6 @@
 
 .header-group a img {
   top: 10px;
-  margin-left: 12em;
+  position: fixed;
+  // margin-left: 17%;
 }

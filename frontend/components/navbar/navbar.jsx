@@ -11,8 +11,8 @@ class Greeting extends React.Component {
     let personalGreeting = (
     <>
       <hgroup className='header-group'>
-      <Link to='/'><img src="https://s5.feedly.com/images/fx/logos/logo-feedly-full.svg" alt="" /></Link>
-      <button className='logout' onClick={this.logout}>Logout</button>
+      {/* <Link to='/'><img src="https://s5.feedly.com/images/fx/logos/logo-feedly-full.svg" alt="" /></Link> */}
+      {/* <button className='logout' onClick={this.logout}>Logout</button> */}
       </hgroup>
     </>
     )

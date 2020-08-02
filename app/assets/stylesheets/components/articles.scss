@@ -8,14 +8,15 @@
 }
 
 .article-index {
-  width: 83%;
+  width: 94%;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 17%;
+  margin-left: 4.5%;
   border: solid lightgray 1px;
   font-family: sans-serif;
-  background-color: lightgray;
+  background-color: #ffffff;
   // margin-left: 20%;
+  // transition: width 0.25s cubic-bezier(0.694, 0.0482, 0.335, 1);
 }
 
 .article-index h1 {

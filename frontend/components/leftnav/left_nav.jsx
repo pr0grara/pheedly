@@ -42,14 +42,14 @@ class LeftNav extends React.Component {
   }
 
   toggleLeftNav(e) {
-    // e.preventDefault();
+    e.preventDefault();
     let leftNavWrapper = document.getElementById("leftNav-wrapper")
     let leftNav = document.getElementById("leftNav")
     let side_toggle = document.getElementsByClassName("leftNav-dock")[0]
     let articles = {style: {marginLeft:""}};
     // debugger
     
-    if (e.target.id === "user-logo" || e.target.id === "button") return
+    if (e.target.className === "user-logo-small" || e.target.className === "button") return
 
     if (document.getElementsByClassName('article-index').length > 0) {
      articles = document.getElementsByClassName('article-index')[0]
@@ -99,7 +99,7 @@ class LeftNav extends React.Component {
             <button id='button' onClick={this.userLogoDropDown}>+</button>
         </div> 
         <div id='user-options-menu'>
-            <label className='user-logo' onClick={this.userLogoDropDown}>{this.userName[0]}</label>
+            <label className='user-logo-small' onClick={this.userLogoDropDown}>{this.userName[0]}</label>
         </div>
         {/* <button className='logout' onClick={this.logout}>Logout</button> */}
       </div>
@@ -116,14 +116,14 @@ class LeftNav extends React.Component {
         </div>
       </div>
       <div id='user-dropdown' className='user-dropdown-hidden'>
-        <ul>
-          <div id='user-title'>
-            <div className='user-logo'>{this.userName[0]}</div>
-            <div>
-              <div>{this.userName}</div>
-              <div>free</div>
-            </div>
+        <div id='user-title'>
+          <div className='user-logo-big'>{this.userName[0]}</div>
+          <div className='user-info'>
+            <div>{this.userName}</div>
+            <div>free</div>
           </div>
+        </div>
+        <ul>
           <li>settings</li>
           <li>organize sources </li>
           <li>mobile apps</li>
@@ -134,6 +134,7 @@ class LeftNav extends React.Component {
           <li onClick={this.logout}>logout</li>
         </ul>
       </div>
+      <div className='arrow-left'></div>
     </div>
     )
     const inactive = () => (

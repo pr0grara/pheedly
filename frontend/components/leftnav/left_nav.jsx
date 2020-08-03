@@ -16,7 +16,6 @@ class LeftNav extends React.Component {
       this.userName = "N/A"
     }
     this.userLogoDropDown = this.userLogoDropDown.bind(this);
-    this.userOptions = false;
     this.logout = this.props.logout.bind(this);
   }
   
@@ -31,8 +30,9 @@ class LeftNav extends React.Component {
       leftNav.style.width = `${(this.props.screenSize.width) * 0.17}px`
     }
   }
-
+  
   componentWillUpdate(nP, nS) {
+    this.userOptions = false;
     // debugger
     if (!nP.currentUser[1]) {
       this.userName = 'N/A'
@@ -99,7 +99,7 @@ class LeftNav extends React.Component {
             <button id='button' onClick={this.userLogoDropDown}>+</button>
         </div> 
         <div id='user-options-menu'>
-            <label id='user-logo' onClick={this.userLogoDropDown}>{this.userName[0]}</label>
+            <label className='user-logo' onClick={this.userLogoDropDown}>{this.userName[0]}</label>
         </div>
         {/* <button className='logout' onClick={this.logout}>Logout</button> */}
       </div>
@@ -117,7 +117,13 @@ class LeftNav extends React.Component {
       </div>
       <div id='user-dropdown' className='user-dropdown-hidden'>
         <ul>
-          <li>{this.userName}</li>
+          <div id='user-title'>
+            <div className='user-logo'>{this.userName[0]}</div>
+            <div>
+              <div>{this.userName}</div>
+              <div>free</div>
+            </div>
+          </div>
           <li>settings</li>
           <li>organize sources </li>
           <li>mobile apps</li>

@@ -17,7 +17,7 @@
 .leftNav-wrapper {
   background-color: #f6f7f8;
   position: fixed;
-  left: 4.5%;
+  left: 50px;
   height: 100%;
   width: 0px;
   border-right: #eeeeee solid 1px;
@@ -45,7 +45,7 @@
   align-items: center;
   transform: inherit;
   background-color: #ffffff;
-  width: 4.5%;
+  width: 50px;
   height: 100%;
   border-right: #eeeeee solid 1px;
   // height: 1000px;
@@ -146,12 +146,13 @@
   position: fixed;
   bottom: 1%;
   left: 5.5%;
-  width: 35%;
+  width: 30%;
   text-transform: capitalize;
   font-family: sans-serif;
   font-size: 18px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
   border-radius: 4px;
+  color: #333;
 }
 
 #user-title {
@@ -170,6 +171,7 @@
 
 .user-menu li {
   padding: 7px 20px 7px 15px;
+  font-size: 14px;
 }
 
 .user-info {

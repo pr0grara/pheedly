@@ -59,8 +59,8 @@ class LeftNav extends React.Component {
       this.leftNavState = false;
       leftNavWrapper.style.width = '0px'
       leftNav.style.display = 'none'
-      side_toggle.style.width = "4.5%"
-      articles.style.marginLeft = "4.5%"
+      side_toggle.style.width = "50px"
+      articles.style.marginLeft = "50px"
       articles.style.width = "95.5%"
     } else {
       this.leftNavState = true;
@@ -133,8 +133,8 @@ class LeftNav extends React.Component {
           <li>terms and policy</li>
           <li onClick={this.logout}>logout</li>
         </ul>
+        <div className='arrow-left'></div>
       </div>
-      <div className='arrow-left'></div>
     </div>
     )
     const inactive = () => (

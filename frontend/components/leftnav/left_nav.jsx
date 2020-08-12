@@ -21,13 +21,10 @@ class LeftNav extends React.Component {
   
   componentDidMount() {
     // debugger
-    let root = document.getElementById('root')
     let leftNav = document.getElementById("leftNav")
-    root.style.height = `${this.props.screenSize.height}px`
-    root.style.width = `${this.props.screenSize.width}px`
     if (this.leftNavState) { 
-      leftNav.style.height = `${this.props.screenSize.height}px`
-      leftNav.style.width = `${(this.props.screenSize.width) * 0.17}px`
+      leftNav.style.height = `${window.screen.availHeight}px`
+      leftNav.style.width = `${(window.screen.availWidth) * 0.17}px`
     }
   }
   
@@ -52,22 +49,22 @@ class LeftNav extends React.Component {
     if (e.target.className === "user-logo-small" || e.target.className === "button") return
 
     if (document.getElementsByClassName('article-index').length > 0) {
-     articles = document.getElementsByClassName('article-index')[0]
+     articles = document.getElementsByClassName('article-index-wrapper')[0]
     }
 
-    if (leftNavWrapper.style.width === "25%") {
+    if (leftNavWrapper.style.width === "270px") {
       this.leftNavState = false;
       leftNavWrapper.style.width = '0px'
       leftNav.style.display = 'none'
       side_toggle.style.width = "50px"
-      articles.style.marginLeft = "50px"
-      articles.style.width = "95.5%"
+      articles.style.margin = "0 50px 0 50px"
+      // articles.style.width = "95.5%"
     } else {
       this.leftNavState = true;
       leftNav.style.display = 'flex'
-      leftNavWrapper.style.width = '25%'
-      articles.style.marginLeft = "29.5%"
-      articles.style.width = "70.5%"
+      leftNavWrapper.style.width = '270px'
+      articles.style.margin = "0 50px 0 320px"
+      // articles.style.width = "70.5%"
     }
   }
 

@@ -7,6 +7,12 @@ class Splash extends React.Component {
     super(props)
   }
 
+  componentWillMount() {
+    if (!!this.props.currentUser) {
+      this.props.addSourcesToState(this.props.currentUser)
+    }
+  }
+
   render() {
     let className = "splash-wrapper"
     // debugger

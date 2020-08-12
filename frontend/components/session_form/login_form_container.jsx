@@ -16,6 +16,7 @@ const mSTP = ({ errors }) => {
 const mDTP = dispatch => {
   //debugger
   return {
+    addSources: (user) => dispatch(displaySources(user)),
     processForm: (user) => dispatch(login(user)),
     clearErrors: clearErrors(),
   };

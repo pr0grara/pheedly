@@ -13,6 +13,10 @@ Feed.destroy_all
 
 demoUser = User.create(email:"demo user", password:'123456')
 lina = User.create(email:"lina@aa.io", password:"123456")
-source1 = Source.create(name:"National Geographic")
-feed1 = Feed.create(source_id:source1.id, user_id: lina.id)
+nbc = Source.create(name: "nbc", code: "nbc2-news")
+natgeo = Source.create(name:"National Geographic", code: "national-geographic-channel-www-natgeotv-com")
+engadget = Source.create(name: "engadget", code: "engadget")
+feed1 = Feed.create(source_id:natgeo.id, user_id: demoUser.id)
+feed2 = Feed.create(source_id:nbc.id, user_id: demoUser.id)
+feed3 = Feed.create(source_id:engadget.id, user_id: demoUser.id)
 

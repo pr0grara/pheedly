@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store'
 import Root from './components/root';
-import { fetch } from './util/article_api_util'
+
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log(window.gnews)
-
   let store 
   let preloadedState = {
     session: {
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore(preloadedState);
   }
-  window.fetch = fetch;
+  window.store = store;
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
 })

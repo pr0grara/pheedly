@@ -11,7 +11,7 @@ import LeftNavContainer from './leftnav/left_nav_container'
 
 //Header component was renamed from GreetingContainer 
 const App = () => {
-  //debugger
+  // debugger
   return (
   <>
     <NavBarContainer />

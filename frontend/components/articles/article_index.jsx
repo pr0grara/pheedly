@@ -1,38 +1,97 @@
 import React from 'react';
+// import { curryArticles } from '../../util/article_api_util'
 
 class ArticleIndex extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props)
+    this.state = {keyword: ""}
+    // this.source = "";
+    // console.log(this.props)
+    this.handleClick = this.handleClick.bind(this);
+    // this.grabFeeds = this.props.showFeeds.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.articles = [];
   }
 
   display() {
 
   }
 
-  componentDidMount() {
-    this.props.showArticles();
+  componentDidMount(e) {
+    // debugger
+    // this.props.showArticles(source);
+    // this.props.showSources(this.props.user)
   }
   
+  handleClick(e) {
+    e.preventDefault()
+    const sources = this.props.sources[0]
+    // debugger
+    this.props.curryArticles(sources)
+    // console.log(articles)
+    // this.props.showArticles(this.state.keyword);
+    // sources.forEach(source => {
+    //   this.props.showArticles(source.code).then((obj) => {
+    //     this.articles.push(obj)
+    //   })
+    //   this.articles.push(articles)
+    // })
+    // this.articles.push(Object.values(this.props.showArticles(sources[0].code).articles));
+    // this.props.showArticles(sources[1].code)
+  }
+
+  update(field) {
+    // debugger
+    return e => this.setState({
+      [field]: e.currentTarget.value
+    });
+  }
+
   render() {
-    const articles = Object.values(this.props.articles)
+    if (Object.values(this.props.articles).length === 0) 
+      return (
+        <form className='source-form'>
+          <input type="text" onChange={this.update("keyword")} value={this.state.keyword}/>
+          <input type="submit" onClick={this.handleClick}/>
+        </form>
+      )
+      // const articles = Object.values(this.props.articles.articles);
+      // const source = this.props.articles.request_parameters.source;
+    const articles = [];
+    Object.values(this.props.articles).forEach((art) => {
+      articles.push(art.articles);
+    })
+    // const sources = Object.keys(this.props.articles.articles)
+    
+    
     return (
-      <div className='article-index'>
-        <h1>The Wall Street Journal</h1>
-        {Object.values(this.props.articles).length === 0 ?
-          null
-          :
-          articles.map(art => (
-            <ul className='article-index-item' key={Math.floor(Math.random() * 1000)}>
-              <li><a href={art.url}><img className='article-image' src={art.urlToImage}/></a></li>
-              <div className='article-item-content'>
-                <li><a href={art.source.url}>{art.source.name}</a></li>
-                <li><a href={art.url}>{art.title}</a></li>
-                <li>{art.content}</li>
-              </div>
-            </ul>
-          ))
-        }
+      <div className='article-index-wrapper'>
+        <div className='article-index'>
+          <h1>The Wall Street Journal</h1>
+          { articles.length === 0 ?
+          // Object.values(this.props.articles).length === 0 ?
+            null
+            :
+            // <ul className='article-index-item' key={Math.floor(Math.random() * 1000)}>
+            //   <li><a href={articles.url}><img className='article-image' src={articles.urlToImage}/></a></li>
+            //   <div className='article-item-content'>
+            //     <li><a href={articles.source.url}>{articles.source.name}</a></li>
+            //     <li><a href={articles.url}>{articles.title}</a></li>
+            //     <li>{articles.content}</li>
+            //   </div>
+            // </ul>
+            articles.flat().map(art => (
+              <ul className='article-index-item' key={art.title.slice(0, 7)}>
+                <li><a href={art.link}><img className='article-image' src={art.primary_image_link}/></a></li>
+                <div className='article-item-content'>
+                  <li id='index-item-title'><a href={art.link}>{art.title}</a></li>
+                  <li><a href={art.source.domain}>{art.source.domain || source}</a></li>
+                  <li>{art.snippet.slice(0, 250)}...</li>
+                </div>
+              </ul>
+            ))
+          }
+        </div>
       </div>
     )
   }

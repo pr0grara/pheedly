@@ -1,8 +1,5 @@
-require 'byebug'
-
 class Api::FeedsController < ApplicationController
   def index
-    # debugger
     @feeds = Feed.where(user_id: params[:user_id])
     @sources = []
     @feeds.each do |feed|

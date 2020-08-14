@@ -56,7 +56,7 @@ export const login = user => dispatch => {
 export const logout = () => dispatch => (
   APIUtil.logout().then(user => {
     localStorage.removeItem('sources')
-    // localStorage.removeItem('articles')
+    localStorage.removeItem('articles')
     dispatch(logoutCurrentUser())
   })
 );

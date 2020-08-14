@@ -18,7 +18,7 @@ export const addSourcesToState = user => dispatch => {
       // debugger
       dispatch(receiveSources(obj))
       localStorage.setItem('sources', JSON.stringify(obj))
-      // dispatch(curryArticles(obj))
+      dispatch(curryArticles(obj))
     }, err => (
       dispatch(receiveErrors(err.responseJSON))
     ))

@@ -1,6 +1,7 @@
 import LeftNav from './left_nav';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions'
+import { addSourcesToState } from '../../actions/source_actions'
 
 const mSTP = ({session, entities: {users}}) => {
   return {
@@ -12,7 +13,9 @@ const mSTP = ({session, entities: {users}}) => {
 };
 
 const mDTP = dispatch => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  addSourcesToState: user => dispatch(addSourcesToState(user))
+
 })
 
 export default connect(mSTP, mDTP)(LeftNav);

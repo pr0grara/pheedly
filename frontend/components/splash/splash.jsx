@@ -9,7 +9,7 @@ class Splash extends React.Component {
 
   componentWillMount() {
     if (!!this.props.currentUser) {
-      this.props.addSourcesToState(this.props.currentUser)
+      // this.props.addSourcesToState(this.props.currentUser)
     }
   }
 

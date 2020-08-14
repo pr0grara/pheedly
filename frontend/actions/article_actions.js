@@ -52,6 +52,7 @@ export const curryArticles = sources => dispatch => {
       if (Object.keys(res).length === curryLength) {
         // debugger
         dispatch(receiveArticles(res))
+        localStorage.setItem("articles", JSON.stringify(res))
       }
     })
     .catch(err => {

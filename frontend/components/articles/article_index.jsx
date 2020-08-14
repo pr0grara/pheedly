@@ -5,10 +5,7 @@ class ArticleIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {keyword: ""}
-    // this.source = "";
-    // console.log(this.props)
     this.handleClick = this.handleClick.bind(this);
-    // this.grabFeeds = this.props.showFeeds.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this);
     this.articles = [];
   }
@@ -17,10 +14,15 @@ class ArticleIndex extends React.Component {
 
   }
 
-  componentDidMount(e) {
+  componentWillMount() {
+    // this.props.addSourcesToState(this.props.user)
     // debugger
-    // this.props.showArticles(source);
-    // this.props.showSources(this.props.user)
+  }
+
+  componentDidMount() {
+    // debugger
+    // const sources = this.props.sources[0];
+    // this.props.curryArticles(sources)
   }
   
   handleClick(e) {
@@ -47,6 +49,18 @@ class ArticleIndex extends React.Component {
     });
   }
 
+  shuffle(arr) {
+    var j, x, i;
+    for (i = arr.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = arr[i];
+      arr[i] = arr[j];
+      arr[j] = x;
+    }
+    return arr;
+  }
+
+
   render() {
     if (Object.values(this.props.articles).length === 0) 
       return (
@@ -57,17 +71,20 @@ class ArticleIndex extends React.Component {
       )
       // const articles = Object.values(this.props.articles.articles);
       // const source = this.props.articles.request_parameters.source;
-    const articles = [];
-    Object.values(this.props.articles).forEach((art) => {
-      articles.push(art.articles);
+      var articles = [];
+      // Object.values(this.props.articles).forEach((art) => {
+      Object.values(JSON.parse(localStorage.getItem('articles'))).forEach((art) => {
+        articles.push(art.articles);
     })
+    articles = articles.flat();
+    articles = this.shuffle(articles)
     // const sources = Object.keys(this.props.articles.articles)
-    
     
     return (
       <div className='article-index-wrapper'>
         <div className='article-index'>
-          <h1>The Wall Street Journal</h1>
+          <h1>Today</h1>
+          <h2>The insights you need to stay ahead</h2>
           { articles.length === 0 ?
           // Object.values(this.props.articles).length === 0 ?
             null
@@ -80,7 +97,7 @@ class ArticleIndex extends React.Component {
             //     <li>{articles.content}</li>
             //   </div>
             // </ul>
-            articles.flat().map(art => (
+            articles.map(art => (
               <ul className='article-index-item' key={art.title.slice(0, 7)}>
                 <li><a href={art.link}><img className='article-image' src={art.primary_image_link}/></a></li>
                 <div className='article-item-content'>

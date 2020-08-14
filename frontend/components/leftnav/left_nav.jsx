@@ -21,6 +21,7 @@ class LeftNav extends React.Component {
   
   componentDidMount() {
     // debugger
+    // this.props.addSourcesToState(this.props.currentUser)
     let leftNav = document.getElementById("leftNav")
     if (this.leftNavState) { 
       leftNav.style.height = `${window.screen.availHeight}px`
@@ -31,7 +32,7 @@ class LeftNav extends React.Component {
   componentWillUpdate(nP, nS) {
     this.userOptions = false;
     // debugger
-    if (!nP.currentUser[1]) {
+    if (!nP.currentUser[nP.sessionId]) {
       this.userName = 'N/A'
     } else {
       this.userName = nP.currentUser[nP.sessionId].email
@@ -88,6 +89,7 @@ class LeftNav extends React.Component {
   }
   
   render() {
+    // debugger
     const active = () => (
     <div id='leftNav-container'>
       <div className='leftNav-dock' onClick={this.toggleLeftNav}>
@@ -103,7 +105,7 @@ class LeftNav extends React.Component {
       <div className="leftNav-wrapper" id='leftNav-wrapper'>
         <div id='leftNav'>
           <ul id='side-nav'>  
-            <li><Link to='/'>home</Link></li>
+            <li><Link to='/articles'>today</Link></li>
             <li><Link to='/pheed/1'>pheeds</Link></li>
             <li><Link to='/articles'>finance</Link></li>
           </ul>
@@ -135,7 +137,7 @@ class LeftNav extends React.Component {
     </div>
     )
     const inactive = () => (
-      <div></div>
+      <div className='inactive-leftnav'></div>
     )
     return this.userName === 'N/A' ? inactive() : active()
   }

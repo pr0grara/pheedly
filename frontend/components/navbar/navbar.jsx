@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class Greeting extends React.Component { 
   constructor(props) {
@@ -12,7 +12,7 @@ class Greeting extends React.Component {
     <>
       <hgroup className='header-group'>
       {/* <Link to='/'><img src="https://s5.feedly.com/images/fx/logos/logo-feedly-full.svg" alt="" /></Link> */}
-      {/* <button className='logout' onClick={this.logout}>Logout</button> */}
+      <button className='upgrade' onClick={this.logout}>Upgrade</button>
       </hgroup>
     </>
     )
@@ -27,6 +27,7 @@ class Greeting extends React.Component {
        </nav>
     //  </hgroup>
     )
+    // return this.props.currentUser ? <Redirect to='/home' /> : sessionLinks
     return this.props.currentUser ? personalGreeting : sessionLinks
   }
 }

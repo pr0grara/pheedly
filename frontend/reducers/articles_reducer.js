@@ -2,6 +2,7 @@ import { RECEIVE_ARTICLES, RECEIVE_CONTENT } from '../actions/article_actions';
 
 const articlesReducer = (state = {}, action) => {
   // debugger
+  // var preloadedState = localStorage.getItem('article') || {}
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ARTICLES:

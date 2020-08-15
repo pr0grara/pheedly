@@ -14,8 +14,5 @@ export const displayFeeds = user => dispatch => {
   return (
   APIUtil.grabFeeds(user).then(obj => (
     dispatch(receiveFeeds(obj))
-  ), err => (
-    dispatch(receiveErrors(err.responseJSON))
-  ))
-  )
+  )))
 }

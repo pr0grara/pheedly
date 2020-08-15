@@ -53,6 +53,7 @@ export const curryArticles = sources => dispatch => {
         // debugger
         dispatch(receiveArticles(res))
         localStorage.setItem("articles", JSON.stringify(res))
+        window.location.reload();
       }
     })
     .catch(err => {

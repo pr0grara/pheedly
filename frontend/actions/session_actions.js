@@ -42,7 +42,7 @@ export const signup = user => dispatch => (
 );
 
 export const login = user => dispatch => {
-  // debugger
+  debugger
   return (  
     APIUtil.login(user).then(user => {
       dispatch(receiveCurrentUser(user))
@@ -56,7 +56,7 @@ export const login = user => dispatch => {
 export const logout = () => dispatch => (
   APIUtil.logout().then(user => {
     localStorage.removeItem('sources')
-    // localStorage.removeItem('articles')
+    localStorage.removeItem('articles')
     dispatch(logoutCurrentUser())
   })
 );

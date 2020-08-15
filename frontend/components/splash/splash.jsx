@@ -28,7 +28,12 @@ class Splash extends React.Component {
     componentDidUpdate() {
       // debugger
       // <Redirect to='/articles' />
-      window.location.reload();
+      // window.location.reload();
+  }
+
+  componentWillUnmount() {
+    // debugger
+    // window.location.reload();
   }
 
   render() {

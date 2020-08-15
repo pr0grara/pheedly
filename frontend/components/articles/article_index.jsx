@@ -65,6 +65,7 @@ class ArticleIndex extends React.Component {
   render() {
     // debugger
     if (Object.values(this.props.articles).length === 0) 
+      // window.location.reload();
       return (
         <form className='source-form'>
           <input type="text" onChange={this.update("keyword")} value={this.state.keyword}/>

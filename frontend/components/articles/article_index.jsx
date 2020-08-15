@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 // import { curryArticles } from '../../util/article_api_util'
 
 class ArticleIndex extends React.Component {
@@ -62,6 +63,7 @@ class ArticleIndex extends React.Component {
 
 
   render() {
+    // debugger
     if (Object.values(this.props.articles).length === 0) 
       return (
         <form className='source-form'>
@@ -114,4 +116,4 @@ class ArticleIndex extends React.Component {
   }
 }
 
-export default ArticleIndex;
+export default withRouter(ArticleIndex);

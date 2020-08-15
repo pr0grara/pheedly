@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
+import ArticleIndexContainer from '../components/articles/article_index_container'
 
 const Auth = ({ component: Component, path, loggedIn, exact }) => {
   return (
@@ -24,6 +25,17 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => (
   )} />
 );
 
+const Home = ({ component: Component, path, loggedIn, exact}) => (
+  <Route path={path} exact={exact} render={(props) => (
+    loggedIn ? (
+      <ArticleIndexContainer {...props} />
+      // <Component {...props} />
+    ) : (
+      <Redirect to='/login' />
+    )
+  )} />
+);
+
 const mSTP = state => (
   { loggedIn: Boolean(state.session.id) }
 );
@@ -31,3 +43,5 @@ const mSTP = state => (
 export const AuthRoute = withRouter(connect(mSTP)(Auth));
 
 export const ProtectedRoute = withRouter(connect(mSTP)(Protected));
+
+export const HomeRoute = withRouter(connect(mSTP)(Home))

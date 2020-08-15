@@ -58,6 +58,7 @@ class SessionForm extends React.Component {
   }
 
   render() {
+    // debugger
     return (
       <div className='session-wrapper'>
         {/* <img className='session-img' src={window.monoURL} /> */}

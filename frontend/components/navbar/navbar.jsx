@@ -8,6 +8,7 @@ class Greeting extends React.Component {
     this.logout = this.props.logout.bind(this);
   }
   render () {
+    // debugger
     let personalGreeting = (
     <>
       <hgroup className='header-group'>

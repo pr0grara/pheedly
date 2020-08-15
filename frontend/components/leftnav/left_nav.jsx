@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 class LeftNav extends React.Component {
   constructor(props) {
-    // debugger
     super(props)
     this.currentUser = this.props.currentUser
     this.toggleLeftNav = this.toggleLeftNav.bind(this)
@@ -20,8 +19,6 @@ class LeftNav extends React.Component {
   }
   
   componentDidMount() {
-    // debugger
-    // this.props.addSourcesToState(this.props.currentUser)
     let leftNav = document.getElementById("leftNav")
     if (this.leftNavState) { 
       leftNav.style.height = `${window.screen.availHeight}px`
@@ -29,15 +26,14 @@ class LeftNav extends React.Component {
     }
   }
   
-  componentWillUpdate(nP, nS) {
-    this.userOptions = false;
-    // debugger
-    if (!nP.currentUser[nP.sessionId]) {
-      this.userName = 'N/A'
-    } else {
-      this.userName = nP.currentUser[nP.sessionId].email
-    }
-  }
+  // componentWillUpdate(nP, nS) {
+  //   this.userOptions = false;
+  //   if (!nP.currentUser[nP.sessionId]) {
+  //     this.userName = 'N/A'
+  //   } else {
+  //     this.userName = nP.currentUser[nP.sessionId].email
+  //   }
+  // }
 
   toggleLeftNav(e) {
     e.preventDefault();
@@ -45,7 +41,6 @@ class LeftNav extends React.Component {
     let leftNav = document.getElementById("leftNav")
     let side_toggle = document.getElementsByClassName("leftNav-dock")[0]
     let articles = {style: {marginLeft:""}};
-    // debugger
     
     if (e.target.className === "user-logo-small" || e.target.className === "button") return
 
@@ -59,13 +54,11 @@ class LeftNav extends React.Component {
       leftNav.style.display = 'none'
       side_toggle.style.width = "50px"
       articles.style.margin = "0 50px 0 50px"
-      // articles.style.width = "95.5%"
     } else {
       this.leftNavState = true;
       leftNav.style.display = 'flex'
       leftNavWrapper.style.width = '270px'
       articles.style.margin = "0 50px 0 320px"
-      // articles.style.width = "70.5%"
     }
   }
 
@@ -77,8 +70,6 @@ class LeftNav extends React.Component {
     e.preventDefault();
     let dropdown = document.getElementById('user-dropdown')
     console.log(dropdown.className)
-    // debugger
-    // console.log(dropdown.style.display)
     if (!this.userOptions) {
       dropdown.className = 'user-menu';
       this.userOptions = true;
@@ -89,7 +80,6 @@ class LeftNav extends React.Component {
   }
   
   render() {
-    // debugger
     const active = () => (
     <div id='leftNav-container'>
       <div className='leftNav-dock' onClick={this.toggleLeftNav}>
@@ -100,7 +90,6 @@ class LeftNav extends React.Component {
         <div id='user-options-menu'>
             <label className='user-logo-small' onClick={this.userLogoDropDown}>{this.userName[0]}</label>
         </div>
-        {/* <button className='logout' onClick={this.logout}>Logout</button> */}
       </div>
       <div className="leftNav-wrapper" id='leftNav-wrapper'>
         <div id='leftNav'>
@@ -139,7 +128,8 @@ class LeftNav extends React.Component {
     const inactive = () => (
       <div className='inactive-leftnav'></div>
     )
-    return this.userName === 'N/A' ? inactive() : active()
+    // return this.userName === 'N/A' ? inactive() : active()
+    return Object.keys(this.props.currentUser).length > 0 ? active() : inactive()
   }
 }
 

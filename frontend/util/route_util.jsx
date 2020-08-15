@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import ArticleIndexContainer from '../components/articles/article_index_container'
@@ -29,7 +29,6 @@ const Home = ({ component: Component, path, loggedIn, exact}) => (
   <Route path={path} exact={exact} render={(props) => (
     loggedIn ? (
       <ArticleIndexContainer {...props} />
-      // <Component {...props} />
     ) : (
       <Redirect to='/login' />
     )

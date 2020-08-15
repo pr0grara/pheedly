@@ -4,7 +4,6 @@ import { curryArticles } from '../actions/article_actions'
 export const RECEIVE_SOURCES = 'RECEIVE_SOURCES';
 
 export const receiveSources = sources => {
-  // debugger 
   return ({
     type: RECEIVE_SOURCES,
     sources
@@ -12,13 +11,12 @@ export const receiveSources = sources => {
 }
 
 export const addSourcesToState = user => dispatch => {
-  // debugger
   return (
     APIUtil.grabFeeds(user).then(obj => {
-      // debugger
+      let localArts = localStorage.articles;
       dispatch(receiveSources(obj))
       localStorage.setItem('sources', JSON.stringify(obj))
-      if (!Boolean(localStorage.articles)) dispatch(curryArticles(obj))
+      if (!Boolean(localArts)) dispatch(curryArticles(obj))
     }, err => (
       dispatch(receiveErrors(err.responseJSON))
     ))

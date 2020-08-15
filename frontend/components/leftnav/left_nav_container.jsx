@@ -5,7 +5,6 @@ import { addSourcesToState } from '../../actions/source_actions'
 
 const mSTP = ({session, entities: {users}}) => {
   return {
-    // currentUser: users[session.id],
     currentUser: users,
     sessionId: session.id,
     screenSize: session.windowSize,
@@ -19,4 +18,3 @@ const mDTP = dispatch => ({
 })
 
 export default connect(mSTP, mDTP)(LeftNav);
-//export default Sidebar;

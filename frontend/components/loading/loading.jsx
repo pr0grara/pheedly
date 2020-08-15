@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class Loading extends React.Component {
 
@@ -7,13 +7,8 @@ class Loading extends React.Component {
     super(props)
   }
 
-  componentWillMount() {
-    // debugger
-  }
-
   render() {
     const currentUser = !!this.props.user;
-    // debugger
     return currentUser ? <Redirect to='/home' /> : <div>loading</div>
   }
 }

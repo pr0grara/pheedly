@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { displayArticles, curryArticles } from '../../actions/article_actions';
 import { addSourcesToState } from '../../actions/source_actions';
 import ArticleIndex from './article_index';
-// import { curryArticles } from '../../util/article_api_util';
 
 const mSTP = state => {
   var articles = state.entities.articles;
@@ -26,7 +25,6 @@ const mSTP = state => {
 }
 
 const mDTP = dispatch => {
-  // debugger
   return {
     showArticles: (source) => dispatch(displayArticles(source)),
     addSourcesToState: (user) => dispatch(addSourcesToState(user)),

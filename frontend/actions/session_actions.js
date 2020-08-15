@@ -42,7 +42,9 @@ export const signup = user => dispatch => (
 );
 
 export const login = user => dispatch => {
-  // debugger
+  if (Boolean(localStorage.articles) && Date.now() - JSON.parse(localStorage.articles).time > 1800000) {
+    localStorage.removeItem('articles')
+  }
   return (  
     APIUtil.login(user).then(user => {
       dispatch(receiveCurrentUser(user))
@@ -56,7 +58,9 @@ export const login = user => dispatch => {
 export const logout = () => dispatch => (
   APIUtil.logout().then(user => {
     localStorage.removeItem('sources')
-    // localStorage.removeItem('articles')
+    if (Date.now() - JSON.parse(localStorage.articles).time > 1800000) {
+     localStorage.removeItem('articles')
+    }
     dispatch(logoutCurrentUser())
   })
 );

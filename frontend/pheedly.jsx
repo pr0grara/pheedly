@@ -5,7 +5,6 @@ import Root from './components/root';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log(window.gnews)
   let store 
   let preloadedState = {
     session: {

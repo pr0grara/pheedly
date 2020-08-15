@@ -24,7 +24,6 @@ class SessionForm extends React.Component {
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
     <Link to='/home' />
-    // debugger
   }
   
   handleDemo(e) {
@@ -36,7 +35,6 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
-    // this.props.clearErrors
     return (
       <ul className='errors'>
         {this.props.errors.map((error, i) => (
@@ -48,21 +46,13 @@ class SessionForm extends React.Component {
     );
   }
 
-  componentDidUpdate(e) {
-    // debugger
-    // console.log(e)
-  }
-
   clearErrors() {
     // this.errors = [];
   }
 
   render() {
-    // debugger
     return (
       <div className='session-wrapper'>
-        {/* <img className='session-img' src={window.monoURL} /> */}
-        {/* <div className='filter'></div> */}
         <div className="login-form-container">
           <Link to='/'>X</Link>
           <form onSubmit={this.handleSubmit} className="login-form-box">

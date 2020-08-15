@@ -9,7 +9,6 @@ class Home extends React.Component {
   }
 
   render() {
-    // debugger
     return (!!this.currentUser ? <div className='user-main'><ArticleIndexContainer /></div> : <div></div>)
     }
 }

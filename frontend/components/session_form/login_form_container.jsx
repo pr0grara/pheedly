@@ -5,7 +5,6 @@ import { login, clearErrors } from '../../actions/session_actions';
 import SessionForm from './session_form';
 
 const mSTP = ({ errors }) => {
-  // debugger
   return {
     errors: errors.session,
     formType: 'login',
@@ -14,7 +13,6 @@ const mSTP = ({ errors }) => {
 };
 
 const mDTP = dispatch => {
-  //debugger
   return {
     addSources: (user) => dispatch(addSourcesToState(user)),
     processForm: (user) => dispatch(login(user)),

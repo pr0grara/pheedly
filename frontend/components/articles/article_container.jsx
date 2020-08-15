@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom';
 import Article from './article';
 
 const mSTP = state => {
-  //debugger
   return {
     content: state.entities.article
   };
 };
 
 const mDTP = dispatch => {
-  //debugger
   return {
   };
 };

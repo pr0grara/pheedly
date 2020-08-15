@@ -28,7 +28,7 @@ class Splash extends React.Component {
     componentDidUpdate() {
       // debugger
       // <Redirect to='/articles' />
-      // window.location.reload();
+      if (Boolean(localStorage.articles)) window.location.reload();
   }
 
   componentWillUnmount() {

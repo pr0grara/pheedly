@@ -12,13 +12,13 @@ export const receiveSources = sources => {
 }
 
 export const addSourcesToState = user => dispatch => {
-  debugger
+  // debugger
   return (
     APIUtil.grabFeeds(user).then(obj => {
-      debugger
+      // debugger
       dispatch(receiveSources(obj))
       localStorage.setItem('sources', JSON.stringify(obj))
-      dispatch(curryArticles(obj))
+      if (!Boolean(localStorage.articles)) dispatch(curryArticles(obj))
     }, err => (
       dispatch(receiveErrors(err.responseJSON))
     ))

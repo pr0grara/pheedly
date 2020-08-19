@@ -1,6 +1,8 @@
-export const addSource = user => {
+export const newFeed = (user, source) => {
+  debugger
   return $.ajax({
     method: 'POST',
-    url: `api/`
+    url: `api/users/${user.id}/feeds`,
+    data: {source}
   })
 }

@@ -7,6 +7,7 @@ import { AuthRoute, ProtectedRoute, HomeRoute } from '../util/route_util'
 import ArticleIndexContainer from './articles/article_index_container'
 import SplashContainer from './splash/splash_container'
 import LeftNavContainer from './leftnav/left_nav_container'
+import AddSourceContainer from './sources/add_source_container'
 
 //Header component was renamed from GreetingContainer 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <SplashContainer />
         {/* <HomeRoute exact path='/home' /> */}
         <ProtectedRoute exact path='/home' component={ArticleIndexContainer} />
+        <ProtectedRoute exact path='/sources' component={AddSourceContainer} />
     </div>
     <AuthRoute exact path='/signup' component={SignupFormContainer} />
     <AuthRoute exact path='/login' component={LoginFormContainer} />

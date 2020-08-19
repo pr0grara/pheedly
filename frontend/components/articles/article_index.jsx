@@ -1,5 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter, Redirect } from 'react-router';
+import AddSource from '../sources/add_source'
 
 class ArticleIndex extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class ArticleIndex extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.articles = [];
     this.dateifyier = this.dateifyier.bind(this)
-    this.pubTime = this.pubTime.bind(this)
+    this.publishedTime = this.publishedTime.bind(this)
   }
   
   handleClick(e) {
@@ -23,19 +24,19 @@ class ArticleIndex extends React.Component {
     });
   }
 
-  shuffle(arr) {
-    var j, x, i;
-    for (i = arr.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = arr[i];
-      arr[i] = arr[j];
-      arr[j] = x;
-    }
-    return arr;
-  }
+  // shuffle(arr) {
+  //   var j, x, i;
+  //   for (i = arr.length - 1; i > 0; i--) {
+  //     j = Math.floor(Math.random() * (i + 1));
+  //     x = arr[i];
+  //     arr[i] = arr[j];
+  //     arr[j] = x;
+  //   }
+  //   return arr;
+  // }
 
-  pubTime(pubDate) {
-    return new Date(pubDate).getTime();
+  publishedTime(pubDate) {
+    return new Date(pubDate).getTime(); //converts publication timestamp to epoch
   }
 
   dateifyier(pubTime, currTime) {
@@ -51,30 +52,41 @@ class ArticleIndex extends React.Component {
     }
   }
 
-  render() {
-    if (Object.values(this.props.articles).length === 0) 
-    return (
-      <form className='source-form'>
-          <input type="text" onChange={this.update("keyword")} value={this.state.keyword}/>
-          <input type="submit" onClick={this.handleClick}/>
-        </form>
-      )
-      var currTime = Date.now();
-      var articles = [];
-      var localArts = JSON.parse(localStorage.articles)
+  //articles index uses the articles cached in localStorage rather than the ones stored in state.
+  //this *seems* to lend itself better to pheedly as the article index is a hefty component which 
+  //should begin loading ASAP but then only update itself once every 30 min or so   
+  //clearly not a production pace but an appropriate one for pheedly :)
+  render() { 
+    if (Object.values(this.props.articles).length === 0) return <Redirect to='/sources' />
+    //   return (
+    //     <form className='source-form'>
+    //         <input type="text" onChange={this.update("keyword")} value={this.state.keyword}/>
+    //         <input type="submit" onClick={this.handleClick}/>
+    //       </form>
+    //     )
+      var currTime = Date.now(); //grabs epoch time of render
+      var articles = []; //instantiate our articles array
+      var localArts = JSON.parse(localStorage.articles) //grabs cached articles from localStorage
+      //there should not be a case where localSotage throws an error because on line 55, if 
+      //this.props.articles exists then so should localStorage.articles and if not we render source form
       
-      Object.values(localArts).forEach((art) => {
-        if (art !== localArts.time) articles.push(art.value);
+      Object.values(localArts).forEach((art) => { //iterate over articles from local storage
+        if (art !== localArts.time) articles.push(art.value); //push all objects except timestamp to our articles arr
       })
-      articles = articles.flat();
-      articles.forEach(art => {
-        art.delta = this.pubTime(art.datePublished)
-        art.dateified = this.dateifyier(art.delta, currTime)
+      articles = articles.flat(); //after flattening we finally have our undressed articles ready for render
+      articles.forEach(art => { //lets dress them up
+        art.pubTime = this.publishedTime(art.datePublished) //stores the epoch time of publication on corresponding article obj
+        art.dateified = this.dateifyier(art.pubTime, currTime) //compares publication time vs current time and converts result to min, hours, days
+        //"time since publication" delivered compellingly is an important feature of pheedly 
+        //CONSIDER: clicking timestamp fetches results from a news search of key words in title/article algorithim
+        //something a user might want to do when an article is days or even hours old
       })
       articles.sort((a, b) => {
-        return a.delta + b.delta;
+        return a.delta + b.delta; //sorts articles arr in order of most recently published
       })
-      // articles = this.shuffle(articles)
+
+      // this.shuffle(articles)
+      // debugger
       
     return (
       <div className='article-index-wrapper'>
@@ -85,7 +97,7 @@ class ArticleIndex extends React.Component {
             null
             :
             articles.map((art, i) => {
-              return !Boolean(art.description) || !Boolean(art.image) ? null :
+              return !Boolean(art.description) || !Boolean(art.image) ? null : //desc and img are requirements of articles... without them we are nothing
               <ul className='article-index-item' key={i}>
                 <li>
                   <a href={art.url}>

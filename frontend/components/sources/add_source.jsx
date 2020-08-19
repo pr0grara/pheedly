@@ -25,6 +25,7 @@ class AddSource extends React.Component {
   }
 
   render() {
+    // debugger
     return (
       <form className='source-form'>
         <input type="text" onChange={this.update("source")} value={this.state.source}/>

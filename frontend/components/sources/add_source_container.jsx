@@ -7,7 +7,7 @@ const mSTP = state => {
   if (Object.keys(sources).length === 0) {
     sources = JSON.parse(localStorage.getItem('sources'))
   }
-  debugger
+  // debugger
   return {
     user: state.entities.users[state.session.id],
     // currSources: {0:sources}

@@ -75,16 +75,16 @@ class ArticleIndex extends React.Component {
       })
       articles = articles.flat(); //after flattening we finally have our undressed articles ready for render
       articles.forEach(art => { //lets dress them up
-        art.pubTime = this.publishedTime(art.datePublished) //stores the epoch time of publication on corresponding article obj
-        art.dateified = this.dateifyier(art.pubTime, currTime) //compares publication time vs current time and converts result to min, hours, days
+        art.pubTime = this.publishedTime(art.datePublished); //stores the epoch time of publication on corresponding article obj
+        art.delta = currTime - art.pubTime;
+        art.dateified = this.dateifyier(art.pubTime, currTime); //compares publication time vs current time and converts result to min, hours, days
         //"time since publication" delivered compellingly is an important feature of pheedly 
         //CONSIDER: clicking timestamp fetches results from a news search of key words in title/article algorithim
         //something a user might want to do when an article is days or even hours old
       })
       articles.sort((a, b) => {
-        return a.delta + b.delta; //sorts articles arr in order of most recently published
+        return a.delta - b.delta; //sorts articles arr in order of most recently published
       })
-
       // this.shuffle(articles)
       // debugger
       

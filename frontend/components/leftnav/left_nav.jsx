@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 
 class LeftNav extends React.Component {
@@ -64,6 +64,7 @@ class LeftNav extends React.Component {
 
   addContent() {
     console.log("you are awesome")
+    return <Redirect to='/' />
   }
 
   userLogoDropDown(e) {

@@ -36,10 +36,16 @@ export const displayArticles = source => dispatch => {
 export const curryArticles = sources => dispatch => {
   let res = {};
   let curryLength = sources.length
+  let source = {}
   while (sources.length > 0) {
-    APIUtil.articles(sources.pop().code)
+    source = sources.pop()
+    // APIUtil.articles(source.code)
+    APIUtil.bing(source.code)
     .then(obj => {
-      res[obj.request_parameters.source] = obj;
+      // obj.source = source.name;
+      // res[obj.request_parameters.source] = obj;
+      res[obj.value[0].provider[0].name] = obj;
+      // res[source.name] = obj;
       if (Object.keys(res).length === curryLength) {
         res.time = Date.now();
         dispatch(receiveArticles(res))

@@ -1,5 +1,6 @@
 import * as APIUtil from '../util/feed_api_util'; //feeds are join table between user and sources
 import { curryArticles } from '../actions/article_actions'
+import { bing } from '../util/article_api_util'
 
 export const RECEIVE_SOURCES = 'RECEIVE_SOURCES';
 
@@ -14,6 +15,7 @@ export const addSourcesToState = user => dispatch => {
   return (
     APIUtil.grabFeeds(user).then(obj => {
       let localArts = localStorage.articles;
+      // bing("vice.com")
       dispatch(receiveSources(obj))
       localStorage.setItem('sources', JSON.stringify(obj))
       if (!Boolean(localArts)) dispatch(curryArticles(obj))

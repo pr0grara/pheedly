@@ -20,6 +20,7 @@ class Splash extends React.Component {
       </div>
     )
     return !!this.props.currentUser ? <Redirect to='/home' /> : splash
+    // return !!this.props.currentUser ? splash : splash
   }
 }
 

@@ -7,6 +7,8 @@ class LeftNav extends React.Component {
     super(props)
     this.currentUser = this.props.currentUser
     this.toggleLeftNav = this.toggleLeftNav.bind(this)
+    this.highlight = this.highlight.bind(this)
+    this.highlighted = 0;
     this.addContent = this.addContent.bind(this)
     this.leftNavState = false;
     if (Object.values(this.props.currentUser).length > 0) {
@@ -48,16 +50,16 @@ class LeftNav extends React.Component {
      articles = document.getElementsByClassName('article-index-wrapper')[0]
     }
 
-    if (leftNavWrapper.style.width === "270px") {
+    if (leftNavWrapper.style.width === "269px") {
       this.leftNavState = false;
       leftNavWrapper.style.width = '0px'
       leftNav.style.display = 'none'
-      side_toggle.style.width = "50px"
+      side_toggle.style.width = "49px"
       articles.style.margin = "0 50px 0 50px"
     } else {
       this.leftNavState = true;
       leftNav.style.display = 'flex'
-      leftNavWrapper.style.width = '270px'
+      leftNavWrapper.style.width = '269px'
       articles.style.margin = "0 50px 0 320px"
     }
   }
@@ -79,6 +81,19 @@ class LeftNav extends React.Component {
       this.userOptions = false;
     }
   }
+
+  highlight(e) {
+    e.preventDefault();
+    document.addEventListener("mouseout", () => {
+      for (let i = 0; i < navItems.length; i++) {
+        navItems[i].style.background = 'transparent'
+      }
+    })
+    let navItem = e.currentTarget;
+    let navItems = document.getElementsByClassName('sidenav-item')
+    navItem.style.background = '#e6e6e6'
+    this.highlighted += 1;
+  }
   
   render() {
     const active = () => (
@@ -95,9 +110,11 @@ class LeftNav extends React.Component {
       <div className="leftNav-wrapper" id='leftNav-wrapper'>
         <div id='leftNav'>
           <ul id='side-nav'>  
-            <li><Link to='/articles'>today</Link></li>
-            <li><Link to='/pheed/1'>pheeds</Link></li>
-            <li><Link to='/articles'>finance</Link></li>
+            <li className='sidenav-item' onMouseOver={this.highlight}><img className='leftNav-icon' src={window.bookmark} /><Link to='/home'>today</Link></li>
+            <li className='sidenav-item' onMouseOver={this.highlight}><img className='leftNav-icon' src={window.bookmark} /><Link to='/home'>read later</Link></li>
+            <li className='sidenav-item' onMouseOver={this.highlight}><img className='leftNav-icon' src={window.all} /><Link to='/home'>train leo</Link></li>
+            <li className='sidenav-item' onMouseOver={this.highlight}><img className='leftNav-icon' src={window.bookmark} /><Link to='/pheed/1'>pheeds</Link></li>
+            <li className='sidenav-item' onMouseOver={this.highlight}><img className='leftNav-icon' src={window.bookmark} /><Link to='/articles'>finance</Link></li>
           </ul>
           <div className='add-content'>
             <button onClick={this.addContent}>Create Pheed</button>

@@ -10,7 +10,7 @@ class Greeting extends React.Component {
     let personalGreeting = (
     <>
       <hgroup className='header-group'>
-      <button className='upgrade' onClick={this.logout}>Upgrade</button>
+      <button className='header-upgrade-button' onClick={this.logout}>Upgrade</button>
       </hgroup>
     </>
     )

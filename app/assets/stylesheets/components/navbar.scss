@@ -8,7 +8,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // min-height: 725px;
 }
 
 .session-img {
@@ -248,15 +247,22 @@
   background-color: #ffffff;
   position: fixed;
   width: 95.5%;
-  height: 6%;
+  height: 49px;
   border-bottom: #eeeeee solid 1px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
 }
 
 .header-group a img {
   top: 10px;
   position: fixed;
-  // margin-left: 17%;
+}
+
+.header-upgrade-button {
+  padding: 0 50px 0 50px;
+  margin-left: auto;
+  margin-right: auto;
+
 }

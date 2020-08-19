@@ -7,12 +7,17 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-   
+
+    <link rel="stylesheet" type="text/css" href="app/assets/stylesheets/flaticon.scss">
     <script type="text/javascript">
       window.feedly = "<%= image_url('feedly-sample.png') %>";
     </script>
     <script type="text/javascript">
       window.feedlyLogo = "<%= image_url('logo-green.png') %>";
+    </script>
+    <script type="text/javascript">
+      window.bookmark = "<%= image_url('bookmark.png') %>";
+      window.all = "<%= image_url('menu-1.png') %>";
     </script>
     <script type="text/javascript">
       window.gnews = "<%= Rails.application.credentials.gnews[:api_key] %>";

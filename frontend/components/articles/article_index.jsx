@@ -12,6 +12,11 @@ class ArticleIndex extends React.Component {
     this.publishedTime = this.publishedTime.bind(this)
   }
   
+  componentDidMount() {
+    let root = document.getElementById('root');
+    root.style.height = `${root.scrollHeight}px` //updates root#div's height so that footer can be properly styled
+  }
+
   handleClick(e) {
     e.preventDefault()
     const sources = this.props.sources[0]
@@ -91,27 +96,30 @@ class ArticleIndex extends React.Component {
     return (
       <div className='article-index-wrapper'>
         <div className='article-index'>
-          <h1>Today</h1>
-          <h2>The insights you need to stay ahead</h2>
-          { articles.length === 0 ?
+          <div className='article-index-header-row'>
+            <h1 className='article-index-h1'>Today</h1>
+            <h2 className='article-index-h2'>The insights you need to stay ahead</h2>
+          </div>
+          {articles.length === 0 ?
             null
             :
-            articles.map((art, i) => {
-              return !Boolean(art.description) || !Boolean(art.image) ? null : //desc and img are requirements of articles... without them we are nothing
-              <ul className='article-index-item' key={i}>
-                <li>
-                  <a href={art.url}>
-                    <img className='article-image' src={art.image.thumbnail.contentUrl} />
-                  </a>
-                </li>
-                <div className='article-item-content'>
-                  <li id='index-item-title'><a href={art.url}>{art.name}</a></li>
-                  <li><a href={art.url}>{art.provider[0].name}</a></li>
-                  <li>{art.dateified}</li>
-                  <li>{art.description}</li>
-                </div>
-              </ul>
-            })
+            <div className='articles-column'>
+              {articles.map((art, i) => {
+                return !Boolean(art.description) || !Boolean(art.image) ? null : //desc and img are requirements of articles... without them we are nothing
+                <ul className='article-index-item' key={i}>
+                  <li>
+                    <a href={art.url}>
+                      <img className='article-image' src={art.image.thumbnail.contentUrl} />
+                    </a>
+                  </li>
+                  <div className='article-item-content'>
+                    <li id='index-item-title'><a href={art.url}>{art.name}</a></li>
+                      <li><a href={art.url}>{art.provider[0].name}</a> / {art.dateified}</li>
+                    <li>{art.description}</li>
+                  </div>
+                </ul>
+              })}
+          </div>
           }
         </div>
       </div>

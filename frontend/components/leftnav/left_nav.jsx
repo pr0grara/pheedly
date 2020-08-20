@@ -5,26 +5,27 @@ import { Link, Redirect } from 'react-router-dom'
 class LeftNav extends React.Component {
   constructor(props) {
     super(props)
-    this.currentUser = this.props.currentUser
-    this.toggleLeftNav = this.toggleLeftNav.bind(this)
-    this.highlight = this.highlight.bind(this)
+    this.currentUser = this.props.currentUser;
+    this.toggleLeftNav = this.toggleLeftNav.bind(this);
+    this.hover = this.hover.bind(this);
+    this.highlight = this.highlight.bind(this);
     this.highlighted = 0;
-    this.addContent = this.addContent.bind(this)
+    this.addContent = this.addContent.bind(this);
     this.leftNavState = false;
     if (Object.values(this.props.currentUser).length > 0) {
-      this.userName = this.props.currentUser[this.props.sessionId].email 
+      this.userName = this.props.currentUser[this.props.sessionId].email; 
     } else {
-      this.userName = "N/A"
+      this.userName = "N/A";
     }
     this.userLogoDropDown = this.userLogoDropDown.bind(this);
     this.logout = this.props.logout.bind(this);
   }
   
   componentDidMount() {
-    let leftNav = document.getElementById("leftNav")
+    let leftNav = document.getElementById("leftNav");
     if (this.leftNavState) { 
-      leftNav.style.height = `${window.screen.availHeight}px`
-      leftNav.style.width = `${(window.screen.availWidth) * 0.17}px`
+      leftNav.style.height = `${window.screen.availHeight}px`;
+      leftNav.style.width = `${(window.screen.availWidth) * 0.17}px`;
     }
   }
   
@@ -43,6 +44,7 @@ class LeftNav extends React.Component {
     let leftNav = document.getElementById("leftNav")
     let side_toggle = document.getElementsByClassName("leftNav-dock")[0]
     let articles = {style: {marginLeft:""}};
+    let navBar = document.getElementById("header-items-container")
     
     if (e.target.className === "user-logo-small" || e.target.className === "button") return
 
@@ -55,12 +57,14 @@ class LeftNav extends React.Component {
       leftNavWrapper.style.width = '0px'
       leftNav.style.display = 'none'
       side_toggle.style.width = "49px"
-      articles.style.margin = "0 50px 0 50px"
+      articles.style.margin = "0 0 0 100px"
+      navBar.style.margin = "0 0 0 100px"
     } else {
       this.leftNavState = true;
       leftNav.style.display = 'flex'
       leftNavWrapper.style.width = '269px'
       articles.style.margin = "0 50px 0 320px"
+      navBar.style.margin = "0 50px 0 320px"
     }
   }
 
@@ -82,7 +86,7 @@ class LeftNav extends React.Component {
     }
   }
 
-  highlight(e) {
+  hover(e) {
     e.preventDefault();
     document.addEventListener("mouseout", () => {
       for (let i = 0; i < navItems.length; i++) {
@@ -93,6 +97,17 @@ class LeftNav extends React.Component {
     let navItems = document.getElementsByClassName('sidenav-item')
     navItem.style.background = '#e6e6e6'
     this.highlighted += 1;
+  }
+  
+  highlight(e) {
+    e.preventDefault();
+    let navItem = e.currentTarget;
+    let navItems = document.getElementsByClassName('sidenav-item')
+    
+    for (let i = 0; i < navItems.length; i++) {
+      navItems[i].style.color = '#333'
+    }
+    navItem.style.color = "#2bb24c"
   }
   
   render() {
@@ -110,11 +125,22 @@ class LeftNav extends React.Component {
       <div className="leftNav-wrapper" id='leftNav-wrapper'>
         <div id='leftNav'>
           <ul id='side-nav'>  
-            <li className='sidenav-item' onMouseOver={this.highlight}><img className='leftNav-icon' src={window.bookmark} /><Link to='/home'>today</Link></li>
-            <li className='sidenav-item' onMouseOver={this.highlight}><img className='leftNav-icon' src={window.bookmark} /><Link to='/home'>read later</Link></li>
-            <li className='sidenav-item' onMouseOver={this.highlight}><img className='leftNav-icon' src={window.all} /><Link to='/home'>train leo</Link></li>
-            <li className='sidenav-item' onMouseOver={this.highlight}><img className='leftNav-icon' src={window.bookmark} /><Link to='/pheed/1'>pheeds</Link></li>
-            <li className='sidenav-item' onMouseOver={this.highlight}><img className='leftNav-icon' src={window.bookmark} /><Link to='/articles'>finance</Link></li>
+            <li className='sidenav-item' onMouseOver={this.hover} onClick={this.highlight}>
+              <img className='leftNav-icon' src={window.today} /><Link to='/home'>today</Link>
+            </li>
+            <li className='sidenav-item' onMouseOver={this.hover} onClick={this.highlight}>
+              <img className='leftNav-icon' src={window.bookmark} /><Link to='/home'>read later</Link>
+            </li>
+            <li className='sidenav-item' onMouseOver={this.hover} onClick={this.highlight}>
+              <img className='leftNav-icon' src={window.train} /><Link to='/home'>train leo</Link>
+            </li>
+            <li className='sidenav-category'>pheeds</li>
+            <li className='sidenav-item' onMouseOver={this.hover} onClick={this.highlight}>
+              <img className='leftNav-icon' src={window.all} /><Link to='/pheed/1'>All</Link>
+            </li>
+            <li className='sidenav-item' onMouseOver={this.hover} onClick={this.highlight}>
+              <img className='leftNav-icon' src={window.bookmark} /><Link to='/articles'>finance</Link>
+            </li>
           </ul>
           <div className='add-content'>
             <button onClick={this.addContent}>Create Pheed</button>

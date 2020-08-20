@@ -6,10 +6,10 @@ import App from './app'
 
 
 const Root = ({ store }) => {
-  let root = document.getElementById('root')
-  root.style.width = `${window.innerWidth}px`  
-  // root.style.height = `${window.innerHeight}px`  
-  root.style.height = `${document.documentElement.scrollHeight}px`  
+  // let root = document.getElementById('root')
+  // root.style.width = `${window.innerWidth}px`  
+  // // root.style.height = `${window.innerHeight}px`  
+  // root.style.height = `${document.documentElement.scrollHeight}px`  
   return (
   <Provider store={store}>
     <HashRouter>

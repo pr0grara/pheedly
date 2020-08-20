@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :show] do
       resources :feeds, only: [:create, :index, :destroy]
+      resources :pheeds, only: [:create, :index, :destroy]
     end
     resources :sources, only: [:create, :destroy] #in the source destroy action make sure to destroy the feed using the source id and current_user_id
     resource :session, only: [:create, :destroy]

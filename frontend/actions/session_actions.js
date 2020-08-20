@@ -1,5 +1,5 @@
 import * as APIUtil from '../util/session_api_util'
-import { addSourcesToState } from '../actions/source_actions'
+import { addSourcesToState, addPheedsToState } from '../actions/source_actions'
 import { curryArticles } from '../actions/article_actions'
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
@@ -8,7 +8,6 @@ export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 export const CLEAR_SESSION_ERRORS = 'CLEAR_SESSION_ERRORS';
 
 export const receiveCurrentUser = currentUser => {
-  // debugger
   return {
     type: RECEIVE_CURRENT_USER,
     currentUser
@@ -49,6 +48,7 @@ export const login = user => dispatch => {
     APIUtil.login(user).then(user => {
       dispatch(receiveCurrentUser(user))
       dispatch(addSourcesToState(user))
+      dispatch(addPheedsToState(user))
     }, err => (
       dispatch(receiveErrors(err.responseJSON))
     ))

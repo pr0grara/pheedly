@@ -1,24 +1,23 @@
 # == Schema Information
 #
-# Table name: feeds
+# Table name: pheeds
 #
 #  id         :bigint           not null, primary key
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  pheed_id   :integer
-#  source_id  :integer          not null
 #  user_id    :integer          not null
 #
 # Indexes
 #
-#  index_feeds_on_user_id_and_source_id  (user_id,source_id) UNIQUE
+#  index_pheeds_on_user_id_and_name  (user_id,name) UNIQUE
 #
-class Feed < ApplicationRecord
+class Pheed < ApplicationRecord
+  has_many :feeds,
+    foreign_key: :feed_id,
+    class_name: :Feed
+
   belongs_to :user,
     foreign_key: :user_id,
     class_name: :User
-
-  belongs_to :source,
-    foreign_key: :source_id,
-    class_name: :Source
 end

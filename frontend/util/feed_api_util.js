@@ -13,3 +13,11 @@ export const newFeed = (user, source) => {
     data: { source }
   })
 }
+
+export const grabPheeds = user => {
+  debugger
+  return $.ajax({
+    method: 'GET',
+    url: `api/users/${user.id}/pheeds`
+  })
+}

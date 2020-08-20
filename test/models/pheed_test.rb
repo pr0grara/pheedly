@@ -1,21 +1,20 @@
 # == Schema Information
 #
-# Table name: feeds
+# Table name: pheeds
 #
 #  id         :bigint           not null, primary key
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  pheed_id   :integer
-#  source_id  :integer          not null
 #  user_id    :integer          not null
 #
 # Indexes
 #
-#  index_feeds_on_user_id_and_source_id  (user_id,source_id) UNIQUE
+#  index_pheeds_on_user_id_and_name  (user_id,name) UNIQUE
 #
 require 'test_helper'
 
-class FeedTest < ActiveSupport::TestCase
+class PheedTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

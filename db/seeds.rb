@@ -9,6 +9,7 @@
 User.destroy_all
 Source.destroy_all
 Feed.destroy_all
+Pheed.destroy_all
 
 #users
 demoUser = User.create(email:"demo user", password:'123456')
@@ -35,10 +36,16 @@ buzzfeed = Source.create(name:"buzzfeed", code:"buzzfeed.com")
 kotaku = Source.create(name:"kotaku", code:"kotaku.com")
 polygon = Source.create(name:"polygon", code:"polygon.com")
 
+#pheeds
+finance = Pheed.create(user_id:demoUser.id, name: "finance")
+technology = Pheed.create(user_id:demoUser.id, name: "tech")
+fun = Pheed.create(user_id:demoUser.id, name: "fun")
+culture = Pheed.create(user_id:demoUser.id, name: "culture")
+
 #feeds
-feed1 = Feed.create(source_id:vice.id , user_id:demoUser.id)
-feed2 = Feed.create(source_id:forbes.id, user_id: demoUser.id)
-feed3 = Feed.create(source_id:engadget.id, user_id: demoUser.id)
-feed4 = Feed.create(source_id:gizmodo.id, user_id: demoUser.id)
-feed5 = Feed.create(source_id:polygon.id , user_id:demoUser.id)
+feed1 = Feed.create(source_id:vice.id, user_id:demoUser.id, pheed_id: culture.id)
+feed2 = Feed.create(source_id:forbes.id, user_id: demoUser.id, pheed_id: finance.id)
+feed3 = Feed.create(source_id:engadget.id, user_id: demoUser.id, pheed_id: technology.id)
+feed4 = Feed.create(source_id:gizmodo.id, user_id: demoUser.id, pheed_id: culture.id)
+feed5 = Feed.create(source_id:polygon.id, user_id:demoUser.id, pheed_id: fun.id)
 

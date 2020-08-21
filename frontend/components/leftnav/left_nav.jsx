@@ -111,8 +111,9 @@ class LeftNav extends React.Component {
   }
   
   render() {
-    var pheeds = JSON.parse(localStorage.pheeds);
-    debugger
+    var pheeds = [];
+    if (Boolean(localStorage.pheeds)) pheeds = JSON.parse(localStorage.pheeds);
+    // debugger
     const active = () => (
     <div id='leftNav-container'>
       <div className='leftNav-dock' onClick={this.toggleLeftNav}>
@@ -137,15 +138,16 @@ class LeftNav extends React.Component {
               <img className='leftNav-icon' src={window.train} /><Link to='/home'>train leo</Link>
             </li>
             <li className='sidenav-category'>pheeds</li>
-            {pheeds.map(pheed => {
-              return <li className='sidenav-item' key={pheed.name}>{pheed.name}</li>
-            })}
             <li className='sidenav-item' onMouseOver={this.hover} onClick={this.highlight}>
               <img className='leftNav-icon' src={window.all} /><Link to='/pheed/1'>All</Link>
             </li>
-            <li className='sidenav-item' onMouseOver={this.hover} onClick={this.highlight}>
-              <img className='leftNav-icon' src={window.bookmark} /><Link to='/articles'>finance</Link>
-            </li>
+            {pheeds.map(pheed => {
+              return (
+                <li className='sidenav-item' onMouseOver={this.hover} onClick={this.highlight} key={pheed.name}>
+                  <img className='leftNav-icon' src={window.pheeds}/> {pheed.name}
+                </li>
+              )
+            })}
           </ul>
           <div className='add-content'>
             <button onClick={this.addContent}>Create Pheed</button>

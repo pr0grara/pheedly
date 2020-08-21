@@ -91,7 +91,6 @@ class ArticleIndex extends React.Component {
         return a.delta - b.delta; //sorts articles arr in order of most recently published
       })
       // this.shuffle(articles)
-      // debugger
       
     return (
       <div className='article-index-wrapper'>

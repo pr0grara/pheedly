@@ -49,6 +49,8 @@ Each one of these connections is stored in a joins table in the database which c
     t.index ["email"], name: "index_users_on_email"
   end
 ```
+
+Because what we sell at Pheedly is the aggregation of other companies products, our backend is lightweight. We only keep track of our users, our registered sources and the connections between the two. The vast majority of our work is done on the frontend making API calls and rendering their results.
  
  -  **Frontend: React, Redux, Node.js**
  
@@ -98,15 +100,8 @@ A key feature implemented above is adding all of the articles to state and local
 When addPheedsToState is called in our Session Actions this function is called and is the one responsible to make all appropriate API calls. As each AJAX call settles the results are accumulated in an object with each source name as a key. Once all sources are accounted for we timestamp our results object before dispatching it to state and caching it in local storage.
 
  ### Technologies
-  - **Flight API**
-	 - Flight information can be input by user and a list of flights matching the criteria will be displayed for the user.
-	 - Possible API: **TripAdvisor**
-  - **Housing API**
-	   - Housing information can be input by user and a list of housing matching the criteria will be displayed for the user.
-    - Possibly API: **Airbnb**
-  - **Event API**
-	   - Event information can be input by user and a list of events matching the criteria will be displayed for the user.
-    - Possibly API: **Yelp**/**TripAdvisor**/**EventBrite**
+  - **Bing API**
+	 - The Bing News API is by far one of the best news APIs on the market. At a very competitive price they can search for articles by domain name (absolutely 	critical for Pheedly), and not only are the results generated quickly they are reliable in providing image links and other metadata such as date published. Many earlier APIs I worked with were far inferior.
 
 ## Walkthrough
 ![Image of Site](https://github.com/pr0grara/pheedly/blob/master/screen_shot_2020-07-10_at_11.09.58_am.png)

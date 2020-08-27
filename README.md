@@ -5,9 +5,6 @@ Pheedly is a web application that aggregates news articles from sources you wish
 
 Users can sign up for a **Pheedly** account and then select sources from the media outlets like CNN or gizmodo they wish to follow. Each one of these sources is queried and provides **Pheedly** with current articles that are presented to the user. In this manner a user can obtain all the news she needs daily by visiting only one website.
 
-Each one of these connections is stored in a joins table in the database which can themselves be grouped into different columns of the "Pheeds" table.
-
-
 ## Technologies
 
  ### Ruby on Rails, Node.js, React, Redux PostgreSQL Stack
@@ -15,7 +12,8 @@ Each one of these connections is stored in a joins table in the database which c
  - **Backend: PostgreSQL, Ruby on Rails**
  
 **Backend Schema**
- ``` create_table "feeds", force: :cascade do |t|
+ ``` 
+  create_table "feeds", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "source_id", null: false
     t.datetime "created_at", null: false
@@ -50,7 +48,7 @@ Each one of these connections is stored in a joins table in the database which c
   end
 ```
 
-Because what we sell at Pheedly is the aggregation of other companies products, our backend is lightweight. We only keep track of our users, our registered sources and the connections between the two. The vast majority of our work is done on the frontend making API calls and rendering their results.
+Because what we produce at Pheedly is the aggregation of other companies products, our backend is lightweight. We only keep track of our users, our registered sources and the connections between the two. The vast majority of our work is done on the frontend making API calls and rendering their results.
  
  -  **Frontend: React, Redux, Node.js**
  

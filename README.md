@@ -99,17 +99,16 @@ A key feature implemented above is adding all of the articles to state and local
  ```
 When addPheedsToState is called in our Session Actions this function is called and is the one responsible to make all appropriate API calls. As each AJAX call settles the results are accumulated in an object with each source name as a key. Once all sources are accounted for we timestamp our results object before dispatching it to state and caching it in local storage.
 
- ### Technologies
-  - **Bing API**
-	 - The Bing News API is by far one of the best news APIs on the market. At a very competitive price they can search for articles by domain name (absolutely 	critical for Pheedly), and not only are the results generated quickly they are reliable in providing image links and other metadata such as date published. Many earlier APIs I worked with were far inferior.
+**Bing API**
+  - The Bing News API is by far one of the best news APIs on the market. At a very competitive price they can search for articles filtered by domain name (absolutely 	critical for Pheedly), and not only are the results generated quickly they are reliable in providing image links and other metadata such as date published. Far superior to all earlier APIs I worked with.
 
 ## Walkthrough
 ![Image of Site](https://github.com/pr0grara/pheedly/blob/master/screen_shot_2020-07-10_at_11.09.58_am.png)
  1. User can Login or Signup on splash page.
  2. Once logged in, user will be directed to their home page.
- 2a. An existing user with sources will be directed to their homepage displaying all of their articles in chronological order.
- 2b. A new user will be directed to **Create Feed** to add sources to follow and group them under a Pheed.
- 3. From any location a user may access the sidebar which has a convenient dropdown navbar to redirect a user to any Pheed they wish.
+ 3. An existing user with sources will be directed to their homepage displaying all of their articles in chronological order.
+ 4. A new user will be directed to **Create Feed** to add sources to follow and group them under a Pheed.
+ 5. From any location a user may access the sidebar which has a convenient dropdown navbar to redirect a user to any Pheed they wish.
  
  ## Live Link
  Hosted on Heroku

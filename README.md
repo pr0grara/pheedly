@@ -101,7 +101,7 @@ When addPheedsToState is called in our Session Actions this function is called a
   - The Bing News API is by far one of the best news APIs on the market. At a very competitive price they can search for articles filtered by domain name (absolutely 	critical for Pheedly), and not only are the results generated quickly they are reliable in providing image links and other metadata such as date published. Far superior to all earlier APIs I worked with.
 
 ## Walkthrough
-![Image of Site](https://github.com/pr0grara/pheedly/blob/master/screen_shot_2020-07-10_at_11.09.58_am.png)
+![Image of Site](https://github.com/pr0grara/pheedly/blob/master/app/assets/images/pheedly.png)
  1. User can Login or Signup on splash page.
  2. Once logged in, user will be directed to their home page.
  3. An existing user with sources will be directed to their homepage displaying all of their articles in chronological order.

@@ -6,7 +6,7 @@ import { addSourcesToState } from '../../actions/source_actions';
 import ArticleIndex from './article_index';
 
 const mSTP = state => {
-  debugger
+  //debugger
   var articles = state.entities.articles;
   if (Object.keys(articles).length === 0) {
     let localArts = localStorage.getItem('articles')

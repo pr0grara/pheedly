@@ -21,11 +21,11 @@ class AddSource extends React.Component {
     //make sure to update sources in state and localstorage, refresh all articles this time 
     //including ones from new source, add these articles to state and localStorage
     //and then redirect back to '/home'
-    console.log('you are gay')
+    console.log(':)')
   }
 
   render() {
-    // debugger
+    //debugger
     return (
       <form className='source-form'>
         <input type="text" onChange={this.update("source")} value={this.state.source}/>

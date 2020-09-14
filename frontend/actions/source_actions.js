@@ -12,7 +12,7 @@ export const receiveSources = sources => {
 }
 
 export const receivePheeds = pheeds => {
-  debugger
+  //debugger
   return ({
     type: RECEIVE_PHEEDS,
     pheeds
@@ -20,12 +20,12 @@ export const receivePheeds = pheeds => {
 }
 
 export const addUserFeed = (user, source) => dispatch => {
-  debugger
+  //debugger
   return (
     APIUtil.newFeed(user, source).then(user => {
       APIUtil.grabFeeds(user).then((obj) => {
         console.log(obj)
-        debugger
+        //debugger
         dispatch(receiveSources(obj))
       })
     })
@@ -33,10 +33,10 @@ export const addUserFeed = (user, source) => dispatch => {
 }
 
 export const addSourcesToState = user => dispatch => {
-  // debugger
+  //debugger
   return (
     APIUtil.grabFeeds(user).then(obj => {
-      // debugger
+      //debugger
       let localArts = localStorage.articles;
       dispatch(receiveSources(obj))
       localStorage.setItem('sources', JSON.stringify(obj))
@@ -47,10 +47,10 @@ export const addSourcesToState = user => dispatch => {
 }
 
 export const addPheedsToState = user => dispatch => {
-  debugger
+  //debugger
   return (
     APIUtil.grabPheeds(user).then(obj => {
-      debugger
+      //debugger
       // let localArts = localStorage.articles;
       dispatch(receivePheeds(obj))
       localStorage.setItem('pheeds', JSON.stringify(obj))

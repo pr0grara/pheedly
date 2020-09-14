@@ -71,8 +71,10 @@ class LeftNav extends React.Component {
   }
 
   addContent() {
+    //debugger
+    // let history = useHistory();
     console.log("you are awesome")
-    return <Redirect to='/' />
+    window.location.href='#/sources'
   }
 
   userLogoDropDown(e) {
@@ -115,7 +117,7 @@ class LeftNav extends React.Component {
   render() {
     var pheeds = [];
     if (Boolean(localStorage.pheeds)) pheeds = JSON.parse(localStorage.pheeds);
-    // debugger
+    //debugger
     const active = () => (
     <div id='leftNav-container'>
       <div className='leftNav-dock' onClick={this.toggleLeftNav}>

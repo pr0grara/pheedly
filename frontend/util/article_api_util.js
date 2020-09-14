@@ -7,7 +7,7 @@ export const articles = (source) => {
 }
 
 // export const newsRiver = (source) => {
-//   debugger
+//   //debugger
 //   return $.ajax({
 //     method: 'GET',
 //     url: `https://api.newsriver.io/v2/search?query=website.domainName%3Avice.com&sortBy=discoverDate&sortOrder=DESC&limit=15`,
@@ -20,12 +20,12 @@ export const articles = (source) => {
 //     //Ajax request failed.
 //     var errorMessage = xhr.status + ': ' + xhr.statusText
 //     alert('Error - ' + errorMessage);
-//     debugger
+//     //debugger
 //   })
 //   .done(res => {
 //     localStorage.setItem('newsRiver', "poop")
 //     console.log(res)
-//     debugger
+//     //debugger
 //   })
 //   .always(() => {
 //   })

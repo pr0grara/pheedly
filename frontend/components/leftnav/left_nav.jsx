@@ -23,6 +23,8 @@ class LeftNav extends React.Component {
   
   componentDidMount() {
     let leftNav = document.getElementById("leftNav");
+    let homePheed = document.getElementById('leftNav-home-pheed');
+    // homePheed.style.color = "#2bb24c" 
     if (this.leftNavState) { 
       leftNav.style.height = `${window.screen.availHeight}px`;
       leftNav.style.width = `${(window.screen.availWidth) * 0.17}px`;
@@ -138,8 +140,8 @@ class LeftNav extends React.Component {
               <img className='leftNav-icon' src={window.train} /><Link to='/home'>train leo</Link>
             </li>
             <li className='sidenav-category'>pheeds</li>
-            <li className='sidenav-item' onMouseOver={this.hover} onClick={this.highlight}>
-              <img className='leftNav-icon' src={window.all} /><Link to='/pheed/1'>All</Link>
+            <li className='sidenav-item' id='leftNav-home-pheed' onMouseOver={this.hover} onClick={this.highlight}>
+              <img className='leftNav-icon' src={window.all} /><Link to='/home'>All</Link>
             </li>
             {pheeds.map(pheed => {
               return (

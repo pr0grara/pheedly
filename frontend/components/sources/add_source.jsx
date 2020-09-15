@@ -7,9 +7,15 @@ class AddSource extends React.Component {
     this.state = {source: ""}
     this.handleClick = this.handleClick.bind(this)
     this.field
+    this.debounce = 0;
+    this.timer = Date.now();
   }
 
-  update(field) {
+  update(field, time) {
+    if (time - this.timer > 750) {
+      console.log('too slow')
+    }
+    this.timer = Date.now();
     return e => this.setState({
       [field]: e.currentTarget.value
     });
@@ -28,7 +34,7 @@ class AddSource extends React.Component {
     //debugger
     return (
       <form className='source-form'>
-        <input type="text" onChange={this.update("source")} value={this.state.source}/>
+        <input type="text" onChange={this.update("source", Date.now())} value={this.state.source}/>
         <input type="submit" onClick={this.handleClick} />
       </form>
     )

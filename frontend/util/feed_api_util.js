@@ -6,7 +6,7 @@ export const grabFeeds = user => {
 }
 
 export const newFeed = (user, source) => {
-  //debugger
+  debugger
   return $.ajax({
     method: 'POST',
     url: `api/users/${user.id}/feeds`,

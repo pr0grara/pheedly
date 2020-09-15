@@ -18,7 +18,7 @@ export const displayFeeds = user => dispatch => {
 }
 
 export const addUserFeed = (user, source) => (dispatch) => {
-  //debugger;
+  debugger;
   return APIUtil.newFeed(user, source)
   .then((user) => {
     APIUtil.grabFeeds(user).then((obj) => {

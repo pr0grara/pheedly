@@ -5,8 +5,8 @@ const sourcesReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_SOURCES:
       return Object.assign({}, state, [action.sources]);
-    case RECEIVE_PHEEDS:
-      return Object.assign({}, state, [action.pheeds])
+    // case RECEIVE_PHEEDS:
+    //   return Object.assign({}, state, [action.pheeds])
     default:
       return state;
   }

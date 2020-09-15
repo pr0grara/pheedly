@@ -1,5 +1,6 @@
 import * as APIUtil from '../util/session_api_util'
-import { addSourcesToState, addPheedsToState } from '../actions/source_actions'
+import { addSourcesToState } from '../actions/source_actions'
+import { addPheedsToState } from '../actions/pheed_actions'
 import { curryArticles } from '../actions/article_actions'
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';

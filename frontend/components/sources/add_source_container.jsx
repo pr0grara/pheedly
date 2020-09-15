@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addUserFeed } from '../../actions/source_actions';
+import { addUserFeed } from '../../actions/feed_actions';
 import AddSource from './add_source';
 
 const mSTP = state => {

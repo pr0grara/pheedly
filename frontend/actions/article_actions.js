@@ -39,18 +39,14 @@ export const curryArticles = sources => dispatch => {
   let source = {}
   while (sources.length > 0) {
     source = sources.pop()
-    // APIUtil.articles(source.code)
     APIUtil.bing(source.code)
     .then(obj => {
-      // obj.source = source.name;
-      // res[obj.request_parameters.source] = obj;
       res[obj.value[0].provider[0].name] = obj;
-      // res[source.name] = obj;
       if (Object.keys(res).length === curryLength) {
         res.time = Date.now();
-        dispatch(receiveArticles(res))
-        localStorage.setItem("articles", JSON.stringify(res))
-        window.location.reload();
+        dispatch(receiveArticles(res)) //dispatch articles to state
+        localStorage.setItem("articles", JSON.stringify(res)) //cache articles to LS
+        window.location.reload(); //results from promises come in after home renders, refresh to rerender
       }
     })
     .catch(err => {

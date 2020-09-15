@@ -1,5 +1,6 @@
 import * as APIUtil from '../util/feed_api_util';
-import { receiveSources } from '../actions/source_actions'
+import { receiveSources } from './source_actions'
+import { addNewSourceArticles } from './article_actions';
 
 export const RECEIVE_FEEDS = 'RECEIVE_FEEDS';
 
@@ -18,15 +19,17 @@ export const displayFeeds = user => dispatch => {
   )))
 }
 
-export const addUserFeed = (user, source) => (dispatch) => {
+export const addUserFeed = (user, source) => dispatch => {
   // debugger;
   return APIUtil.newFeed(user, source)
   .then((res) => {
     console.log('it worked')
-    APIUtil.grabFeeds(user).then((obj) => {
-      console.log(obj);
-      localStorage.sources = JSON.stringify(obj)
-      dispatch(receiveSources(obj));
+    APIUtil.grabFeeds(user).then((sources) => {
+      debugger
+      console.log(sources);
+      localStorage.sources = JSON.stringify(sources)
+      dispatch(receiveSources(sources));
+      dispatch(addNewSourceArticles(sources[sources.length-1]))
     });
   });
 };

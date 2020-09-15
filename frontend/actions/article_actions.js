@@ -55,6 +55,18 @@ export const curryArticles = sources => dispatch => {
   }
 }
 
+export const addNewSourceArticles = source => dispatch => {
+  APIUtil.bing(source.code)
+  .then(newArticles => {
+    debugger
+    var articles = JSON.parse(localStorage.articles)
+    articles[newArticles.value[0].provider[0].name] = newArticles;
+    dispatch(receiveArticles(articles))
+    localStorage.articles = JSON.stringify(articles)
+    window.location.reload();
+  })
+}
+
 export const dispatchArticles = articles => dispatch => {
   dispatch(receiveArticles(articles))
 }

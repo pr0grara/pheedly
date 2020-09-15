@@ -48,6 +48,7 @@ export const login = user => dispatch => {
   return (  
     APIUtil.login(user).then(user => {
       dispatch(receiveCurrentUser(user))
+      debugger
       dispatch(addSourcesToState(user))
       dispatch(addPheedsToState(user))
     }, err => (

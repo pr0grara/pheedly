@@ -8,7 +8,7 @@ const mSTP = ({ session, entities: { users } }) => {
 };
 
 const mDTP = dispatch => ({
-  addSourcesToState: user => dispatch(addSourcesToState(user))
+  // addSourcesToState: user => dispatch(addSourcesToState(user))
 })
 
 export default connect(mSTP, mDTP)(Splash);

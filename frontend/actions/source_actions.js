@@ -5,6 +5,7 @@ export const RECEIVE_SOURCES = 'RECEIVE_SOURCES';
 // export const RECEIVE_PHEEDS = 'RECEIVE_PHEEDS';
 
 export const receiveSources = sources => {
+  // debugger
   return ({
     type: RECEIVE_SOURCES,
     sources
@@ -33,10 +34,10 @@ export const receiveSources = sources => {
 // }
 
 export const addSourcesToState = user => dispatch => {
-  //debugger
+  // debugger
   return (
     APIUtil.grabSourcesFromFeeds(user).then(obj => {
-      //debugger
+      // debugger
       let localArts = localStorage.articles;
       dispatch(receiveSources(obj))
       localStorage.setItem('sources', JSON.stringify(obj))

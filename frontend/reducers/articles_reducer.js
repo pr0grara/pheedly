@@ -1,6 +1,11 @@
 import { RECEIVE_ARTICLES, RECEIVE_CONTENT } from '../actions/article_actions';
 
-const articlesReducer = (state = {}, action) => {
+var previousState = {};
+if (Boolean(localStorage.articles)) {
+  previousState = {...JSON.parse(localStorage.articles)}
+}
+
+const articlesReducer = (state = previousState, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ARTICLES:

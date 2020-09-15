@@ -1,10 +1,19 @@
 import { RECEIVE_SOURCES, RECEIVE_PHEEDS } from '../actions/source_actions'
 
-const sourcesReducer = (state = {}, action) => {
+// debugger
+var previousState = {};
+if (Boolean(localStorage.sources)) {
+  previousState = Object.freeze({...JSON.parse(localStorage.sources)});
+}
+
+const sourcesReducer = (state = previousState, action) => {
   Object.freeze(state);
+
   switch (action.type) {
     case RECEIVE_SOURCES:
-      return Object.assign({}, state, [action.sources]);
+      // debugger
+      // return { sources: action.sources }
+      return { 'this': 'is a test' };
     // case RECEIVE_PHEEDS:
     //   return Object.assign({}, state, [action.pheeds])
     default:

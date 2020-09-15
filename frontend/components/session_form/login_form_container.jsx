@@ -14,7 +14,7 @@ const mSTP = ({ errors }) => {
 
 const mDTP = dispatch => {
   return {
-    addSources: (user) => dispatch(addSourcesToState(user)),
+    // addSources: (user) => dispatch(addSourcesToState(user)),
     processForm: (user) => dispatch(login(user)),
     clearErrors: clearErrors(),
   };

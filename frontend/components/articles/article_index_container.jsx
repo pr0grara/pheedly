@@ -28,7 +28,7 @@ const mSTP = state => {
 const mDTP = dispatch => {
   return {
     showArticles: (source) => dispatch(displayArticles(source)),
-    addSourcesToState: (user) => dispatch(addSourcesToState(user)),
+    // addSourcesToState: (user) => dispatch(addSourcesToState(user)),
     curryArticles: (sources) => dispatch(curryArticles(sources))
   };
 };

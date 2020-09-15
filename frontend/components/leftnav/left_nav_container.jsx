@@ -13,7 +13,7 @@ const mSTP = ({session, entities: {users}}) => {
 
 const mDTP = dispatch => ({
   logout: () => dispatch(logout()),
-  addSourcesToState: user => dispatch(addSourcesToState(user))
+  // addSourcesToState: user => dispatch(addSourcesToState(user))
 
 })
 

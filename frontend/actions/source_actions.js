@@ -5,7 +5,6 @@ export const RECEIVE_SOURCES = 'RECEIVE_SOURCES';
 // export const RECEIVE_PHEEDS = 'RECEIVE_PHEEDS';
 
 export const receiveSources = sources => {
-  // debugger
   return ({
     type: RECEIVE_SOURCES,
     sources
@@ -38,10 +37,10 @@ export const addSourcesToState = user => dispatch => {
   return (
     APIUtil.grabSourcesFromFeeds(user).then(obj => {
       // debugger
-      let localArts = localStorage.articles;
-      dispatch(receiveSources(obj))
+      // let localArts = localStorage.articles;
       localStorage.setItem('sources', JSON.stringify(obj))
-      if (!Boolean(localArts)) dispatch(curryArticles(obj)) //this is where we make the call to fetch articles
+      dispatch(receiveSources(obj))
+      if (!Boolean(localStorage.articles)) dispatch(curryArticles(obj)) //this is where we make the call to fetch articles
     }
   )
   )

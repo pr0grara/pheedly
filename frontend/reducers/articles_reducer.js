@@ -2,7 +2,7 @@ import { RECEIVE_ARTICLES, RECEIVE_CONTENT } from '../actions/article_actions';
 
 var previousState = {};
 if (Boolean(localStorage.articles)) {
-  previousState = {...JSON.parse(localStorage.articles)}
+  previousState = Object.freeze({...JSON.parse(localStorage.articles)})
 }
 
 const articlesReducer = (state = previousState, action) => {

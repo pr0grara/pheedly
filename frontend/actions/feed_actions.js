@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/feed_api_util';
+import { receiveSources } from '../actions/source_actions'
 
 export const RECEIVE_FEEDS = 'RECEIVE_FEEDS';
 
@@ -18,12 +19,13 @@ export const displayFeeds = user => dispatch => {
 }
 
 export const addUserFeed = (user, source) => (dispatch) => {
-  debugger;
+  // debugger;
   return APIUtil.newFeed(user, source)
-  .then((user) => {
+  .then((res) => {
+    console.log('it worked')
     APIUtil.grabFeeds(user).then((obj) => {
       console.log(obj);
-      //debugger;
+      localStorage.sources = JSON.stringify(obj)
       dispatch(receiveSources(obj));
     });
   });

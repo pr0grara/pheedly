@@ -11,11 +11,7 @@ const sourcesReducer = (state = previousState, action) => {
 
   switch (action.type) {
     case RECEIVE_SOURCES:
-      // debugger
-      // return { sources: action.sources }
-      return { 'this': 'is a test' };
-    // case RECEIVE_PHEEDS:
-    //   return Object.assign({}, state, [action.pheeds])
+      return {...action.sources};
     default:
       return state;
   }

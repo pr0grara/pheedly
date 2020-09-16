@@ -18,27 +18,6 @@ export const sourceMatches = sources => {
   })
 }
 
-// export const receivePheeds = pheeds => {
-//   //debugger
-//   return ({
-//     type: RECEIVE_PHEEDS,
-//     pheeds
-//   })
-// }
-
-// export const addUserFeed = (user, source) => dispatch => {
-//   //debugger
-//   return (
-//     APIUtil.newFeed(user, source).then(user => {
-//       APIUtil.grabFeeds(user).then((obj) => {
-//         console.log(obj)
-//         //debugger
-//         dispatch(receiveSources(obj))
-//       })
-//     })
-//   )
-// }
-
 export const addSourcesToState = user => dispatch => {
   return (
     APIUtil.grabSourcesFromFeeds(user).then(obj => {
@@ -57,17 +36,3 @@ export const searchForSources = query => dispatch => {
     })
   )
 }
-
-// export const addPheedsToState = user => dispatch => {
-//   //debugger
-//   return (
-//     APIUtil.grabPheeds(user).then(obj => {
-//       //debugger
-//       // let localArts = localStorage.articles;
-//       dispatch(receivePheeds(obj))
-//       localStorage.setItem('pheeds', JSON.stringify(obj))
-//       if (!Boolean(localArts)) dispatch(curryArticles(obj))
-//     }
-//   )
-//   )
-// }

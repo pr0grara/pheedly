@@ -7,6 +7,15 @@ export const grabSourcesFromFeeds = user => {
   })
 }
 
+export const findMatchingSources = query => {
+  // debugger
+  return $.ajax({
+    method: 'GET',
+    url: 'api/sources',
+    data: {query: query}
+  })
+}
+
 // export const newFeed = (user, source) => {
 //   //debugger
 //   return $.ajax({

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { addUserFeed } from '../../actions/feed_actions';
+import { searchForSources } from '../../actions/source_actions'
 import AddSource from './add_source';
 
 const mSTP = state => {
@@ -17,6 +18,7 @@ const mSTP = state => {
 
 const mDTP = dispatch => {
   return {
+    searchForSources: query => dispatch(searchForSources(query)),
     addUserFeed: (user, source) => dispatch(addUserFeed(user, source))
   };
 };

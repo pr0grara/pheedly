@@ -11,14 +11,42 @@ class AddSource extends React.Component {
     this.timer = Date.now();
   }
 
-  update(field, time) {
-    if (time - this.timer > 750) {
-      console.log('too slow')
+  update(field, time, source) {
+    if (Boolean(source)) {
+      return () => this.setState({
+          [field]: source,
+        });
     }
+    // if (time - this.timer > 750) {
+    if (time - this.timer > 100) {
+      // debugger
+      this.props.searchForSources(this.state.source)
+      // console.log('too slow')
+    }
+    // debugger
     this.timer = Date.now();
     return e => this.setState({
       [field]: e.currentTarget.value
     });
+  }
+
+  hover(e) {
+    // debugger
+    console.log(e.target)
+    let source = e.target;
+    source.classList.toggle('hover')
+  }
+
+  autofill(e) {
+    // debugger
+    // this.state.source = e.currentTarget.value;
+    let value
+    if (Boolean(e.currentTarget)) {
+      value = e.currentTarget.value
+      return e => this.setState({
+        ["source"]: value
+      });
+    }
   }
 
   handleClick(e) {
@@ -32,11 +60,31 @@ class AddSource extends React.Component {
 
   render() {
     //debugger
+    const matchedSources = [];
+    if (Boolean(this.props.sources.search)) {
+      matchedSources.push(...Object.values(this.props.sources.search))
+    }
+    // debugger
     return (
-      <form className='source-form'>
-        <input type="text" onChange={this.update("source", Date.now())} value={this.state.source}/>
-        <input type="submit" onClick={this.handleClick} />
-      </form>
+      <div className='add-source'>
+        <form className='source-form'>
+          <input type="text" onChange={this.update("source", Date.now())} value={this.state.source}/>
+          <input type="submit" onClick={this.handleClick} />
+        </form>
+        <div className='suggestions' onMouseOver={this.hover}>
+          <ul>
+            {
+              matchedSources.map(source => {
+                return (
+                  <li onClick={this.update("source", 0, source.name)} onMouseLeave={this.hover}>
+                    {source.name}
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </div>
+      </div>
     )
   }
 }

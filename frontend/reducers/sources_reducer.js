@@ -1,4 +1,4 @@
-import { RECEIVE_SOURCES, RECEIVE_PHEEDS } from '../actions/source_actions'
+import { RECEIVE_SOURCES, RECEIVE_MATCHING_SOURCES } from '../actions/source_actions'
 
 // debugger
 var previousState = {};
@@ -8,10 +8,14 @@ if (Boolean(localStorage.sources)) {
 
 const sourcesReducer = (state = previousState, action) => {
   Object.freeze(state);
-
   switch (action.type) {
     case RECEIVE_SOURCES:
-      return {...action.sources};
+      return {userSources: action.sources}
+    case RECEIVE_MATCHING_SOURCES:
+      return {
+        userSources: previousState,
+        search: {...action.sources}
+      }
     default:
       return state;
   }

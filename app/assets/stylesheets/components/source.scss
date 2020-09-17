@@ -1,9 +1,52 @@
 
 .add-source {
-  margin-left: 50%;
+  width: 888px;
+  margin: 50px auto 10px auto;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.source-form {
+  width: 100%;
+  height: 50px;
+  margin: 100px auto 10px auto;
+  display: flex;
+  flex-direction: row;
+  input {
+    border: black solid 2px;
+  }
+  :first-child {flex:8}
+  :last-child {
+    flex: 1;
+    text-align: center;
+  }
+  border: 1px solid blue;
+}
+
+.suggestions {
+  border: 1px solid green;
 }
 
 .hover {
-  border: 1px solid red;
+  border: 1px solid green;
   cursor: pointer;
+}
+
+.new-source {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pheed-menu {
+  display: none;
+  transform: translateX(100%);
+}
+.pheed-menu.open {
+  transition: 
+    transform .5s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+    display .5s cubic-bezier(0.61,-0.19, 0.7,-0.11);
+  display: flex;
+  transform: translateX(0);
 }

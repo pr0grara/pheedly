@@ -5,13 +5,15 @@ import AddSource from './add_source';
 
 const mSTP = state => {
   var sources = state.entities.sources;
+  var pheeds = state.entities.pheeds;
   if (Object.keys(sources).length === 0) {
     sources = JSON.parse(localStorage.getItem('sources'))
   }
   //debugger
   return {
     user: state.entities.users[state.session.id],
-    sources
+    sources,
+    pheeds
     // currSources: {0:sources}
   };
 };

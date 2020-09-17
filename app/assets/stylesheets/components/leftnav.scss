@@ -10,6 +10,10 @@
   border-right: #eeeeee solid 1px;
 }
 
+#leftNav-container {
+  width: 49px;
+}
+
 #side-nav {
   margin-top: 50px;
   width: 100%;
@@ -32,7 +36,7 @@
   left: 50px;
   height: 100%;
   width: 0px;
-  transition: width 0.25s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: width 0.25s cubic-bezier(0.4, 0.34, 0.7, 0.74);
 }
 
 .leftNav-hidden {
@@ -58,6 +62,7 @@
   width: 49px;
   height: 100%;
   border-right: #eeeeee solid 1px;
+  z-index: 2;
 }
 
 .leftNav-dock > a {

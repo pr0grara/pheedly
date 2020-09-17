@@ -9,6 +9,9 @@ class AddSource extends React.Component {
     this.field
     this.debounce = 0;
     this.timer = Date.now();
+    this.selectSource = this.selectSource.bind(this)
+    this.selection = <ul></ul>
+    this.searching = true;
   }
 
   update(field, time, source) {
@@ -31,10 +34,30 @@ class AddSource extends React.Component {
   }
 
   hover(e) {
-    // debugger
     console.log(e.target)
     let source = e.target;
     source.classList.toggle('hover')
+  }
+
+  selectPheed(e) {
+    let source = e.target;
+    var menu = document.querySelector('.pheed-menu')
+    menu.classList.toggle('open')
+  }
+
+  selectSource(e) {
+    var source = JSON.parse(e.target.dataset.source);
+    
+    this.selection = (
+      <ul>
+        <li>{source.name}</li>
+        <li>{source.code}</li>
+        <li>{source.blurb}</li>
+      </ul>
+    );
+    this.searching = false;
+    this.render()
+    debugger
   }
 
   autofill(e) {
@@ -59,31 +82,52 @@ class AddSource extends React.Component {
   }
 
   render() {
-    //debugger
-    const matchedSources = [];
-    if (Boolean(this.props.sources.search)) {
-      matchedSources.push(...Object.values(this.props.sources.search))
-    }
     // debugger
+    console.log(this.props.pheeds)
+    var newSources = [];
+    var pheeds = Object.values(this.props.pheeds)
+
+    if (Boolean(this.props.sources.search)) {
+      var matchedSources = Object.values(this.props.sources.search);
+      var userSources = Object.values(this.props.sources.userSources).map(source => source.name)
+      if (this.searching) newSources = matchedSources.filter(source => !userSources.includes(source.name))
+    }
+
+
     return (
       <div className='add-source'>
         <form className='source-form'>
           <input type="text" onChange={this.update("source", Date.now())} value={this.state.source}/>
           <input type="submit" onClick={this.handleClick} />
         </form>
-        <div className='suggestions' onMouseOver={this.hover}>
+        <div className='suggestions' onClick={console.log(this)} >
           <ul>
+            <ul className="pheed-menu">
+              {pheeds.map((pheed) => (
+                <li>{pheed.name}</li>
+              ))}
+            </ul>
             {
-              matchedSources.map(source => {
+              newSources.map(source => {
                 return (
-                  <li onClick={this.update("source", 0, source.name)} onMouseLeave={this.hover}>
-                    {source.name}
+                  // <li className={'new-source} onClick={this.update("source", 0, source.name)} onMouseLeave={this.hover} key={source.name}>
+                  <li
+                    className={"new-source"}
+                    // onClick={this.selectPheed}
+                    onClick={this.selectSource}
+                    onMouseOver={this.hover}
+                    onMouseLeave={this.hover}
+                    key={source.name}
+                    data-source={JSON.stringify(source)}
+                  >
+                      {source.name}
                   </li>
                 );
               })
             }
           </ul>
         </div>
+        <div >{ this.selection }</div>
       </div>
     )
   }

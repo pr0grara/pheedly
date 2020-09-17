@@ -42,11 +42,13 @@ class LeftNav extends React.Component {
 
   toggleLeftNav(e) {
     e.preventDefault();
+    let leftNavContainer = document.getElementById("leftNav-container")
     let leftNavWrapper = document.getElementById("leftNav-wrapper")
     let leftNav = document.getElementById("leftNav")
     let side_toggle = document.getElementsByClassName("leftNav-dock")[0]
     let articles = {style: {marginLeft:""}};
     let navBar = document.getElementById("header-items-container")
+    // debugger
     
     if (e.target.className === "user-logo-small" || e.target.className === "button") return
 
@@ -56,16 +58,20 @@ class LeftNav extends React.Component {
 
     if (leftNavWrapper.style.width === "269px") {
       this.leftNavState = false;
+      leftNavContainer.style.width = '49px'
       leftNavWrapper.style.width = '0px'
       leftNav.style.display = 'none'
       side_toggle.style.width = "49px"
-      articles.style.margin = "0 0 0 100px"
+      // articles.style.margin = "0 0 0 100px"
+      articles.style.width = "-webkit-calc(100% - 49px)"
       navBar.style.margin = "0 0 0 100px"
     } else {
       this.leftNavState = true;
       leftNav.style.display = 'flex'
+      leftNavContainer.style.width = '318px'
       leftNavWrapper.style.width = '269px'
-      articles.style.margin = "0 50px 0 320px"
+      // articles.style.margin = "0 50px 0 200px"
+      articles.style.width = "-webkit-calc(100% - 318px)"
       navBar.style.margin = "0 50px 0 320px"
     }
   }

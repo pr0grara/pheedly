@@ -1,7 +1,7 @@
 .article-index-wrapper {
   position: relative;
   top: 50px;
-  margin-left: 100px;
+  // margin-left: 1px;
   width: -webkit-calc(100% - 49px);
   height: 100%;
   // margin-right: 50px;
@@ -9,21 +9,6 @@
   // display: flex;
   // flex-direction: column;
   display: block;
-}
-
-.source-form {
-  width: 250px;
-  height: 50px;
-  margin: 100px auto 10px auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  input {
-    border: black solid 2px;
-  }
-  :last-child {
-    right: 0px;
-  }
 }
 
 .article-index {

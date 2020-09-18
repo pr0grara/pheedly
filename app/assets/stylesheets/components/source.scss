@@ -2,7 +2,7 @@
 .add-source {
   width: 888px;
   margin: 50px auto 10px auto;
-  border: 1px solid red;
+  font-family: sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -11,22 +11,44 @@
 .source-form {
   width: 100%;
   height: 50px;
-  margin: 100px auto 10px auto;
+  margin: 100px auto 0 auto;
   display: flex;
   flex-direction: row;
-  input {
-    border: black solid 2px;
-  }
+  border: #2bb24c solid 1px;
+  border-radius: .25rem;
   :first-child {flex:8}
   :last-child {
+    border-left: #2bb24c solid 1px;
     flex: 1;
     text-align: center;
   }
-  border: 1px solid blue;
+  // border: 1px solid blue;
 }
 
 .suggestions {
-  border: 1px solid green;
+  display: none;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(0,0,0,0.15);
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  border-right: 1px solid rgba(0,0,0,0.15);
+  font-family: sans-serif;
+  border-radius: .25rem;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+}
+
+.source-list {
+  font-size: 20px;
+  color: #333;
+  :first-child {
+    font-size: 15px;
+    color: #636363;
+    margin: 5px 0 5px 0;
+  }
+  li {
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .hover {
@@ -45,8 +67,8 @@
 }
 .pheed-menu.open {
   transition: 
-    transform .5s cubic-bezier(0.61,-0.19, 0.7,-0.11),
-    display .5s cubic-bezier(0.61,-0.19, 0.7,-0.11);
+  transform .5s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+  display .5s cubic-bezier(0.61,-0.19, 0.7,-0.11);
   display: flex;
   transform: translateX(0);
 }
@@ -54,7 +76,27 @@
 // .hidden {display: none;}
 
 .source-details {
-  border: 1px solid grey;
-  :first-child {margin: 1rem 0 .5rem 0;}
-  :nth-child(2) {margin-bottom: 1rem;}
-} 
+  display: flex;
+  height: 350px;
+  border-left: 1px solid rgba(0,0,0,0.15);
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  border-right: 1px solid rgba(0,0,0,0.15);
+  border-radius: .25rem;
+  padding: 0 1rem 0 1rem;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+  img {
+    margin: 1rem 2rem 1rem 0;
+    height: 90px;
+  }
+}
+  
+.source-details-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  :first-child {
+    display: flex;
+    flex-direction: column;
+  }
+}

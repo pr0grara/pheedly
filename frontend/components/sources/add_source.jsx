@@ -39,27 +39,41 @@ class AddSource extends React.Component {
     let source = e.target;
     source.classList.toggle('hover')
   }
-
+  
   selectPheed(e) {
     let source = e.target;
     var menu = document.querySelector('.pheed-menu')
     menu.classList.toggle('open')
   }
-
+  urlScrubber(url) {
+    var cleanUrl = 'www.' + url.slice(8);
+    let end = cleanUrl.length - 1
+    if (cleanUrl[end] === '/') {
+      cleanUrl = cleanUrl.slice(0, end)
+    }
+    return cleanUrl.toLowerCase()
+  }
+  
   selectSource(e) {
     // var sourceName = JSON.parse(e.target.dataset.source).name; ///////keeping this here just to remind myself this is possible
-    var sourceName = e.target.dataset.sourcename;
+    var suggestions = document.querySelector(".suggestions");
+    suggestions.style.display = "none";
 
+    var sourceName = e.target.dataset.sourcename;
     this.props.entitiesSearch(sourceName)
+
     .done(res => {
       const source = res.entities.value[0];
       // debugger
+
       this.selection = (
-        <div className='source-details'>
+        <div className="source-details">
           <img src={source.image.thumbnailUrl} alt="" />
-          <ul>
-            <li>{source.name}</li>
-            <li>{source.url}</li>
+          <ul className='source-details-details'>
+            <div className='source-details-header'>
+              <li>{source.name}</li>
+              <li>{source.url ? this.urlScrubber(source.url) : '' }</li>
+            </div>
             <li>{source.description}</li>
           </ul>
         </div>
@@ -70,8 +84,19 @@ class AddSource extends React.Component {
   }
 
   changeState() {
-    // debugger
     this.searching = true;
+    var suggestions = document.querySelector(".suggestions");
+    suggestions.style.display = "block";
+    // var sourceList = document.querySelector(".source-list");
+    // if (Boolean(sourceList) && sourceList.childElementCount > 0) {
+    //   debugger;
+    //   suggestions.style.display = "block";
+    // }
+    // if (Boolean(sourceList) && sourceList.childElementCount === 0) {
+    //   debugger;
+    //   suggestions.style.display = "none";
+    // }
+    // suggestions.style.display = 'block'
     this.render();
   }
 
@@ -96,6 +121,25 @@ class AddSource extends React.Component {
     console.log(':)')
   }
 
+  preRenderCheck() {
+    var suggestions;
+    // var sourceDetails
+    var sourceList;
+    suggestions = document.querySelector(".suggestions");
+    // sourceDetails = document.querySelector('.source-details')
+    sourceList = document.querySelector(".source-list");
+    // if (Boolean(suggestions) && suggestions.childElementCount >)
+    if (Boolean(sourceList) && sourceList.childElementCount > 0) {
+      debugger;
+      suggestions.style.display = "block";
+    }
+
+    if (Boolean(sourceList) && sourceList.childElementCount === 0) {
+      debugger;
+      suggestions.style.display = "none";
+    }
+  }
+
   render() {
     // debugger
     console.log(this.props.pheeds)
@@ -108,7 +152,7 @@ class AddSource extends React.Component {
       if (this.searching) newSources = matchedSources.filter(source => !userSources.includes(source.name))
     }
 
-
+    // this.preRenderCheck()
     return (
       <div className="add-source">
         <form className="source-form">
@@ -127,7 +171,8 @@ class AddSource extends React.Component {
               <li key={pheed.name}>{pheed.name}</li>
             ))}
           </ul>
-          <ul>
+          <ul className='source-list'>
+            <>{newSources.length > 0 ? <li>sources</li> : ""}</>
             {newSources.map((source) => {
               return (
                 // <li className={'new-source} onClick={this.update("source", 0, source.name)} onMouseLeave={this.hover} key={source.name}>

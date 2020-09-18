@@ -39,7 +39,7 @@ export const curryArticles = sources => dispatch => {
   let source = {}
   while (sources.length > 0) {
     source = sources.pop()
-    APIUtil.bing(source.code)
+    APIUtil.bingNews(source.code)
     .then(obj => {
       res[obj.value[0].provider[0].name] = obj;
       if (Object.keys(res).length === curryLength) {
@@ -56,7 +56,7 @@ export const curryArticles = sources => dispatch => {
 }
 
 export const addNewSourceArticles = source => dispatch => {
-  APIUtil.bing(source.code)
+  APIUtil.bingNews(source.code)
   .then(newArticles => {
     debugger
     var articles = JSON.parse(localStorage.articles)

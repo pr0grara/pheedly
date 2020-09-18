@@ -6,11 +6,11 @@ export const articles = (source) => {
   })
 }
 
-var setings = (source) => {
+var newsSearch = (source) => {
   return {
   "async": true,
   "crossDomain": true,
-    "url": `https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=site:${source}&cnn.com&freshness=day&count=200&mkt=en-us`,
+    "url": `https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=site:${source}&freshness=day&count=200&mkt=en-us`,
   "method": "GET",
   "headers": {
     "Ocp-Apim-Subscription-Key": `${window.bing}`
@@ -18,14 +18,39 @@ var setings = (source) => {
   }
 }
 
-export const bing = (source) => {
-  return (
-  $.ajax(setings(source))
-  .done(res => {
-    console.log(res);
-  })
-  .fail(err => {
-    console.log(err.responseText)
-  })
-  )
+var sourceSearch = (source) => { //this uses the bing entities search api
+  return {
+  "async": true,
+  "crossDomain": true,
+    "url": `https://api.cognitive.microsoft.com/bing/v7.0/entities?q=${source}&mkt=en-us`,
+  "method": "GET",
+  "headers": {
+    "Ocp-Apim-Subscription-Key": `${window.bing}`
+  }
+  }
 }
+
+export const bingNews = (source) => {
+  return (
+    $.ajax(newsSearch(source))
+    .done(res => {
+      console.log(res);
+    })
+    .fail(err => {
+      console.log(err.responseText)
+    })
+    )
+  }
+
+  export const bingEntities = (source) => {
+  return (
+    $.ajax(sourceSearch(source))
+    .done(res => {
+      console.log(res);
+    })
+    .fail(err => {
+      console.log(err.responseText)
+    })
+    )
+  }
+  

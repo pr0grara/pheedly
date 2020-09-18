@@ -50,3 +50,11 @@
   display: flex;
   transform: translateX(0);
 }
+
+// .hidden {display: none;}
+
+.source-details {
+  border: 1px solid grey;
+  :first-child {margin: 1rem 0 .5rem 0;}
+  :nth-child(2) {margin-bottom: 1rem;}
+} 

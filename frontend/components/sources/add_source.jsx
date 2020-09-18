@@ -12,6 +12,7 @@ class AddSource extends React.Component {
     this.selectSource = this.selectSource.bind(this)
     this.selection = <ul></ul>
     this.searching = true;
+    this.changeState = this.changeState.bind(this)
   }
 
   update(field, time, source) {
@@ -46,18 +47,32 @@ class AddSource extends React.Component {
   }
 
   selectSource(e) {
-    var source = JSON.parse(e.target.dataset.source);
-    
-    this.selection = (
-      <ul>
-        <li>{source.name}</li>
-        <li>{source.code}</li>
-        <li>{source.blurb}</li>
-      </ul>
-    );
-    this.searching = false;
-    this.render()
-    debugger
+    // var sourceName = JSON.parse(e.target.dataset.source).name; ///////keeping this here just to remind myself this is possible
+    var sourceName = e.target.dataset.sourcename;
+
+    this.props.entitiesSearch(sourceName)
+    .done(res => {
+      const source = res.entities.value[0];
+      // debugger
+      this.selection = (
+        <div className='source-details'>
+          <img src={source.image.thumbnailUrl} alt="" />
+          <ul>
+            <li>{source.name}</li>
+            <li>{source.url}</li>
+            <li>{source.description}</li>
+          </ul>
+        </div>
+      );
+      this.searching = false;
+      this.render()
+    })    
+  }
+
+  changeState() {
+    // debugger
+    this.searching = true;
+    this.render();
   }
 
   autofill(e) {
@@ -95,41 +110,46 @@ class AddSource extends React.Component {
 
 
     return (
-      <div className='add-source'>
-        <form className='source-form'>
-          <input type="text" onChange={this.update("source", Date.now())} value={this.state.source}/>
+      <div className="add-source">
+        <form className="source-form">
+          <input
+            type="text"
+            onClick={this.changeState}
+            onChange={this.update("source", Date.now())}
+            value={this.state.source}
+          />
           <input type="submit" onClick={this.handleClick} />
         </form>
-        <div className='suggestions' onClick={console.log(this)} >
+
+        <div className="suggestions" onClick={console.log(this)}>
+          <ul className="pheed-menu">
+            {pheeds.map((pheed) => (
+              <li key={pheed.name}>{pheed.name}</li>
+            ))}
+          </ul>
           <ul>
-            <ul className="pheed-menu">
-              {pheeds.map((pheed) => (
-                <li>{pheed.name}</li>
-              ))}
-            </ul>
-            {
-              newSources.map(source => {
-                return (
-                  // <li className={'new-source} onClick={this.update("source", 0, source.name)} onMouseLeave={this.hover} key={source.name}>
-                  <li
-                    className={"new-source"}
-                    // onClick={this.selectPheed}
-                    onClick={this.selectSource}
-                    onMouseOver={this.hover}
-                    onMouseLeave={this.hover}
-                    key={source.name}
-                    data-source={JSON.stringify(source)}
-                  >
-                      {source.name}
-                  </li>
-                );
-              })
-            }
+            {newSources.map((source) => {
+              return (
+                // <li className={'new-source} onClick={this.update("source", 0, source.name)} onMouseLeave={this.hover} key={source.name}>
+                <li
+                  className={"new-source"}
+                  // onClick={this.selectPheed}
+                  onClick={this.selectSource}
+                  onMouseOver={this.hover}
+                  onMouseLeave={this.hover}
+                  key={source.name}
+                  // data-source={JSON.stringify(source)}
+                  data-sourcename={source.name}
+                >
+                  {source.name}
+                </li>
+              );
+            })}
           </ul>
         </div>
-        <div >{ this.selection }</div>
+        <>{this.searching ? "" : this.selection}</> 
       </div>
-    )
+    );
   }
 }
 

@@ -52,8 +52,9 @@
 }
 
 .hover {
-  border: 1px solid green;
-  cursor: pointer;
+  // border: 1px solid green;
+  // cursor: pointer;
+  background-color: rgba(0,0,0,0.15);
 }
 
 .new-source {
@@ -87,16 +88,38 @@
   img {
     margin: 1rem 2rem 1rem 0;
     height: 90px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: .25rem;
+    padding: .5rem;
   }
 }
   
 .source-details-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   margin-bottom: 1rem;
-  :first-child {
-    display: flex;
-    flex-direction: column;
-  }
+}
+
+.source-details-description {
+  margin-top: 2rem;
+}
+
+.source-details-navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.source-details-header {
+  margin-top: 16px;
+  margin-bottom: 2px;
+}
+
+.source-details-add-source-button {
+  margin-top: 16px;
+  border: 1px solid #2bb24c;
+  color: #2bb24c;
+  text-align: center;
+  border-radius: .25rem;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 1rem;
+  .highlight {background: rgba(0,0,0,0.15);}
 }

@@ -4,15 +4,17 @@ import { Redirect } from 'react-router-dom';
 class AddSource extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {source: ""}
-    this.handleClick = this.handleClick.bind(this)
+    this.state = {source: ""};
+    this.handleClick = this.handleClick.bind(this);
     this.field
     this.debounce = 0;
     this.timer = Date.now();
-    this.selectSource = this.selectSource.bind(this)
-    this.selection = <ul></ul>
+    this.selectSource = this.selectSource.bind(this);
+    this.selection = <ul></ul>;
     this.searching = true;
-    this.changeState = this.changeState.bind(this)
+    this.changeState = this.changeState.bind(this);
+    this.closeElement =this.closeElement.bind(this);
+    this.showDetails = true;
   }
 
   update(field, time, source) {
@@ -53,9 +55,18 @@ class AddSource extends React.Component {
     }
     return cleanUrl.toLowerCase()
   }
+
+  closeElement(e) {
+    const bubbles = e.path;
+    if (!bubbles.some(ele => ele.className === 'source-list')) {      
+      this.searching = false;
+    }
+    this.render();
+  }
   
   selectSource(e) {
     // var sourceName = JSON.parse(e.target.dataset.source).name; ///////keeping this here just to remind myself this is possible
+    this.showDetails = true;
     var suggestions = document.querySelector(".suggestions");
     suggestions.style.display = "none";
 
@@ -70,11 +81,18 @@ class AddSource extends React.Component {
         <div className="source-details">
           <img src={source.image.thumbnailUrl} alt="" />
           <ul className='source-details-details'>
-            <div className='source-details-header'>
-              <li>{source.name}</li>
-              <li>{source.url ? this.urlScrubber(source.url) : '' }</li>
+            <div className='source-details-navbar'>
+              <div className='source-details-header'>
+                <li>{source.name}</li>
+                <li>{source.url ? this.urlScrubber(source.url) : '' }</li>
+              </div>
+              <submit className='source-details-add-source-button' 
+              onClick={this.handleSubmit} 
+              onMouseOver={this.hover}
+              onMouseLeave={this.hover}
+              >FOLLOW</submit>
             </div>
-            <li>{source.description}</li>
+            <li className='source-details-description'>{source.description}</li>
           </ul>
         </div>
       );
@@ -84,7 +102,9 @@ class AddSource extends React.Component {
   }
 
   changeState() {
-    this.searching = true;
+    if (!this.seaching) this.searching = true;
+    var details = document.querySelector('.source-details')
+    if (Boolean(details)) this.showDetails = false;
     var suggestions = document.querySelector(".suggestions");
     suggestions.style.display = "block";
     // var sourceList = document.querySelector(".source-list");
@@ -121,26 +141,9 @@ class AddSource extends React.Component {
     console.log(':)')
   }
 
-  preRenderCheck() {
-    var suggestions;
-    // var sourceDetails
-    var sourceList;
-    suggestions = document.querySelector(".suggestions");
-    // sourceDetails = document.querySelector('.source-details')
-    sourceList = document.querySelector(".source-list");
-    // if (Boolean(suggestions) && suggestions.childElementCount >)
-    if (Boolean(sourceList) && sourceList.childElementCount > 0) {
-      debugger;
-      suggestions.style.display = "block";
-    }
-
-    if (Boolean(sourceList) && sourceList.childElementCount === 0) {
-      debugger;
-      suggestions.style.display = "none";
-    }
-  }
-
   render() {
+    const body = document.querySelector('body')
+    body.addEventListener('click', this.closeElement)
     // debugger
     console.log(this.props.pheeds)
     var newSources = [];
@@ -152,7 +155,6 @@ class AddSource extends React.Component {
       if (this.searching) newSources = matchedSources.filter(source => !userSources.includes(source.name))
     }
 
-    // this.preRenderCheck()
     return (
       <div className="add-source">
         <form className="source-form">
@@ -165,14 +167,16 @@ class AddSource extends React.Component {
           <input type="submit" onClick={this.handleClick} />
         </form>
 
-        <div className="suggestions" onClick={console.log(this)}>
+        <div className="suggestions" 
+          onClick={console.log(this)}
+        >
           <ul className="pheed-menu">
             {pheeds.map((pheed) => (
               <li key={pheed.name}>{pheed.name}</li>
             ))}
           </ul>
           <ul className='source-list'>
-            <>{newSources.length > 0 ? <li>sources</li> : ""}</>
+            <>{this.searching ? <li>sources</li> : ""}</>
             {newSources.map((source) => {
               return (
                 // <li className={'new-source} onClick={this.update("source", 0, source.name)} onMouseLeave={this.hover} key={source.name}>
@@ -192,7 +196,8 @@ class AddSource extends React.Component {
             })}
           </ul>
         </div>
-        <>{this.searching ? "" : this.selection}</> 
+        <>{(this.searching && this.showDetails) ? "" : this.selection}</> 
+
       </div>
     );
   }

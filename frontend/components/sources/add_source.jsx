@@ -15,6 +15,7 @@ class AddSource extends React.Component {
     this.changeState = this.changeState.bind(this);
     this.closeElement =this.closeElement.bind(this);
     this.showDetails = true;
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   update(field, time, source) {
@@ -48,7 +49,7 @@ class AddSource extends React.Component {
     menu.classList.toggle('open')
   }
   urlScrubber(url) {
-    var cleanUrl = 'www.' + url.slice(8);
+    var cleanUrl = url.slice(8, 11) === 'www' ? url.slice(8) : 'www.' + url.slice(8)
     let end = cleanUrl.length - 1
     if (cleanUrl[end] === '/') {
       cleanUrl = cleanUrl.slice(0, end)
@@ -58,10 +59,42 @@ class AddSource extends React.Component {
 
   closeElement(e) {
     const bubbles = e.path;
-    if (!bubbles.some(ele => ele.className === 'source-list')) {      
+    if (!bubbles.some(ele => ele.className === 'source-list')) {   
       this.searching = false;
     }
     this.render();
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    const source = e.target.parentNode.children[0].children[0].textContent;
+    var pheeds = Object.values(this.props.pheeds);
+    const sourceDetails = document.querySelector('.source-details')
+    var menu = document.createElement('ul')
+    menu.className = 'pheed-menu';
+    // pheeds = pheeds.map((pheed) => <li key={pheed.name}>{pheed.name}</li>)
+    pheeds = pheeds.map((pheed) => pheed.name )
+    pheeds.forEach(pheed => {
+      // menu.appendChild(pheed)
+      
+    let li = document.createElement('li')
+      li.innerText = pheed
+      li.addEventListener('click', () => this.log())
+      menu.appendChild(li)
+    })
+    // debugger
+    
+    // (
+      //   <ul className="pheed-menu">
+      //     {pheeds.map((pheed) => (
+        //       <li key={pheed.name}>{pheed.name}</li>
+        //     ))}
+        //   </ul>
+        // )
+        
+        
+    sourceDetails.appendChild(menu)
+
   }
   
   selectSource(e) {
@@ -71,34 +104,35 @@ class AddSource extends React.Component {
     suggestions.style.display = "none";
 
     var sourceName = e.target.dataset.sourcename;
+
     this.props.entitiesSearch(sourceName)
+      .done(res => {
+        const source = res.entities.value[0];
+        // debugger
 
-    .done(res => {
-      const source = res.entities.value[0];
-      // debugger
-
-      this.selection = (
-        <div className="source-details">
-          <img src={source.image.thumbnailUrl} alt="" />
-          <ul className='source-details-details'>
-            <div className='source-details-navbar'>
-              <div className='source-details-header'>
-                <li>{source.name}</li>
-                <li>{source.url ? this.urlScrubber(source.url) : '' }</li>
+        this.selection = (
+          <div className="source-details">
+            <img src={source.image.thumbnailUrl} alt="" />
+            <ul className='source-details-details'>
+              <div className='source-details-navbar'>
+                <div className='source-details-header'>
+                  <li>{source.name}</li>
+                  <li>{source.url ? this.urlScrubber(source.url) : '' }</li>
+                </div>
+                <div type='submit' className='source-details-add-source-button' 
+                onClick={this.handleSubmit} 
+                onMouseOver={this.hover}
+                onMouseLeave={this.hover}
+                >FOLLOW</div>
               </div>
-              <submit className='source-details-add-source-button' 
-              onClick={this.handleSubmit} 
-              onMouseOver={this.hover}
-              onMouseLeave={this.hover}
-              >FOLLOW</submit>
-            </div>
-            <li className='source-details-description'>{source.description}</li>
-          </ul>
-        </div>
-      );
-      this.searching = false;
-      this.render()
-    })    
+              <li className='source-details-description'>{source.description}</li>
+            </ul>
+          </div>
+        );
+        this.searching = false; //THIS DOES NOTHING!!! 'this' is a promise and not the add source react component. 
+        //does not throw an error which has lead me to believe I was switching searching state when i actually haven't
+        this.render() //BUT WHY THEN DOES THIS WORK / IS REQUIRED ?!?! *scratches head vigorously*
+      })    
   }
 
   changeState() {
@@ -107,16 +141,6 @@ class AddSource extends React.Component {
     if (Boolean(details)) this.showDetails = false;
     var suggestions = document.querySelector(".suggestions");
     suggestions.style.display = "block";
-    // var sourceList = document.querySelector(".source-list");
-    // if (Boolean(sourceList) && sourceList.childElementCount > 0) {
-    //   debugger;
-    //   suggestions.style.display = "block";
-    // }
-    // if (Boolean(sourceList) && sourceList.childElementCount === 0) {
-    //   debugger;
-    //   suggestions.style.display = "none";
-    // }
-    // suggestions.style.display = 'block'
     this.render();
   }
 
@@ -141,6 +165,11 @@ class AddSource extends React.Component {
     console.log(':)')
   }
 
+  log() {
+    console.log('go to sleep now')
+    debugger
+  }
+
   render() {
     const body = document.querySelector('body')
     body.addEventListener('click', this.closeElement)
@@ -148,6 +177,12 @@ class AddSource extends React.Component {
     console.log(this.props.pheeds)
     var newSources = [];
     var pheeds = Object.values(this.props.pheeds)
+    var details = document.querySelector('.source-details')
+    var menu = document
+    if (Boolean(details) && !this.showDetails) { 
+      // debugger
+      // details.remove();
+    }
 
     if (Boolean(this.props.sources.search)) {
       var matchedSources = Object.values(this.props.sources.search);
@@ -168,13 +203,13 @@ class AddSource extends React.Component {
         </form>
 
         <div className="suggestions" 
-          onClick={console.log(this)}
+          // onClick={this.log}
         >
-          <ul className="pheed-menu">
+          {/* <ul className="pheed-menu">
             {pheeds.map((pheed) => (
               <li key={pheed.name}>{pheed.name}</li>
             ))}
-          </ul>
+          </ul> */}
           <ul className='source-list'>
             <>{this.searching ? <li>sources</li> : ""}</>
             {newSources.map((source) => {

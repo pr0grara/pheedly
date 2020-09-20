@@ -16,7 +16,10 @@
   flex-direction: row;
   border: #2bb24c solid 1px;
   border-radius: .25rem;
-  :first-child {flex:8}
+  :first-child {
+    flex: 8;
+    padding: 10px;
+  }
   :last-child {
     border-left: #2bb24c solid 1px;
     flex: 1;
@@ -27,7 +30,6 @@
 
 .suggestions {
   display: none;
-  padding-left: 1rem;
   border-left: 1px solid rgba(0,0,0,0.15);
   border-bottom: 1px solid rgba(0,0,0,0.15);
   border-right: 1px solid rgba(0,0,0,0.15);
@@ -46,6 +48,7 @@
     margin: 5px 0 5px 0;
   }
   li {
+    padding-left: 1rem;
     height: 40px;
     display: flex;
     align-items: center;
@@ -64,22 +67,51 @@
 }
 
 .pheed-menu {
-  // display: none;
-  transform: translateX(-100%);
-}
-.pheed-menu.open {
-  transition: 
-  transform .5s cubic-bezier(0.61,-0.19, 0.7,-0.11),
-  display .5s cubic-bezier(0.61,-0.19, 0.7,-0.11);
   display: flex;
-  transform: translateX(0);
+  flex-wrap: wrap;
+  transform: translateX(-70%);
+  margin-top: 10px;
+  padding-top: 20px;
+  width: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+  background-color: white;
+  li {
+    width: 200px;
+    padding: 5px;
+    text-align: center;
+  }
+  :first-child {
+    font-size: 12px;   
+    font-weight: 600;
+    color: #2bb24c;
+  }
 }
 
-// .hidden {display: none;}
+.pheed-menu-pointer {
+  position: fixed;
+  top: -6px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  transform: rotateZ(45deg);
+}
+
+.pheed-menu.open {
+  transition: 
+    transform .5s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+    display .5s cubic-bezier(0.61,-0.19, 0.7,-0.11);
+    display: flex;
+    transform: translateX(0);
+}
+
 
 .source-details {
   display: flex;
   height: 350px;
+  margin-top: 2rem;
   border-left: 1px solid rgba(0,0,0,0.15);
   border-bottom: 1px solid rgba(0,0,0,0.15);
   border-right: 1px solid rgba(0,0,0,0.15);
@@ -94,13 +126,15 @@
     padding: .5rem;
   }
 }
-  
+
+.hidden {display: none;}
+
 .source-details-details {
   margin-bottom: 1rem;
 }
 
 .source-details-description {
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .source-details-navbar {
@@ -111,6 +145,11 @@
 .source-details-header {
   margin-top: 16px;
   margin-bottom: 2px;
+}
+
+.source-details-add-source-button-container {
+  max-height: 40px;
+  max-width: 85px;
 }
 
 .source-details-add-source-button {

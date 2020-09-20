@@ -23,7 +23,7 @@ const mDTP = dispatch => {
   return {
     entitiesSearch: ArticleAPIUtil.bingEntities,
     searchForSources: query => dispatch(searchForSources(query)),
-    addUserFeed: (user, source) => dispatch(addUserFeed(user, source)),
+    addUserFeed: (user, source, pheed) => dispatch(addUserFeed(user, source, pheed)),
   };
 };
 

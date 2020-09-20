@@ -15,7 +15,9 @@ class Api::FeedsController < ApplicationController
   def create 
     user = User.find_by(id:params[:user_id])
     source = Source.find_by(name:params[:source])
-    feed = Feed.new({user_id:user.id, source_id:source.id})
+    pheed = Pheed.find_by(name:params[:pheed])
+    feed = Feed.new({user_id:user.id, source_id:source.id, pheed_id:pheed.id})
+    debugger
     if feed.save
       render :index
     else

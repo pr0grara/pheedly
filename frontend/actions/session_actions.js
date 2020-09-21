@@ -1,5 +1,6 @@
 import * as APIUtil from '../util/session_api_util'
 import { addSourcesToState } from '../actions/source_actions'
+import { addFeedsToState } from '../actions/feed_actions'
 import { addPheedsToState } from '../actions/pheed_actions'
 import { curryArticles } from '../actions/article_actions'
 
@@ -46,20 +47,24 @@ export const login = user => dispatch => {
     localStorage.removeItem('articles')
   }
   return (  
-    APIUtil.login(user).then(user => {
-      dispatch(receiveCurrentUser(user))
-      // debugger
-      dispatch(addSourcesToState(user))
-      dispatch(addPheedsToState(user))
-    }, err => (
-      dispatch(receiveErrors(err.responseJSON))
-    ))
+    APIUtil.login(user)
+      .then(user => {
+        dispatch(receiveCurrentUser(user))
+        // debugger
+        dispatch(addFeedsToState(user))
+        dispatch(addSourcesToState(user))
+        dispatch(addPheedsToState(user))
+      }, err => (dispatch(receiveErrors(err.responseJSON))))
+    //   .then(() => {
+    //     debugger
+    // })
   )
 };
 
 export const logout = () => dispatch => (
   APIUtil.logout().then(user => {
     localStorage.removeItem('sources')
+    localStorage.removeItem('pheeds')
     if (Date.now() - JSON.parse(localStorage.articles).time > 1800000) {
      localStorage.removeItem('articles')
     }

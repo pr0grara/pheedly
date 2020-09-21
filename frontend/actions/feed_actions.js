@@ -14,13 +14,24 @@ export const receiveFeeds = feeds => {
 
 export const displayFeeds = user => dispatch => {
   return (
-  APIUtil.grabFeeds(user).then(obj => (
+  APIUtil.grabFeeds(user).then(obj => {
+    debugger
     dispatch(receiveFeeds(obj))
-  )))
+  }
+  ))
+}
+
+export const addFeedsToState = user => dispatch => {
+  return (
+    APIUtil.grabFeeds(user).then(obj => {
+      localStorage.setItem('feeds', JSON.stringify(obj))
+      dispatch(receiveFeeds(obj))
+    })
+  )
 }
 
 export const addUserFeed = (user, source, pheed) => dispatch => {
-  // debugger;
+  debugger;
   return APIUtil.newFeed(user, source, pheed)
   .then((res) => {
     console.log('it worked')

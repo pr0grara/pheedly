@@ -22,6 +22,10 @@ class Feed < ApplicationRecord
     foreign_key: :source_id,
     class_name: :Source
 
+  belongs_to :pheed,
+    foreign_key: :pheed_id,
+    class_name: :Pheed
+
   # def self.search(search) 
   #   if search 
   #     source = Source.find_by(name: search)

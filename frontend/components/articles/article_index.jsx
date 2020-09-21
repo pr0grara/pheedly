@@ -72,7 +72,7 @@ class ArticleIndex extends React.Component {
       var currTime = Date.now(); //grabs epoch time of render
       var articles = []; //instantiate our articles array
       var localArts = JSON.parse(localStorage.articles) //grabs cached articles from localStorage
-      //there should not be a case where localSotage throws an error because on line 55, if 
+      //there should not be a case where localSotage throws an error because on line 65, if 
       //this.props.articles exists then so should localStorage.articles and if not we render source form
       
       Object.values(localArts).forEach((art) => { //iterate over articles from local storage

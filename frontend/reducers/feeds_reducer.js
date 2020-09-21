@@ -1,10 +1,16 @@
 import { RECEIVE_FEEDS } from '../actions/feed_actions'
 
-const feedsReducer = (state = {}, action) => {
+var previousState = {};
+if (Boolean(localStorage.feeds)) {
+  previousState = Object.freeze({ ...JSON.parse(localStorage.feeds) });
+}
+
+const feedsReducer = (state = previousState, action) => {
+  // debugger
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_FEEDS:
-      return Object.assign({}, state, { [action.feeds.name]: [action.feeds.code] });
+      return {feeds: action.pheeds}
     default:
       return state;
   }

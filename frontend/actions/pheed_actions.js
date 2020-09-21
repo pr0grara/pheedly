@@ -14,6 +14,7 @@ export const addPheedsToState = user => dispatch => {
   //debugger
   return (
     APIUtil.grabPheeds(user).then(obj => {
+      // debugger
       dispatch(receivePheeds(obj))
       localStorage.setItem('pheeds', JSON.stringify(obj))
       if (!Boolean(localArts)) dispatch(curryArticles(obj))

@@ -46,7 +46,8 @@ export const curryArticles = sources => dispatch => {
         res.time = Date.now();
         dispatch(receiveArticles(res)) //dispatch articles to state
         localStorage.setItem("articles", JSON.stringify(res)) //cache articles to LS
-        window.location.reload(); //results from promises come in after home renders, refresh to rerender
+        // window.location.reload(); //results from promises come in after home renders, refresh to rerender
+        //dont need this cause fixed state
       }
     })
     .catch(err => {

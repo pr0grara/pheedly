@@ -10,6 +10,7 @@ const pheedsReducer = (state = previousState, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_PHEEDS:
+      debugger
       return Object.assign({}, state, [action.pheeds])
     default:
       return state;

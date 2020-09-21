@@ -9,6 +9,7 @@ import SplashContainer from './splash/splash_container'
 import LeftNavContainer from './leftnav/left_nav_container'
 import AddSourceContainer from './sources/add_source_container'
 import Footer from './footer/footer'
+import PheedContainer from './pheeds/pheeds_container'
 
 //Header component was renamed from GreetingContainer 
 const App = () => {
@@ -18,8 +19,8 @@ const App = () => {
     <div className="side-splash"> 
         <LeftNavContainer />
         <SplashContainer />
-        {/* <HomeRoute exact path='/home' /> */}
         <ProtectedRoute exact path='/home' component={ArticleIndexContainer} />
+        <ProtectedRoute exact path={['/finance', '/tech', '/fun', '/culture']} component={PheedContainer} />
         <ProtectedRoute exact path='/sources' component={AddSourceContainer} />
     </div>
     <AuthRoute exact path='/signup' component={SignupFormContainer} />

@@ -52,6 +52,7 @@ class Pheed extends React.Component {
     articles = articles.flat(); //after flattening we finally have our undressed articles ready for render
     articles.forEach((art) => {
       //lets dress them up
+      debugger
       art.pubTime = this.publishedTime(art.datePublished); //stores the epoch time of publication on corresponding article obj
       art.delta = currTime - art.pubTime;
       art.dateified = this.dateifyier(art.pubTime, currTime); //compares publication time vs current time and converts result to min, hours, days

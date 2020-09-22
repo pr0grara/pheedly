@@ -1,3 +1,3 @@
 json.array!(@sources) do |source|  
-  json.extract! source, :name, :code, :blurb
+  json.extract! source, :name, :code
 end

@@ -71,13 +71,15 @@ class ArticleIndex extends React.Component {
     //     )
       var currTime = Date.now(); //grabs epoch time of render
       var articles = []; //instantiate our articles array
-      var localArts = JSON.parse(localStorage.articles) //grabs cached articles from localStorage
+      var localArts = this.props.articles; //grabs cached articles from state
+      // var localArts = JSON.parse(localStorage.articles) //grabs cached articles from localStorage
       //there should not be a case where localSotage throws an error because on line 65, if 
       //this.props.articles exists then so should localStorage.articles and if not we render source form
       
       Object.values(localArts).forEach((art) => { //iterate over articles from local storage
-        if (art !== localArts.time) articles.push(art.value); //push all objects except timestamp to our articles arr
+        if (art !== localArts.time && typeof art !== 'string') articles.push(art.value); //push all objects except timestamp to our articles arr
       })
+      // debugger
       articles = articles.flat(); //after flattening we finally have our undressed articles ready for render
       articles.forEach(art => { //lets dress them up
         art.pubTime = this.publishedTime(art.datePublished); //stores the epoch time of publication on corresponding article obj

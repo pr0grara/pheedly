@@ -152,10 +152,12 @@ class LeftNav extends React.Component {
               <img className='leftNav-icon' src={window.all} /><Link to='/home'>All</Link>
             </li>
             {pheeds.map(pheed => {
+              // debugger
+              if (!Boolean(pheed)) return
               return (
                 <li className='sidenav-item' onMouseOver={this.hover} onClick={this.highlight} key={pheed.name}>
                   <img className='leftNav-icon' src={window.pheeds}/> 
-                  <Link to={`/${pheed.name}`}>{pheed.name}</Link> 
+                  <Link to={`/${pheed.name}`}>{pheed.name}</Link>
                 </li>
               )
             })}

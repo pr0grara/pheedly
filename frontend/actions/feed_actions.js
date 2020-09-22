@@ -15,7 +15,7 @@ export const receiveFeeds = feeds => {
 export const displayFeeds = user => dispatch => {
   return (
   APIUtil.grabFeeds(user).then(obj => {
-    debugger
+    // debugger
     dispatch(receiveFeeds(obj))
   }
   ))
@@ -24,20 +24,20 @@ export const displayFeeds = user => dispatch => {
 export const addFeedsToState = user => dispatch => {
   return (
     APIUtil.grabFeeds(user).then(obj => {
-      localStorage.setItem('feeds', JSON.stringify(obj))
+      // debugger
+      localStorage.setItem('feeds', JSON.stringify(obj.feeds))
       dispatch(receiveFeeds(obj))
+      return obj
     })
   )
 }
 
 export const addUserFeed = (user, source, pheed) => dispatch => {
-  debugger;
+  // debugger
   return APIUtil.newFeed(user, source, pheed)
   .then((res) => {
-    console.log('it worked')
-    APIUtil.grabFeeds(user).then((sources) => {
-      debugger
-      console.log(sources);
+    APIUtil.grabFeeds(user).then((obj) => {
+      const sources = obj.feeds.map(feed => feed.source)
       localStorage.sources = JSON.stringify(sources)
       dispatch(receiveSources(sources));
       dispatch(addNewSourceArticles(sources[sources.length-1]))

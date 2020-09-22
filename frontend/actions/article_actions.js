@@ -41,13 +41,20 @@ export const curryArticles = sources => dispatch => {
     source = sources.pop()
     APIUtil.bingNews(source.code)
     .then(obj => {
-      res[obj.value[0].provider[0].name] = obj;
+      if (obj.value.length === 0) {
+        res["error"] = obj.queryContext.originalQuery;
+      } else {
+        res[obj.value[0].provider[0].name] = obj;
+      }
+      
       if (Object.keys(res).length === curryLength) {
+        // debugger
         res.time = Date.now();
-        dispatch(receiveArticles(res)) //dispatch articles to state
         localStorage.setItem("articles", JSON.stringify(res)) //cache articles to LS
-        // window.location.reload(); //results from promises come in after home renders, refresh to rerender
-        //dont need this cause fixed state
+        // debugger
+        dispatch(receiveArticles(res)) //dispatch articles to state
+        window.location.reload(); //results from promises come in after home renders, refresh to rerender
+        //dont need this cause fixed state... update sometimes I need otrher times i dont ???
       }
     })
     .catch(err => {
@@ -59,11 +66,11 @@ export const curryArticles = sources => dispatch => {
 export const addNewSourceArticles = source => dispatch => {
   APIUtil.bingNews(source.code)
   .then(newArticles => {
-    debugger
     var articles = JSON.parse(localStorage.articles)
     articles[newArticles.value[0].provider[0].name] = newArticles;
-    dispatch(receiveArticles(articles))
     localStorage.articles = JSON.stringify(articles)
+    // debugger
+    dispatch(receiveArticles(articles))
     window.location.reload();
   })
 }

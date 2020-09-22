@@ -18,16 +18,23 @@ export const sourceMatches = sources => {
   })
 }
 
-export const addSourcesToState = user => dispatch => {
-  return (
-    APIUtil.grabSourcesFromFeeds(user).then(obj => {
-      localStorage.setItem('sources', JSON.stringify(obj))
-      dispatch(receiveSources(obj))
-      if (!Boolean(localStorage.articles)) dispatch(curryArticles(obj)) //this is where we make the call to fetch articles
-    }
-  )
-  )
+export const addSourcesToState = sources => dispatch => { 
+  // debugger 
+  localStorage.setItem('sources', JSON.stringify(sources))
+  dispatch(receiveSources(sources))
+  if (!Boolean(localStorage.articles)) dispatch(curryArticles(sources)) //this is where we make the call to fetch articles
 }
+
+// export const addSourcesToState = user => dispatch => {
+//   return (
+//     APIUtil.grabSourcesFromFeeds(user).then(obj => {
+//       localStorage.setItem('sources', JSON.stringify(obj))
+//       dispatch(receiveSources(obj))
+//       if (!Boolean(localStorage.articles)) dispatch(curryArticles(obj)) //this is where we make the call to fetch articles
+//     }
+//   )
+//   )
+// }
 
 export const searchForSources = query => dispatch => {
   return (

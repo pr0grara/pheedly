@@ -1,4 +1,5 @@
 import { RECEIVE_FEEDS } from '../actions/feed_actions'
+import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 
 var previousState = {};
 if (Boolean(localStorage.feeds)) {
@@ -10,7 +11,9 @@ const feedsReducer = (state = previousState, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_FEEDS:
-      return {feeds: action.pheeds}
+      return { feeds: action.pheeds };
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return state;
   }

@@ -3,7 +3,6 @@
 # Table name: sources
 #
 #  id         :bigint           not null, primary key
-#  blurb      :string
 #  code       :string
 #  name       :string           not null
 #  created_at :datetime         not null
@@ -21,4 +20,5 @@ class Source < ApplicationRecord
   has_many :users,
     through: :feeds,
     source: :user
+
 end

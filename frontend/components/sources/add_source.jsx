@@ -39,7 +39,7 @@ class AddSource extends React.Component {
 
   hover(e) {
     e.preventDefault()
-    console.log(e.target)
+    // console.log(e.target)
     let source = e.target;
     source.classList.toggle('hover')
   }
@@ -75,6 +75,7 @@ class AddSource extends React.Component {
     if (Boolean(!document.querySelector('.pheed-menu'))) {
       // const source = e.target.parentNode.children[0].children[0].textContent;
       var pheeds = Object.values(this.props.pheeds);
+      debugger
       const follow = document.querySelector('.source-details-add-source-button-container')
       var menu = document.createElement('ul')
       menu.className = 'pheed-menu';
@@ -85,10 +86,7 @@ class AddSource extends React.Component {
       pheeds = pheeds.map((pheed) => pheed.name )
       pheeds.forEach(pheed => {
         let li = document.createElement('li')
-        // let div = document.createElement('div')
         li.className = 'pheed-menu-item'
-        // div.innerText = pheed
-        // li.appendChild(div)
         li.innerText = pheed;
         li.addEventListener('click', (e) => this.log(e))
         li.addEventListener('mouseover', (e) => this.hover(e))
@@ -176,10 +174,11 @@ class AddSource extends React.Component {
     //make sure to update sources in state and localstorage, refresh all articles this time 
     //including ones from new source, add these articles to state and localStorage
     //and then redirect back to '/home'
-    console.log(':)')
+    // console.log(':)')
   }
 
   log(e) {
+    debugger
     this.props.addUserFeed(this.props.user, this.state.source, e.target.innerText)
   }
 
@@ -187,7 +186,7 @@ class AddSource extends React.Component {
     const body = document.querySelector('body')
     body.addEventListener('click', this.closeElement)
     // debugger
-    console.log(this.props.pheeds)
+    // console.log(this.props.pheeds)
     var newSources = [];
     var pheeds = Object.values(this.props.pheeds)
     var details = document.querySelector('.source-details')

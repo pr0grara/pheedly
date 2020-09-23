@@ -20,7 +20,7 @@ const App = () => {
         <LeftNavContainer />
         <SplashContainer />
         <ProtectedRoute exact path='/home' component={ArticleIndexContainer} />
-        <ProtectedRoute exact path={['/finance', '/tech', '/fun', '/culture']} component={PheedContainer} />
+        <ProtectedRoute exact path={['/finance', '/tech', '/fun', '/culture']} component={ArticleIndexContainer} />
         <ProtectedRoute exact path='/sources' component={AddSourceContainer} />
     </div>
     <AuthRoute exact path='/signup' component={SignupFormContainer} />

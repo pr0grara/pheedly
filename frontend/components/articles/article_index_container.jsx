@@ -6,7 +6,7 @@ import { addSourcesToState } from '../../actions/source_actions';
 import ArticleIndex from './article_index';
 
 const mSTP = state => {
-  //debugger
+  // debugger
   var articles = state.entities.articles;
   if (Object.keys(articles).length === 0) {
     let localArts = localStorage.getItem('articles')
@@ -18,10 +18,15 @@ const mSTP = state => {
   if (Object.keys(sources).length === 0) {
     sources = JSON.parse(localStorage.getItem('sources'))
   }
+  
+  var pheeds = state.entities.pheeds;
+  const location = document.location.href.split("/").reverse()[0];
   return {
     user: state.entities.users[state.session.id],
     articles: articles,
-    sources: {0:sources}
+    sources: {0:sources},
+    pheeds: pheeds,
+    location
   };
 }
 

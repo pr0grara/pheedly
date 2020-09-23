@@ -3,6 +3,7 @@ import { addUserFeed } from '../../actions/feed_actions';
 import { searchForSources } from '../../actions/source_actions'
 import AddSource from './add_source';
 import * as ArticleAPIUtil from '../../util/article_api_util'
+import { addNewPheedToState } from '../../actions/pheed_actions';
 
 const mSTP = state => {
   var sources = state.entities.sources;
@@ -24,6 +25,7 @@ const mDTP = dispatch => {
     entitiesSearch: ArticleAPIUtil.bingEntities,
     searchForSources: query => dispatch(searchForSources(query)),
     addUserFeed: (user, source, pheed) => dispatch(addUserFeed(user, source, pheed)),
+    addNewPheed: pheed => dispatch(addNewPheedToState(pheed))
   };
 };
 

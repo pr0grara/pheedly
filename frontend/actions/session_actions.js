@@ -42,95 +42,46 @@ export const signup = user => dispatch => (
   ))
 );
 
-// const uniq = (arr) => {
-//   var res = [...arr]
-//   res.forEach((ele, idx) => {
-//     let count = 0;
-//     for (let i = res.length - 1; i > 0; i--) {
-//       if (res[i].name === res[idx].name) count++;
-//       if (count > 1) {
-//         res = res.slice(0, i).concat(res.slice(i + 1));
-//         debugger
-//         i--
-//         count--;
-//       }
-//     }
-//   });
-//   debugger
-//   return res
-// }
-
 const  uniq = arr => {
   var res = {};
-  arr.forEach(ele => {
-    // debugger
-    res[ele.name] = ele;
-  })
+  arr.forEach(ele => res[ele.name] = ele)
   return Object.values(res)
 }
 
-
-// const uniq = (arr) => {
-  //   var res = [...arr]
-  //   arr.forEach((ele, idx) => {
-    //     debugger
-    //     let count = 0;
-    //     for (let i = 0; i < arr.length; i++) {
-      //       if (arr[i].name === arr[idx].name) count++;
-      //       if (count > 1) {
-        //         res = res.slice(0, idx).concat(res.slice(idx + 1));
-        //         count--;
-        //       }
-        //     }
-        //   });
-        //   debugger
-        //   return res
-        // }
+const processPheeds = feeds => {
+  var pheeds = {};
+  feeds.forEach(feed => {
+    pheeds[feed.pheed.name] = feed.pheed;
+    pheeds[feed.pheed.name]["sources"] = [];
+  });
+  feeds.forEach(feed => {
+    pheeds[feed.pheed.name]['sources'].push(feed.source.name)
+  })
+  debugger
+  return pheeds;
+}
         
-        export const login = user => dispatch => {
-          if (Boolean(localStorage.articles) && Date.now() - JSON.parse(localStorage.articles).time > 1800000) {
-            localStorage.removeItem('articles')
-          }
-          return (  
-            APIUtil.login(user)
-            .then(user => {
-              dispatch(receiveCurrentUser(user))
-              // debugger
-              dispatch(addFeedsToState(user))
-              .then(res => {
-                var feeds = res.feeds
-                var sources = uniq(feeds.map(feed => feed.source))
-                var pheeds = uniq(feeds.map(feed => feed.pheed))
-                // sources = sources.filter((x, i, a) => a.indexOf(x) == i);
-                // pheeds = pheeds.filter((x, i, a) => a.indexOf(x) == i);
-                // debugger
-                
-                // const sources = uniq(feeds.map(feed => feed.source))
-                // const pheeds = uniq(feeds.map(feed => feed.pheed))
-                // debugger
-                
-                // pheeds.forEach((pheed, idx) => { //because javascript sucks at simple enumerables...in this case ruby.uniq
-                //   let count = 0
-                //   for (let i = 0; i < pheeds.length; i++) {
-                  //     if (pheeds[i].name === pheed.name) count++
-                  //     if (count === 2) {
-                    //       pheeds = pheeds.slice(0, idx).concat(pheeds.slice(idx+1))
-                    //       count--
-                    //     }
-                    //   }
-                    // })
-          // debugger
-          debugger
-          dispatch(addSourcesToState(sources))
-          dispatch(addPheedsToState(pheeds))
-        })
-        // debugger
-        // dispatch(addSourcesToState(user))
-        // dispatch(addPheedsToState(user))
-      }, err => (dispatch(receiveErrors(err.responseJSON))))
-    //   .then(() => {
-    //     debugger
-    // })
+export const login = user => dispatch => {
+  if (Boolean(localStorage.articles) && Date.now() - JSON.parse(localStorage.articles).time > 1800000) {
+    localStorage.removeItem('articles')
+  }
+  return (  
+    APIUtil.login(user)
+    .then(user => {
+      dispatch(receiveCurrentUser(user))
+      // debugger
+      dispatch(addFeedsToState(user))
+      .then(res => {
+        var feeds = res.feeds
+        // var sources = processSources(feeds)
+        var sources = uniq(feeds.map(feed => feed.source))
+        // var pheeds = uniq(feeds.map(feed => feed.pheed))
+        var pheeds = processPheeds(feeds)
+
+        dispatch(addSourcesToState(sources))
+        dispatch(addPheedsToState(pheeds))
+      })
+    }, err => (dispatch(receiveErrors(err.responseJSON))))
   )
 };
 

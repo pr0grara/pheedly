@@ -123,7 +123,7 @@ class LeftNav extends React.Component {
   render() {
     var pheeds = [];
     if (Boolean(localStorage.pheeds)) pheeds = JSON.parse(localStorage.pheeds);
-    //debugger
+
     const active = () => (
     <div id='leftNav-container'>
       <div className='leftNav-dock' onClick={this.toggleLeftNav}>
@@ -151,7 +151,7 @@ class LeftNav extends React.Component {
             <li className='sidenav-item' id='leftNav-home-pheed' onMouseOver={this.hover} onClick={this.highlight}>
               <img className='leftNav-icon' src={window.all} /><Link to='/home'>All</Link>
             </li>
-            {pheeds.map(pheed => {
+            {Object.values(pheeds).map(pheed => {
               // debugger
               if (!Boolean(pheed)) return
               return (

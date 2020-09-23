@@ -179,7 +179,13 @@ class AddSource extends React.Component {
 
   log(e) {
     debugger
-    this.props.addUserFeed(this.props.user, this.state.source, e.target.innerText)
+    var newPheeds = Object.assign({}, this.props.pheeds)
+    var pheed = e.target.innerText
+    var source = this.state.source
+    this.props.addUserFeed(this.props.user, source, pheed)
+    newPheeds[pheed].sources.push(source)
+    debugger
+    this.props.addNewPheed(newPheeds)
   }
 
   render() {

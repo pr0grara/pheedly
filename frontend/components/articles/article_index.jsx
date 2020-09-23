@@ -12,6 +12,15 @@ class ArticleIndex extends React.Component {
     this.publishedTime = this.publishedTime.bind(this);
     this.pheed = location.href.split("/").reverse()[0];
     this.location = location.href;
+    this.pageDescription = {
+      today: "hey there sunshine",
+      "read later": "Waiting for you.",
+      home: "The insights you need to stay ahead.",
+      fun: "Fun is good.",
+      culture: "Some problems are so complex that you have to be well informed just to be undecided about them. Get to work.",
+      tech: "Stay on the cutting edge.",
+      finance: "If all the economists were laid end to end, they'd never reach a conclusion. But you can listen to what they have to say here.",
+    };
   }
 
   componentDidMount() {
@@ -124,9 +133,10 @@ class ArticleIndex extends React.Component {
             <div className="article-index-wrapper">
         <div className="article-index">
           <div className="article-index-header-row">
-            <h1 className="article-index-h1">Today</h1>
+            <h1 className="article-index-h1">{currentPheed}</h1>
             <h2 className="article-index-h2">
-              The insights you need to stay ahead
+              {/* The insights you need to stay ahead */}
+              {this.pageDescription[currentPheed]}
             </h2>
           </div>
           {articles.length === 0 ? null : (

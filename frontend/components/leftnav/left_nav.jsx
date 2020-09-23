@@ -145,6 +145,14 @@ class LeftNav extends React.Component {
       navItems[i].style.color = '#333'
     }
     navItem.style.color = "#2bb24c"
+
+    let pheed = navItem.querySelector("a").innerHTML;
+    let location = window.location.href;
+    location = location.split('/')
+    location.pop()
+    debugger
+    location = location.join('/')
+    window.location.href = `${location + '/' + pheed}`;
   }
   
   render() {
@@ -184,7 +192,8 @@ class LeftNav extends React.Component {
               return (
                 <li className='sidenav-item' onMouseOver={this.hover} onClick={this.highlight} key={pheed.name}>
                   <img className='leftNav-icon' src={window.pheeds}/> 
-                  <Link to={`/${pheed.name}`}>{pheed.name}</Link>
+                  {/* <Link to={`/${pheed.name}`}>{pheed.name}</Link> */}
+                  <a>{pheed.name}</a>
                 </li>
               )
             })}

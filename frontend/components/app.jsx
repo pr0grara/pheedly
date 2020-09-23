@@ -19,8 +19,8 @@ const App = () => {
     <div className="side-splash"> 
         <LeftNavContainer />
         <SplashContainer />
-        <ProtectedRoute exact path='/home' component={ArticleIndexContainer} />
-        <ProtectedRoute exact path={['/finance', '/tech', '/fun', '/culture']} component={ArticleIndexContainer} />
+        {/* <ProtectedRoute exact path='/home' component={ArticleIndexContainer} /> */}
+        <ProtectedRoute exact path={['/home', '/finance', '/tech', '/fun', '/culture', '/today', '/read%20later']} component={ArticleIndexContainer} />
         <ProtectedRoute exact path='/sources' component={AddSourceContainer} />
     </div>
     <AuthRoute exact path='/signup' component={SignupFormContainer} />

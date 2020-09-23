@@ -9,7 +9,6 @@ class LeftNav extends React.Component {
     this.toggleLeftNav = this.toggleLeftNav.bind(this);
     this.hover = this.hover.bind(this);
     this.highlight = this.highlight.bind(this);
-    this.highlighted = 0;
     this.addContent = this.addContent.bind(this);
     this.leftNavState = false;
     if (Object.values(this.props.currentUser).length > 0) {
@@ -19,6 +18,7 @@ class LeftNav extends React.Component {
     }
     this.userLogoDropDown = this.userLogoDropDown.bind(this);
     this.logout = this.props.logout.bind(this);
+    this.previousTarget = '';
   }
   
   componentDidMount() {
@@ -31,15 +31,6 @@ class LeftNav extends React.Component {
     }
   }
   
-  // componentWillUpdate(nP, nS) {
-  //   this.userOptions = false;
-  //   if (!nP.currentUser[nP.sessionId]) {
-  //     this.userName = 'N/A'
-  //   } else {
-  //     this.userName = nP.currentUser[nP.sessionId].email
-  //   }
-  // }
-
   toggleLeftNav(e) {
     e.preventDefault();
     let leftNavContainer = document.getElementById("leftNav-container")
@@ -48,7 +39,6 @@ class LeftNav extends React.Component {
     let side_toggle = document.getElementsByClassName("leftNav-dock")[0]
     let articles = {style: {marginLeft:""}};
     let navBar = document.getElementById("header-items-container")
-    // debugger
     
     if (e.target.className === "user-logo-small" || e.target.className === "button") return
 
@@ -62,7 +52,6 @@ class LeftNav extends React.Component {
       leftNavWrapper.style.width = '0px'
       leftNav.style.display = 'none'
       side_toggle.style.width = "49px"
-      // articles.style.margin = "0 0 0 100px"
       articles.style.width = "-webkit-calc(100% - 49px)"
       navBar.style.margin = "0 0 0 100px"
     } else {
@@ -70,15 +59,12 @@ class LeftNav extends React.Component {
       leftNav.style.display = 'flex'
       leftNavContainer.style.width = '318px'
       leftNavWrapper.style.width = '269px'
-      // articles.style.margin = "0 50px 0 200px"
       articles.style.width = "-webkit-calc(100% - 318px)"
       navBar.style.margin = "0 50px 0 320px"
     }
   }
 
   addContent() {
-    //debugger
-    // let history = useHistory();
     console.log("you are awesome")
     window.location.href='#/sources'
   }
@@ -98,15 +84,56 @@ class LeftNav extends React.Component {
 
   hover(e) {
     e.preventDefault();
-    document.addEventListener("mouseout", () => {
+    // if (e.target.className === "leftNav-pheed-item-source-list-item" ||
+    //   e.target.id === 'leftNav-pheed-item-source-list'
+    // ) return
+
+    var pheed = e.target.innerText.toLowerCase();
+    var sideNavItems = document.querySelectorAll('.sidenav-item')
+    var sideNavItem = e.currentTarget;
+    sideNavItems.forEach(item => {
+      if (item.innerText.toLowerCase() === pheed) sideNavItem = item;
+    })
+
+    // if (this.previousTarget === sideNavItem) return
+    this.previousTarget = sideNavItem;
+    
+    var pheeds = JSON.parse(localStorage.pheeds);
+    // debugger
+    var sources = [];
+    Object.keys(pheeds).includes(pheed) ? 
+      sources = pheeds[pheed].sources :
+      null;
+
+    var sourceList = document.createElement('ul')
+    sourceList.id = 'leftNav-pheed-item-source-list'
+    
+    if (sources.length > 0) {
+      sources.forEach(source => {
+        let li = document.createElement('li')
+        li.className = 'leftNav-pheed-item-source-list-item'
+        li.innerText = source;
+        sourceList.appendChild(li)
+      })
+      if (sideNavItem.childElementCount < 3) sideNavItem.appendChild(sourceList);
+    }
+
+    sideNavItem.addEventListener("mouseleave", (e) => {
+      // debugger
+      // if (e.currentTarget !== e.target) return;
+      // || this.children.length() !== 3   
+      var list = e.currentTarget.querySelector('ul');
+      var navItems = document.getElementsByClassName('sidenav-item')
+      // debugger  
+      if (Boolean(list)) {
+        e.currentTarget.removeChild(list)
+      }
       for (let i = 0; i < navItems.length; i++) {
         navItems[i].style.background = 'transparent'
       }
     })
-    let navItem = e.currentTarget;
-    let navItems = document.getElementsByClassName('sidenav-item')
-    navItem.style.background = '#e6e6e6'
-    this.highlighted += 1;
+    sideNavItem.style.background = '#e6e6e6'
+    // let navItem = e.currentTarget;
   }
   
   highlight(e) {

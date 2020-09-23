@@ -34,6 +34,23 @@
   }
 }
 
+#leftNav-pheed-item-source-list {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, .85);
+  padding: 3px;
+  border: 1px solid (rgba(0,0,0,0.25));
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);  
+  width: 150%;
+  border-radius: 0.25rem;
+  font-size: 10px;
+  transform: translateX(18%);
+  li {
+    list-style-type: square;
+    list-style-position: inside;
+  }
+}
+
 .leftNav-wrapper {
   z-index: 1;
   background-color: #f6f7f8;

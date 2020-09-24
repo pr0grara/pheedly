@@ -23,7 +23,7 @@ class AddSource extends React.Component {
           [field]: source,
         });
     }
-    if (time - this.timer > 100) {
+    if (time - this.timer > 200) {
       this.props.searchForSources(this.state.source)
     }
     this.timer = Date.now();

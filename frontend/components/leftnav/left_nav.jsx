@@ -17,8 +17,8 @@ class LeftNav extends React.Component {
       this.userName = "N/A";
     }
     this.userLogoDropDown = this.userLogoDropDown.bind(this);
-    this.logout = this.props.logout.bind(this);
     this.previousTarget = '';
+    this.logout = this.logout.bind(this)
   }
   
   componentDidMount() {
@@ -140,6 +140,16 @@ class LeftNav extends React.Component {
     location.pop()
     location = location.join('/')
     window.location.href = `${location + '/' + pheed}`;
+  }
+
+  logout() {
+    var location = window.location.href;
+    location = location.split('/');
+    location.pop();
+    location = location.join('/')
+    
+    window.location.href = location;
+    this.props.logout()
   }
   
   render() {

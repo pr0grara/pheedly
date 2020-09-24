@@ -24,7 +24,6 @@ class LeftNav extends React.Component {
   componentDidMount() {
     let leftNav = document.getElementById("leftNav");
     let homePheed = document.getElementById('leftNav-home-pheed');
-    // homePheed.style.color = "#2bb24c" 
     if (this.leftNavState) { 
       leftNav.style.height = `${window.screen.availHeight}px`;
       leftNav.style.width = `${(window.screen.availWidth) * 0.17}px`;
@@ -84,22 +83,16 @@ class LeftNav extends React.Component {
 
   hover(e) {
     e.preventDefault();
-    // if (e.target.className === "leftNav-pheed-item-source-list-item" ||
-    //   e.target.id === 'leftNav-pheed-item-source-list'
-    // ) return
-
     var pheed = e.target.innerText.toLowerCase();
     var sideNavItems = document.querySelectorAll('.sidenav-item')
     var sideNavItem = e.currentTarget;
+
     sideNavItems.forEach(item => {
       if (item.innerText.toLowerCase() === pheed) sideNavItem = item;
     })
-
-    // if (this.previousTarget === sideNavItem) return
     this.previousTarget = sideNavItem;
     
     var pheeds = JSON.parse(localStorage.pheeds);
-    // debugger
     var sources = [];
     Object.keys(pheeds).includes(pheed) ? 
       sources = pheeds[pheed].sources :
@@ -119,12 +112,8 @@ class LeftNav extends React.Component {
     }
 
     sideNavItem.addEventListener("mouseleave", (e) => {
-      // debugger
-      // if (e.currentTarget !== e.target) return;
-      // || this.children.length() !== 3   
       var list = e.currentTarget.querySelector('ul');
       var navItems = document.getElementsByClassName('sidenav-item')
-      // debugger  
       if (Boolean(list)) {
         e.currentTarget.removeChild(list)
       }
@@ -133,7 +122,6 @@ class LeftNav extends React.Component {
       }
     })
     sideNavItem.style.background = '#e6e6e6'
-    // let navItem = e.currentTarget;
   }
   
   highlight(e) {
@@ -150,7 +138,6 @@ class LeftNav extends React.Component {
     let location = window.location.href;
     location = location.split('/')
     location.pop()
-    debugger
     location = location.join('/')
     window.location.href = `${location + '/' + pheed}`;
   }
@@ -164,7 +151,7 @@ class LeftNav extends React.Component {
       <div className='leftNav-dock' onClick={this.toggleLeftNav}>
         <Link to='/'><img id='leftNav-logo' src={window.feedlyLogo} /></Link>
         <div className='toggle-leftNav'>
-            <button id='button' onClick={this.userLogoDropDown}>+</button>
+            <button id='button' >+</button>
         </div> 
         <div id='user-options-menu'>
             <label className='user-logo-small' onClick={this.userLogoDropDown}>{this.userName[0]}</label>
@@ -184,7 +171,7 @@ class LeftNav extends React.Component {
             </li>
             <li className='sidenav-category'>pheeds</li>
             <li className='sidenav-item' id='leftNav-home-pheed' onMouseOver={this.hover} onClick={this.highlight}>
-              <img className='leftNav-icon' src={window.all} /><Link to='/home'>All</Link>
+              <img className='leftNav-icon' src={window.all} /><Link to='/home'>home</Link>
             </li>
             {Object.values(pheeds).map(pheed => {
               // debugger
@@ -199,7 +186,7 @@ class LeftNav extends React.Component {
             })}
           </ul>
           <div className='add-content'>
-            <button onClick={this.addContent}>Create Pheed</button>
+            <button onClick={this.addContent}>Follow Sources</button>
           </div>
         </div>
       </div>
@@ -228,7 +215,6 @@ class LeftNav extends React.Component {
     const inactive = () => (
       <div className='inactive-leftnav'></div>
     )
-    // return this.userName === 'N/A' ? inactive() : active()
     return Object.keys(this.props.currentUser).length > 0 ? active() : inactive()
   }
 }

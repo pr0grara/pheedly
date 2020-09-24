@@ -48,10 +48,8 @@ export const curryArticles = sources => dispatch => {
       }
       
       if (Object.keys(res).length === curryLength) {
-        // debugger
         res.time = Date.now();
         localStorage.setItem("articles", JSON.stringify(res)) //cache articles to LS
-        // debugger
         dispatch(receiveArticles(res)) //dispatch articles to state
         window.location.reload(); //results from promises come in after home renders, refresh to rerender
         //dont need this cause fixed state... update sometimes I need otrher times i dont ???
@@ -69,7 +67,6 @@ export const addNewSourceArticles = source => dispatch => {
     var articles = JSON.parse(localStorage.articles)
     articles[newArticles.value[0].provider[0].name] = newArticles;
     localStorage.articles = JSON.stringify(articles)
-    // debugger
     dispatch(receiveArticles(articles))
     window.location.reload();
   })

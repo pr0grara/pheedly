@@ -4,7 +4,6 @@ export const RECEIVE_PHEEDS = 'RECEIVE_PHEEDS';
 export const UPDATE_PHEEDS = 'UPDATE_PHEEDS';
 
 export const receivePheeds = pheeds => {
-  //debugger
   return ({
     type: RECEIVE_PHEEDS,
     pheeds
@@ -20,11 +19,8 @@ export const updatePheeds = pheeds => {
 }
 
 export const addPheedsToState = pheeds => dispatch => {
-  // debugger
   dispatch(receivePheeds(pheeds))
   localStorage.setItem('pheeds', JSON.stringify(pheeds))
-  // debugger
-  // if (!Boolean(localStorage.articles)) dispatch(curryArticles(pheeds))
 }
 
 export const addNewPheedToState = pheeds => dispatch => {

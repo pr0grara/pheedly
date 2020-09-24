@@ -6,7 +6,6 @@ import { logout } from './actions/session_actions'
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // logout()
   let store 
   let preloadedState = {
     session: {
@@ -37,8 +36,4 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store;
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
-})
-
-document.addEventListener('load', () => {
-  console.log("SUPPPPP")
 })

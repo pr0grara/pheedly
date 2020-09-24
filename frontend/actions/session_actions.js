@@ -57,7 +57,6 @@ const processPheeds = feeds => {
   feeds.forEach(feed => {
     pheeds[feed.pheed.name]['sources'].push(feed.source.name)
   })
-  debugger
   return pheeds;
 }
         
@@ -69,13 +68,10 @@ export const login = user => dispatch => {
     APIUtil.login(user)
     .then(user => {
       dispatch(receiveCurrentUser(user))
-      // debugger
       dispatch(addFeedsToState(user))
       .then(res => {
         var feeds = res.feeds
-        // var sources = processSources(feeds)
-        var sources = uniq(feeds.map(feed => feed.source))
-        // var pheeds = uniq(feeds.map(feed => feed.pheed))
+        var sources = uniq(feeds.map(feed => feed.source)) //potentially a minor issue down the road if same source in muiltiple pheeds
         var pheeds = processPheeds(feeds)
 
         dispatch(addSourcesToState(sources))
@@ -86,7 +82,7 @@ export const login = user => dispatch => {
 };
 
 export const logout = () => dispatch => (
-  APIUtil.logout().then(user => {
+  APIUtil.logout().then(() => {
     localStorage.removeItem('sources')
     localStorage.removeItem('pheeds')
     localStorage.removeItem('feeds')

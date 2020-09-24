@@ -59,7 +59,7 @@ class ArticleIndex extends React.Component {
   }
 
   receiveSources(location) {
-    debugger
+    // debugger
     // if (this.props.location === "/home") return;
     var sources = [];
     if (location === ("home" || "today")) return sources;
@@ -116,7 +116,7 @@ class ArticleIndex extends React.Component {
     const currentPheed = location.href.split("/").reverse()[0];
     const acceptableSources = this.receiveSources(currentPheed)
 
-    debugger
+    // debugger
 
     return (
       <div className="article-index-wrapper">
@@ -124,7 +124,6 @@ class ArticleIndex extends React.Component {
           <div className="article-index-header-row">
             <h1 className="article-index-h1">{currentPheed}</h1>
             <h2 className="article-index-h2">
-              {/* The insights you need to stay ahead */}
               {this.pageDescription[currentPheed]}
             </h2>
           </div>

@@ -14,7 +14,6 @@ class AddSource extends React.Component {
     this.searching = true;
     this.changeState = this.changeState.bind(this);
     this.closeElement =this.closeElement.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
     this.addMenu = this.addMenu.bind(this);
   }
 
@@ -24,13 +23,9 @@ class AddSource extends React.Component {
           [field]: source,
         });
     }
-    // if (time - this.timer > 750) {
     if (time - this.timer > 100) {
-      // debugger
       this.props.searchForSources(this.state.source)
-      // console.log('too slow')
     }
-    // debugger
     this.timer = Date.now();
     return e => this.setState({
       [field]: e.currentTarget.value
@@ -39,7 +34,6 @@ class AddSource extends React.Component {
 
   hover(e) {
     e.preventDefault()
-    // console.log(e.target)
     let source = e.target;
     source.classList.toggle('hover')
   }
@@ -64,7 +58,6 @@ class AddSource extends React.Component {
     e.preventDefault()
     const bubbles = e.path;
     if (!bubbles.some(ele => ele.className === 'source-list')) {   
-      // debugger
       this.searching = false;
     }
     this.render();
@@ -73,9 +66,7 @@ class AddSource extends React.Component {
   addMenu(e) {
     e.preventDefault()
     if (Boolean(!document.querySelector('.pheed-menu'))) {
-      // const source = e.target.parentNode.children[0].children[0].textContent;
       var pheeds = Object.values(this.props.pheeds);
-      debugger
       const follow = document.querySelector('.source-details-add-source-button-container')
       var menu = document.createElement('ul')
       menu.className = 'pheed-menu';
@@ -114,7 +105,6 @@ class AddSource extends React.Component {
     this.props.entitiesSearch(sourceName)
       .done(res => {
         const source = res.entities.value[0];
-        // debugger
 
         this.selection = (
           <div className="source-details">
@@ -141,23 +131,19 @@ class AddSource extends React.Component {
         this.searching = false; //THIS DOES NOTHING!!! 'this' is a promise and not the add source react component. 
         //does not throw an error which has lead me to believe I was switching searching state when i actually haven't
         this.render() //BUT WHY THEN DOES THIS WORK / IS REQUIRED ?!?! *scratches head vigorously* 
-        //////////////////WHAT IN THE FUCK IS GOING ON HERE
+        //////////////////WHAT THE FXCK IS GOING ON HERE?
       })    
   }
 
   changeState() {
     if (!this.seaching) this.searching = true;
     var details = document.querySelector('.source-details')
-    // debugger
     if (details && details.classList.length === 1) details.classList.toggle('hidden')
     var suggestions = document.querySelector(".suggestions");
     suggestions.style.display = "block";
-    // this.render();
   }
 
   autofill(e) {
-    // debugger
-    // this.state.source = e.currentTarget.value;
     let value
     if (Boolean(e.currentTarget)) {
       value = e.currentTarget.value
@@ -169,7 +155,6 @@ class AddSource extends React.Component {
 
   handleClick(e) {
     e.preventDefault()
-    debugger
     this.props.addUserFeed(this.props.user, this.state.source) //now that this works
     //make sure to update sources in state and localstorage, refresh all articles this time 
     //including ones from new source, add these articles to state and localStorage
@@ -178,24 +163,20 @@ class AddSource extends React.Component {
   }
 
   log(e) {
-    debugger
     var newPheeds = Object.assign({}, this.props.pheeds)
     var pheed = e.target.innerText
     var source = this.state.source
     this.props.addUserFeed(this.props.user, source, pheed)
     newPheeds[pheed].sources.push(source)
-    debugger
     this.props.addNewPheed(newPheeds)
   }
 
   render() {
     const body = document.querySelector('body')
     body.addEventListener('click', this.closeElement)
-    // debugger
-    // console.log(this.props.pheeds)
     var newSources = [];
-    var pheeds = Object.values(this.props.pheeds)
-    var details = document.querySelector('.source-details')
+    // var pheeds = Object.values(this.props.pheeds)
+    // var details = document.querySelector('.source-details')
 
     if (Boolean(this.props.sources.search)) {
       var matchedSources = Object.values(this.props.sources.search);
@@ -215,27 +196,17 @@ class AddSource extends React.Component {
           <input type="submit" onClick={this.handleClick} />
         </form>
 
-        <div className="suggestions" 
-          // onClick={this.log}
-        >
-          {/* <ul className="pheed-menu">
-            {pheeds.map((pheed) => (
-              <li key={pheed.name}>{pheed.name}</li>
-            ))}
-          </ul> */}
+        <div className="suggestions">
           <ul className='source-list'>
             <>{this.searching ? <li>sources</li> : ""}</>
             {newSources.map((source) => {
               return (
-                // <li className={'new-source} onClick={this.update("source", 0, source.name)} onMouseLeave={this.hover} key={source.name}>
                 <li
                   className={"new-source"}
-                  // onClick={this.selectPheed}
                   onClick={this.selectSource}
                   onMouseOver={this.hover}
                   onMouseLeave={this.hover}
                   key={source.name}
-                  // data-source={JSON.stringify(source)}
                   data-sourcename={source.name}
                 >
                   {source.name}

@@ -6,7 +6,7 @@ import App from './app'
 
 
 const Root = ({ store }) => {
-  // let root = document.getElementById('root')
+  // let root = document.getElementById('root') <<<<< this chunk of commented code was messing up heights
   // root.style.width = `${window.innerWidth}px`  
   // // root.style.height = `${window.innerHeight}px`  
   // root.style.height = `${document.documentElement.scrollHeight}px`  

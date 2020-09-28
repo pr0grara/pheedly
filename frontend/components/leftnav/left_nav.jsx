@@ -17,7 +17,6 @@ class LeftNav extends React.Component {
       this.userName = "N/A";
     }
     this.userLogoDropDown = this.userLogoDropDown.bind(this);
-    this.previousTarget = '';
     this.logout = this.logout.bind(this)
   }
   
@@ -83,16 +82,15 @@ class LeftNav extends React.Component {
 
   hover(e) {
     e.preventDefault();
-    var pheed = e.target.innerText.toLowerCase();
-    var sideNavItems = document.querySelectorAll('.sidenav-item')
+    const pheed = e.target.innerText.toLowerCase();
+    const sideNavItems = document.querySelectorAll('.sidenav-item')
     var sideNavItem = e.currentTarget;
 
     sideNavItems.forEach(item => {
       if (item.innerText.toLowerCase() === pheed) sideNavItem = item;
     })
-    this.previousTarget = sideNavItem;
     
-    var pheeds = JSON.parse(localStorage.pheeds);
+    const pheeds = JSON.parse(localStorage.pheeds);
     var sources = [];
     Object.keys(pheeds).includes(pheed) ? 
       sources = pheeds[pheed].sources :
@@ -126,20 +124,46 @@ class LeftNav extends React.Component {
   
   highlight(e) {
     e.preventDefault();
-    let navItem = e.currentTarget;
-    let navItems = document.getElementsByClassName('sidenav-item')
-    
+    const navItem = e.currentTarget;
+    const navItems = document.getElementsByClassName('sidenav-item');
+    const navItemList = document.querySelector('#side-nav');
+    const toDelete = document.querySelector('.expendable');
+    const pheed = navItem.querySelector("a").innerHTML;
+    const pheeds = JSON.parse(localStorage.pheeds);
+    const sources = pheeds[pheed].sources
+    debugger
+
+    if (!!toDelete) toDelete.parentElement.removeChild(toDelete)
+
     for (let i = 0; i < navItems.length; i++) {
       navItems[i].style.color = '#333'
     }
     navItem.style.color = "#2bb24c"
+    
+    const test = document.createElement('ul')
+    sources.forEach(sourceName => {
+      let li = document.createElement('li');
+      li.innerText = sourceName
+      test.appendChild(li)
+    })
+    // test.innerText = 'hello bitches'
+    test.className = 'expendable'
+    
+    for (let i = 3; i < navItems.length; i++) {
+      if (navItems[i].children[1].innerText.toLowerCase() === pheed) {
 
-    let pheed = navItem.querySelector("a").innerHTML;
-    let location = window.location.href;
-    location = location.split('/')
-    location.pop()
-    location = location.join('/')
-    window.location.href = `${location + '/' + pheed}`;
+        navItemList.insertBefore(test, navItemList.children[i+2])
+      }
+    }
+
+    // navItemList.children.forEach((item, idx) => {
+    //   if (item.children[1].innerText.toLowerCase() === pheed) {
+    //     navItemList.insertBefore(test, navItemList.children[idx+1])
+    //   }
+    // })
+
+    const nextLocation = window.location.href.split('/').slice(0, -2).join('/') + '/#/' + pheed;
+    window.location.href = nextLocation;
   }
 
   logout() {

@@ -171,7 +171,7 @@ class LeftNav extends React.Component {
     //     navItemList.insertBefore(test, navItemList.children[idx+1])
     //   }
     // })
-
+    this.toggleLeftNav(e);
     const nextLocation = window.location.href.split('/').slice(0, -2).join('/') + '/#/' + pheed;
     window.location.href = nextLocation;
   }

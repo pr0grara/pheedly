@@ -27,7 +27,7 @@
   font-weight: 700;
   font-size: .85rem;
   text-transform: capitalize;
-  padding: 0 20px 0 50px;
+  padding: 0 20px 0 30px;
   height: 38px;
   a {
     width: 100%;
@@ -265,4 +265,31 @@
   font-family: sans-serif;
   color: #9e9e9e;
   margin: 15px 0 5px 20px;
+}
+
+.expendable {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #333;
+  font-weight: 700;
+  font-size: .85rem;
+  text-transform: capitalize;
+  padding: 0 20px 0 50px;
+  a {
+    width: 100px;
+    line-height: 38px;
+    padding-left: 20px;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.expendable > li > img {
+  height: 15px;
+  width: 15px;
 }

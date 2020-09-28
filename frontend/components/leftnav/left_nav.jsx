@@ -130,8 +130,9 @@ class LeftNav extends React.Component {
     const toDelete = document.querySelector('.expendable');
     const pheed = navItem.querySelector("a").innerHTML;
     const pheeds = JSON.parse(localStorage.pheeds);
-    const sources = pheeds[pheed].sources
-    debugger
+    var sources = [];
+
+    if (!!pheeds[pheed]) sources = pheeds[pheed].sources;
 
     if (!!toDelete) toDelete.parentElement.removeChild(toDelete)
 
@@ -140,14 +141,23 @@ class LeftNav extends React.Component {
     }
     navItem.style.color = "#2bb24c"
     
-    const test = document.createElement('ul')
-    sources.forEach(sourceName => {
-      let li = document.createElement('li');
-      li.innerText = sourceName
-      test.appendChild(li)
-    })
-    // test.innerText = 'hello bitches'
-    test.className = 'expendable'
+    const test = document.createElement('ul');
+
+    if (sources.length > 0) {
+      test.className = 'expendable';
+      sources.forEach(sourceName => {
+        this.props.sourceData(sourceName).then(res => {
+          let li = document.createElement('li');
+          let img = document.createElement('img');
+          img.src = res.entities.value[0].image.thumbnailUrl;
+          li.appendChild(img)
+          let a = document.createElement('a')
+          a.innerText = res.entities.value[0].name;
+          li.appendChild(a)
+          test.appendChild(li)
+        })
+      })
+    }
     
     for (let i = 3; i < navItems.length; i++) {
       if (navItems[i].children[1].innerText.toLowerCase() === pheed) {

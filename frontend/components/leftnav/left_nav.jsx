@@ -17,7 +17,8 @@ class LeftNav extends React.Component {
       this.userName = "N/A";
     }
     this.userLogoDropDown = this.userLogoDropDown.bind(this);
-    this.logout = this.logout.bind(this)
+    this.logout = this.logout.bind(this);
+    this.searchForNews = this.searchForNews.bind(this);
   }
   
   componentDidMount() {
@@ -27,6 +28,7 @@ class LeftNav extends React.Component {
       leftNav.style.height = `${window.screen.availHeight}px`;
       leftNav.style.width = `${(window.screen.availWidth) * 0.17}px`;
     }
+    // this.props.querySearch('artsakh')
   }
   
   toggleLeftNav(e) {
@@ -185,6 +187,16 @@ class LeftNav extends React.Component {
     window.location.href = location;
     this.props.logout()
   }
+
+  searchForNews() {
+    if (!!localStorage.newsSearchByQuery) localStorage.clear('newsSearchByQuery')
+    const queryValue = document.querySelector('#leftnav-query-value').value
+    this.props.querySearch(queryValue).then(res => {
+      if (res.value.length > 0) localStorage.newsSearchByQuery = JSON.stringify(res)
+      // if (window.location.href.split('/').reverse()[0] === 'search') window.location.reload();
+      window.location.href = 'http://localhost:3000/#/search'
+    })
+  }
   
   render() {
     var pheeds = [];
@@ -228,6 +240,11 @@ class LeftNav extends React.Component {
                 </li>
               )
             })}
+            <li className='sidenav-category'>search for news</li>
+            <li>
+              <input type="text" name="" id="leftnav-query-value"/>
+              <input className='leftnav-query-search' type="submit" value="submit" onClick={this.searchForNews}/>
+            </li>
           </ul>
           <div className='add-content'>
             <button onClick={this.addContent}>Follow Sources</button>

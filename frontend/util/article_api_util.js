@@ -6,7 +6,7 @@ export const articles = (source) => {
   })
 }
 
-var newsSearch = (source) => {
+var newsSearchBySource = (source) => {
   return {
   "async": true,
   "crossDomain": true,
@@ -14,7 +14,19 @@ var newsSearch = (source) => {
   "method": "GET",
   "headers": {
     "Ocp-Apim-Subscription-Key": `${window.bing}`
+    }
   }
+}
+
+var newsSearchByQuery = (query) => {
+  return {
+  "async": true,
+  "crossDomain": true,
+    "url": `https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=${query}&freshness=day&count=200&mkt=en-us`,
+  "method": "GET",
+  "headers": {
+    "Ocp-Apim-Subscription-Key": `${window.bing}`
+    }
   }
 }
 
@@ -30,17 +42,29 @@ var sourceSearch = (source) => { //this uses the bing entities search api
   }
 }
 
-export const bingNews = (source) => {
+export const bingNewsBySource = (source) => {
   return (
-    $.ajax(newsSearch(source))
+    $.ajax(newsSearchBySource(source))
     .done(res => {
       console.log(res);
     })
     .fail(err => {
       console.log(err.responseText)
     })
-    )
-  }
+  )
+}
+
+export const bingNewsByQuery = (query) => {
+  return (
+    $.ajax(newsSearchByQuery(query))
+    .done(res => {
+      console.log(res);
+    })
+    .fail(err => {
+      console.log(err.responseText)
+    })
+  )
+}
 
   export const bingEntities = (source) => {
   return (

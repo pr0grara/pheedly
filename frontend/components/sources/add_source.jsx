@@ -177,7 +177,7 @@ class AddSource extends React.Component {
     var newSources = [];
     // var pheeds = Object.values(this.props.pheeds)
     // var details = document.querySelector('.source-details')
-
+    // return <div>hi</div>
     if (Boolean(this.props.sources.search)) {
       var matchedSources = Object.values(this.props.sources.search);
       var userSources = Object.values(this.props.sources.userSources).map(source => source.name)

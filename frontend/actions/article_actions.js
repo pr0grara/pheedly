@@ -39,7 +39,7 @@ export const curryArticles = sources => dispatch => {
   let source = {}
   while (sources.length > 0) {
     source = sources.pop()
-    APIUtil.bingNews(source.code)
+    APIUtil.bingNewsBySource(source.code)
     .then(obj => {
       if (obj.value.length === 0) {
         res["error"] = obj.queryContext.originalQuery;
@@ -62,7 +62,7 @@ export const curryArticles = sources => dispatch => {
 }
 
 export const addNewSourceArticles = source => dispatch => {
-  APIUtil.bingNews(source.code)
+  APIUtil.bingNewsBySource(source.code)
   .then(newArticles => {
     var articles = JSON.parse(localStorage.articles)
     articles[newArticles.value[0].provider[0].name] = newArticles;

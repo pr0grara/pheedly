@@ -8,6 +8,7 @@
     "babel-loader": "^8.1.0",
     "currentsapi": "^0.1.0",
     "file-loader": "^6.0.0",
+    "interweave": "^12.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",

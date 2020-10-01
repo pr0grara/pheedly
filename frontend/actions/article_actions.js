@@ -2,6 +2,7 @@ import * as APIUtil from '../util/article_api_util'
 export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES';
 export const RECEIVE_ARTICLE_ERRORS = 'RECEIVE_ARTICLE_ERRORS';
 export const RECEIVE_CONTENT = 'RECEIVE_CONTENT';
+export const ADD_QUERY_ARTICLES = 'ADD_QUERY_ARTICLES';
 
 export const receiveArticles = articles => {
   return ({
@@ -20,6 +21,14 @@ export const receiveContent = article => {
     type: RECEIVE_CONTENT,
     contentType: 'json',
     article
+  })
+};
+
+export const addQueryArticles = articles => {
+  return ({
+    type: ADD_QUERY_ARTICLES,
+    contentType: 'json',
+    articles
   })
 };
 
@@ -75,3 +84,4 @@ export const addNewSourceArticles = source => dispatch => {
 export const dispatchArticles = articles => dispatch => {
   dispatch(receiveArticles(articles))
 }
+

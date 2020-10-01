@@ -41,9 +41,9 @@ class LeftNav extends React.Component {
     let navBar = document.getElementById("header-items-container")
     
     if (e.target.className === "user-logo-small" || e.target.className === "button") return
-
+    
     if (document.getElementsByClassName('article-index').length > 0) {
-     articles = document.getElementsByClassName('article-index-wrapper')[0]
+      articles = document.getElementsByClassName('article-index-wrapper')[0]
     }
 
     if (leftNavWrapper.style.width === "269px") {
@@ -189,11 +189,12 @@ class LeftNav extends React.Component {
   }
 
   searchForNews() {
-    if (!!localStorage.newsSearchByQuery) localStorage.clear('newsSearchByQuery')
+    if (!!localStorage.newsSearchByQuery) localStorage.removeItem('newsSearchByQuery')
     const queryValue = document.querySelector('#leftnav-query-value').value
     this.props.querySearch(queryValue).then(res => {
       if (res.value.length > 0) localStorage.newsSearchByQuery = JSON.stringify(res)
       // if (window.location.href.split('/').reverse()[0] === 'search') window.location.reload();
+      this.props.dispatchQueryArticles(JSON.stringify(res));
       window.location.href = 'http://localhost:3000/#/search'
     })
   }

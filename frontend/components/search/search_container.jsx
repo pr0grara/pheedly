@@ -1,11 +1,11 @@
 import Search from './search'
 import { connect } from 'react-redux'
 
-const mSTP = ({session, entities: { users }}) => {
+const mSTP = ({session, entities}) => {
   return {
-    currentUser: users,
+    currentUser: entities.users,
     sessionId: session.id,
-
+    articles: entities.articles
   }
 }
 

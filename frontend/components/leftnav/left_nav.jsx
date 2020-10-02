@@ -218,11 +218,12 @@ class LeftNav extends React.Component {
   searchForNews() {
     if (!!localStorage.newsSearchByQuery) localStorage.removeItem('newsSearchByQuery')
     const queryValue = document.querySelector('#leftnav-query-value').value
+    var location = window.location.href;
     this.props.querySearch(queryValue).then(res => {
       if (res.value.length > 0) localStorage.newsSearchByQuery = JSON.stringify(res)
       // if (window.location.href.split('/').reverse()[0] === 'search') window.location.reload();
       this.props.dispatchQueryArticles(JSON.stringify(res));
-      window.location.href = 'http://localhost:3000/#/search'
+      window.location.href = `${location.split('/').slice(0, -1).join('/')}/search`
     })
   }
   

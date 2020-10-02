@@ -8,6 +8,22 @@ class Footer extends React.Component {
     this.removeHeader = this.removeHeader.bind(this)
   }
 
+  componentDidMount() {
+    const footer = document.querySelector('.footer-container')
+
+    document.addEventListener('click', (e) => {
+      if (e.target !== footer && footer.classList.length < 2) {
+        footer.classList.add('hide');
+        footer.children[0].classList.add('hide');
+      }
+    })
+
+    footer.addEventListener('mouseover', (e) => {
+      footer.classList.remove('hide')
+      footer.children[0].classList.remove('hide')
+    })
+  }
+
   removeHeader() {
     // console.log(Date.now() - this.time)
     // if (Date.now() - this.time < 2000) return
@@ -15,10 +31,10 @@ class Footer extends React.Component {
     var footer = document.querySelector('.footer');
     footer.classList.add('hide');
     footer.parentElement.classList.add('hide');
-    footer.parentElement.addEventListener('mouseover', (e) => {
-      footer.parentElement.classList.remove('hide');
-      footer.classList.remove('hide');
-    })
+    // footer.parentElement.addEventListener('mouseover', (e) => {
+    //   footer.parentElement.classList.remove('hide');
+    //   footer.classList.remove('hide');
+    // })
   }
 
   render() {
@@ -42,7 +58,7 @@ class Footer extends React.Component {
             </ul>
           </div>
           <div className='footer-item'>
-            <span><a href="www.feedly.com">A clone of Feedly, check them out :)</a></span>
+            <span><a href="https://www.feedly.com">A clone of Feedly, check them out :)</a></span>
             <span>
               Icons courtesy of
               <a

@@ -22,23 +22,46 @@ class LeftNav extends React.Component {
   }
   
   componentDidMount() {
-    let leftNav = document.getElementById("leftNav");
-    let homePheed = document.getElementById('leftNav-home-pheed');
-    if (this.leftNavState) { 
-      leftNav.style.height = `${window.screen.availHeight}px`;
-      leftNav.style.width = `${(window.screen.availWidth) * 0.17}px`;
-    }
-    // this.props.querySearch('artsakh')
+    const leftNav = document.getElementById("leftNav");
+    const boolean = this.leftNavState;
+    document.addEventListener('click', (e) => {
+      const leftNav = document.getElementById("leftNav");
+      const location = window.location.href.split('/').reverse()[0]
+      const dock = document.querySelector('.leftNav-dock')
+      const dropdown = document.getElementById("user-dropdown");
+      const userLogo = document.querySelector('.user-logo-small');
+      const searchBar = document.querySelector('.leftnav-query')
+
+      if (location === "" || location === "login" || e.target.parentElement === searchBar) return
+
+      if (e.target !== leftNav && 
+        e.target !== dock && 
+        leftNav.style.display === 'flex'
+      ) {
+        this.toggleLeftNav(e)
+      }
+      if (
+        dropdown.className === "user-menu" &&
+        e.target !== userLogo
+      ) {
+        this.userLogoDropDown(e);
+      }      
+    })
+
+    // if (this.leftNavState) { 
+    //   leftNav.style.height = `${window.screen.availHeight}px`;
+    //   leftNav.style.width = `${(window.screen.availWidth) * 0.17}px`;
+    // }
   }
   
   toggleLeftNav(e) {
     e.preventDefault();
-    let leftNavContainer = document.getElementById("leftNav-container")
-    let leftNavWrapper = document.getElementById("leftNav-wrapper")
-    let leftNav = document.getElementById("leftNav")
-    let side_toggle = document.getElementsByClassName("leftNav-dock")[0]
-    let articles = {style: {marginLeft:""}};
-    let navBar = document.getElementById("header-items-container")
+    const leftNavContainer = document.getElementById("leftNav-container")
+    const leftNavWrapper = document.getElementById("leftNav-wrapper")
+    const leftNav = document.getElementById("leftNav")
+    const side_toggle = document.getElementsByClassName("leftNav-dock")[0]
+    var articles = {style: {marginLeft:""}};
+    const navBar = document.getElementById("header-items-container")
     
     if (e.target.className === "user-logo-small" || e.target.className === "button") return
     
@@ -161,18 +184,13 @@ class LeftNav extends React.Component {
       })
     }
     
-    for (let i = 3; i < navItems.length; i++) {
+    for (let i = 4; i < navItems.length; i++) {
       if (navItems[i].children[1].innerText.toLowerCase() === pheed) {
 
         navItemList.insertBefore(test, navItemList.children[i+2])
       }
     }
 
-    // navItemList.children.forEach((item, idx) => {
-    //   if (item.children[1].innerText.toLowerCase() === pheed) {
-    //     navItemList.insertBefore(test, navItemList.children[idx+1])
-    //   }
-    // })
     this.toggleLeftNav(e);
     const nextLocation = window.location.href.split('/').slice(0, -2).join('/') + '/#/' + pheed;
     window.location.href = nextLocation;
@@ -243,8 +261,10 @@ class LeftNav extends React.Component {
             })}
             <li className='sidenav-category'>search for news</li>
             <li>
-              <input type="text" name="" id="leftnav-query-value"/>
-              <input className='leftnav-query-search' type="submit" value="submit" onClick={this.searchForNews}/>
+              <div className='leftnav-query'>
+                <input type="text" name="" id="leftnav-query-value"/>
+                <input className='leftnav-query-search' type="submit" value="search" onClick={this.searchForNews}/>
+              </div>
             </li>
           </ul>
           <div className='add-content'>

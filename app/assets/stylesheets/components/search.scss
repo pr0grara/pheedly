@@ -1,3 +1,19 @@
-li span {
+.leftnav-query {
+  margin-left: 20px;
+}
+
+#leftnav-query-value {
+  background: white;
+  margin-right: .7rem;
+  height: 24px;
+}
+
+.leftnav-query-search {
+  border: 1px solid black;
+  background: white;
+  padding: 2px;
+}
+
+.hl {
   background-color: yellow;
 }

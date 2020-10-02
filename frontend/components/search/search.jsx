@@ -34,49 +34,19 @@ class Search extends React.Component {
     const regex = new RegExp(query, 'gi');
     
     function capitalization(word) {
-      debugger
       if (word === word.toUpperCase()) return query.toUpperCase();
       if (word === word.toLowerCase()) return query.toLowerCase();
       if (word[0] === word[0].toUpperCase()) return query[0].toUpperCase() + query.slice(1);
     }
 
     if (content.split(' ').length === 1) {
-      return content.replace(regex, `<span className='hl'>${capitalization(content)}</span>`);
+      return content.replace(regex, `<span class='hl'>${capitalization(content)}</span>`);
     }
 
     const html = content.split(' ').map(word => {
-      return word.replace(regex, `<span className='hl'>${capitalization(word)}</span>`);
-    // if (word[0] === word[0].toUpperCase()) {
-    //   return word.replace(regex, `<span className='hl'>${query[0].toUpperCase() + query.slice(1)}</span>`);
-    // } else {
-    //   return word.replace(regex, `<span className='hl'>${query}</span>`);
-    // }
+      return word.replace(regex, `<span class='hl'>${capitalization(word)}</span>`);
     })
     return html.join(' ')
-    // if (typeof article.name !== 'string') return art
-    // const html = article.name.split(' ').map(word => {
-    //   // debugger
-    //   const regex = new RegExp(query, 'gi');
-    //   debugger
-    // if (word[0] === word[0].toUpperCase()) {
-    //   return word.replace(regex, `<span className='hl'>${query[0].toUpperCase() + query.slice(1)}</span>`)
-    // } else {
-    //   return word.replace(regex, `<span className='hl'>${query}</span>`)
-    // }
-    // })
-    // return html.join(' ')
-    // const html = articles.map(art => {
-    //   if (typeof art.name !== 'string') return art
-    //   // debugger
-    //   const regex = new RegExp(query, 'gi');
-    //   const refinedName = art.name.split(' ').map(word => {
-    //     return word.replace(regex, `<span class='hl'>${query}</span>`)
-    //   })
-    //   // const hlText = 
-    //   return refinedName.join(' ')
-    // })
-    // debugger
-    // return html
   }
 
   render() {

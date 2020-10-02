@@ -31,21 +31,30 @@ class LeftNav extends React.Component {
       const dropdown = document.getElementById("user-dropdown");
       const userLogo = document.querySelector('.user-logo-small');
       const searchBar = document.querySelector('.leftnav-query')
-
+      
       if (location === "" || location === "login" || e.target.parentElement === searchBar) return
-
+      
       if (e.target !== leftNav && 
         e.target !== dock && 
         leftNav.style.display === 'flex'
-      ) {
-        this.toggleLeftNav(e)
-      }
-      if (
-        dropdown.className === "user-menu" &&
-        e.target !== userLogo
-      ) {
-        this.userLogoDropDown(e);
-      }      
+        ) {
+          this.toggleLeftNav(e)
+        }
+        if (
+          dropdown.className === "user-menu" &&
+          e.target !== userLogo
+          ) {
+            this.userLogoDropDown(e);
+          }      
+        })
+        
+    document.addEventListener('keypress', (e) => {
+      const location = window.location.href.split('/').reverse()[0]
+      if (location === "" || location === "login") return
+      
+      const queryValue = document.querySelector('#leftnav-query-value')
+      
+      if (e.key === 'Enter' && queryValue.value !== '') this.searchForNews()
     })
 
     // if (this.leftNavState) { 

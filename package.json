@@ -5,7 +5,7 @@
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
     "@babel/preset-react": "^7.10.1",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.3.0",
     "currentsapi": "^0.1.0",
     "file-loader": "^6.0.0",
     "interweave": "^12.5.0",
@@ -17,8 +17,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "serve": "^11.3.2",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "description": "",
   "version": "1.0.0",
